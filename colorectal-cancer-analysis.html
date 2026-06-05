@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorectal Diagnostic | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+    <style>
+        :root { --accent-color: #f59e0b; }
+        .diagnostic-card-premium { border-top: 4px solid var(--accent-color); }
+        .highlight { color: var(--accent-color); }
+    </style>
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='cancer-analysis.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Cancer Lab</span></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <div class="header-left">
+                    <h1 class="terminal-title">Digestive <span class="highlight">Oncology Mapper</span></h1>
+                    <p class="terminal-subtitle">High-fidelity gastrointestinal and colorectal cancer screening.</p>
+                </div>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium">
+                    <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                        <div class="scanner-content">
+                            <div class="pulse-ring"></div>
+                            <div class="scanner-icon"><ion-icon name="scan-outline"></ion-icon></div>
+                            <div class="scanner-text">
+                                <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                                <div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div>
+                                <p id="scannerLog">Awaiting Biometric Stream...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="cancerForm" class="diagnostic-form-full">
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="flask-outline"></ion-icon>
+                                <h3>Gastrointestinal Vitals</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                                    <input type="number" id="age" required min="1" max="120" placeholder="e.g. 55">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="water-outline"></ion-icon> Blood in Stool</label>
+                                    <select id="blood" required><option value="0">No</option><option value="1">Yes</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="trending-down-outline"></ion-icon> Weight Loss</label>
+                                    <select id="weight" required><option value="0">No</option><option value="1">Yes (Unexplained)</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="sync-outline"></ion-icon> Habit Changes</label>
+                                    <select id="habit" required><option value="0">No</option><option value="1">Yes (Persistent)</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="git-branch-outline"></ion-icon> Family History</label>
+                                    <select id="family" required><option value="0">No</option><option value="1">Yes</option></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <p class="form-hint">AI Engine: GI-Oncology v2.1</p>
+                            <button type="submit" class="submit-cad-btn">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                Run GI Scan
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="resultArea" class="result-area-premium" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats-column">
+                                <div class="result-main-card">
+                                    <div class="risk-circle-container"><div class="risk-circle" id="riskMeter"><span class="risk-percent" id="riskValue">0%</span><span class="risk-title">Risk Score</span></div></div>
+                                    <div class="risk-details"><h2 id="riskLabel">Calculating...</h2><p id="riskMsg"></p></div>
+                                </div>
+                                <div class="mini-stats-grid">
+                                    <div class="mini-stat"><label>AI Accuracy</label><div class="val" id="accuracyValue">--</div></div>
+                                    <div class="mini-stat"><label>Status</label><div class="val" id="statusValue">--</div></div>
+                                </div>
+                                <button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Analysis</span></button>
+                            </div>
+                            <div class="chatbot-analysis-column">
+                                <div class="chatbot-card" style="height: 100%; display: flex; flex-direction: column; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;">
+                                    <div class="chat-card-header" style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px;">
+                                        <div class="ai-avatar"><ion-icon name="pulse" style="color:var(--accent-color)"></ion-icon></div>
+                                        <div><h4 style="margin:0; font-size: 14px; color: white;">Digestive Assistant</h4><span class="status-online" style="font-size: 11px; color: #10b981;">Ready</span></div>
+                                    </div>
+                                    <div class="chat-content" id="chatMessages" style="flex-grow: 1; padding: 15px; height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+                                        <div class="msg ai" style="color: #cbd5e1; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+                                            Analysis complete. How can I help you understand these gastrointestinal findings?
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-box" style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px;">
+                                        <input type="text" id="chatInput" placeholder="Ask a question..." style="flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px; color: white; outline: none;">
+                                        <button onclick="sendChat()" style="background: var(--accent-color); border: none; color: white; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;"><ion-icon name="send"></ion-icon></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function sendChat() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const userDiv = document.createElement('div');
+            userDiv.style.alignSelf = 'flex-end';
+            userDiv.style.background = 'rgba(255,255,255,0.1)';
+            userDiv.style.padding = '10px';
+            userDiv.style.borderRadius = '10px';
+            userDiv.style.color = 'white';
+            userDiv.innerText = text;
+            messages.appendChild(userDiv);
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            const loading = document.createElement('div');
+            loading.style.color = '#94a3b8';
+            loading.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Analyzing...';
+            messages.appendChild(loading);
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: `Context: Digestive Diagnostic - Risk ${window.currentRisk}%, Status: ${window.currentStatus}. User: ${text}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                messages.removeChild(loading);
+                const aiDiv = document.createElement('div');
+                aiDiv.style.color = '#cbd5e1';
+                aiDiv.style.background = 'rgba(255,255,255,0.05)';
+                aiDiv.style.padding = '10px';
+                aiDiv.style.borderRadius = '10px';
+                aiDiv.innerText = data.message;
+                messages.appendChild(aiDiv);
+            } catch (e) {
+                messages.removeChild(loading);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        document.getElementById('chatInput')?.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChat(); });
+
+        document.getElementById('cancerForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const scanner = document.getElementById('neuralScanner');
+            scanner.style.display = 'flex';
+            for (let i = 0; i <= 100; i += 25) {
+                document.getElementById('scannerProgress').style.width = i + '%';
+                await new Promise(r => setTimeout(r, 600));
+            }
+
+            const formData = {
+                type: 'colorectal',
+                age: document.getElementById('age').value,
+                blood: document.getElementById('blood').value,
+                weight: document.getElementById('weight').value,
+                habit: document.getElementById('habit').value,
+                family: document.getElementById('family').value
+            };
+
+            const res = await fetch('/api/predict-cancer', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(formData) });
+            const result = await res.json();
+            
+            scanner.style.display = 'none';
+            document.getElementById('cancerForm').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+
+            document.getElementById('riskValue').innerText = result.risk + '%';
+            document.getElementById('riskLabel').innerText = result.risk_status.toUpperCase() + ' RISK';
+            document.getElementById('riskMsg').innerText = result.message;
+            document.getElementById('accuracyValue').innerText = result.accuracy + '%';
+            document.getElementById('statusValue').innerText = result.risk_status;
+            
+            window.currentRisk = result.risk;
+            window.currentStatus = result.risk_status;
+        };
+    </script>
+</body>
+</html>

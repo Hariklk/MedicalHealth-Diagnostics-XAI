@@ -1,0 +1,108 @@
+import os
+import sys
+import pandas as pd
+import numpy as np
+import json
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+
+# Set working directory to script location
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+# Load dataset
+try:
+    df = pd.read_csv("heart_failure.csv")
+except Exception as e:
+    print(json.dumps({"status": "error", "error": f"Dataset error: {str(e)}"}))
+    sys.exit(1)
+
+# Preprocessing
+encoders = {}
+for col in ["Sex", "ChestPainType", "RestingECG", "ExerciseAngina", "ST_Slope"]:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    encoders[col] = le
+
+X = df.drop("HeartDisease", axis=1)
+y = df["HeartDisease"]
+
+# Train Model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=42, stratify=y)
+model = RandomForestClassifier(n_estimators=100, random_state=42) 
+model.fit(X_train, y_train)
+model_accuracy = round(accuracy_score(y_test, model.predict(X_test)) * 100, 2)
+
+def predict(inputs):
+    try:
+        # Basic features (0-10 in CSV)
+        # inputs: [age, sex, cp, bp, chol, fbs, ecg, hr, exang, oldpeak, slope, ...]
+        
+        age = float(inputs[0])
+        
+        # Sex Mapping
+        sex_raw = inputs[1]
+        if sex_raw == "1" or sex_raw == "Male": sex_val = encoders["Sex"].transform(["M"])[0]
+        else: sex_val = encoders["Sex"].transform(["F"])[0]
+        
+        # Chest Pain
+        cp_raw = inputs[2]
+        if cp_raw == "0": cp_val = encoders["ChestPainType"].transform(["TA"])[0]
+        elif cp_raw == "1": cp_val = encoders["ChestPainType"].transform(["ATA"])[0]
+        elif cp_raw == "2": cp_val = encoders["ChestPainType"].transform(["NAP"])[0]
+        else: cp_val = encoders["ChestPainType"].transform(["ASY"])[0]
+        
+        bp = float(inputs[3])
+        chol = float(inputs[4])
+        fbs = float(inputs[5])
+        
+        # ECG
+        ecg_raw = inputs[6]
+        if ecg_raw == "0": ecg_val = encoders["RestingECG"].transform(["Normal"])[0]
+        elif ecg_raw == "1": ecg_val = encoders["RestingECG"].transform(["ST"])[0]
+        else: ecg_val = encoders["RestingECG"].transform(["LVH"])[0]
+        
+        hr = float(inputs[7])
+        
+        # Angina
+        angina_raw = inputs[8]
+        angina_val = encoders["ExerciseAngina"].transform(["Y"] if angina_raw == "1" else ["N"])[0]
+        
+        oldpeak = float(inputs[9])
+        
+        # Slope
+        slope_raw = inputs[10]
+        if slope_raw == "0": slope_val = encoders["ST_Slope"].transform(["Up"])[0]
+        elif slope_raw == "1": slope_val = encoders["ST_Slope"].transform(["Flat"])[0]
+        else: slope_val = encoders["ST_Slope"].transform(["Down"])[0]
+
+        # Symptoms (11-16) - Use to boost risk manually
+        symptoms_risk = sum([float(inputs[i]) for i in range(11, 17)]) * 5
+        
+        user_data = np.array([[age, sex_val, cp_val, bp, chol, fbs, ecg_val, hr, angina_val, oldpeak, slope_val]])
+        
+        prob = model.predict_proba(user_data)[0][1] * 100
+        risk = min(100, prob + symptoms_risk)
+        
+        status = "low"
+        if risk > 80: status = "high"
+        elif risk > 40: status = "moderate"
+        
+        return {
+            "status": "success",
+            "risk": round(risk, 1),
+            "risk_status": status,
+            "message": "Clinical markers indicate potential ventricular dysfunction." if risk > 50 else "Stable cardiac output detected.",
+            "accuracy": model_accuracy,
+            "prediction": "Heart Failure Risk Detected" if risk > 50 else "Stable Cardiac Function"
+        }
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        res = predict(sys.argv[1:])
+        print(json.dumps(res))
+    else:
+        print(json.dumps({"status": "error", "error": "No input provided"}))

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Diagnostic | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+    <style>
+        :root { --accent-color: #06b6d4; }
+        .diagnostic-card-premium { border-top: 4px solid var(--accent-color); }
+        .highlight { color: var(--accent-color); }
+    </style>
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='cancer-analysis.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Cancer Lab</span></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <div class="header-left">
+                    <h1 class="terminal-title">Thyroid <span class="highlight">Endocrine Mapper</span></h1>
+                    <p class="terminal-subtitle">Hormonal and endocrine system oncology screening.</p>
+                </div>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium">
+                    <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                        <div class="scanner-content">
+                            <div class="pulse-ring"></div>
+                            <div class="scanner-icon"><ion-icon name="scan-outline"></ion-icon></div>
+                            <div class="scanner-text">
+                                <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                                <div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div>
+                                <p id="scannerLog">Awaiting Biometric Stream...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="cancerForm" class="diagnostic-form-full">
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="flask-outline"></ion-icon>
+                                <h3>Endocrine Markers</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="radio-button-on-outline"></ion-icon> Neck Lump</label>
+                                    <select id="lump" required><option value="0">No</option><option value="1">Yes</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="mic-outline"></ion-icon> Voice Hoarseness</label>
+                                    <select id="hoarse" required><option value="0">No</option><option value="1">Yes (Persistent)</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="fast-food-outline"></ion-icon> Swallowing Difficulty</label>
+                                    <select id="swallow" required><option value="0">No</option><option value="1">Yes</option></select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="nuclear-outline"></ion-icon> Radiation History</label>
+                                    <select id="radiation" required><option value="0">No</option><option value="1">Yes</option></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <p class="form-hint">AI Engine: Endocrine-Oncology v1.5</p>
+                            <button type="submit" class="submit-cad-btn">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                Run Endocrine Analysis
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="resultArea" class="result-area-premium" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats-column">
+                                <div class="result-main-card">
+                                    <div class="risk-circle-container"><div class="risk-circle" id="riskMeter"><span class="risk-percent" id="riskValue">0%</span><span class="risk-title">Risk Score</span></div></div>
+                                    <div class="risk-details"><h2 id="riskLabel">Calculating...</h2><p id="riskMsg"></p></div>
+                                </div>
+                                <div class="mini-stats-grid">
+                                    <div class="mini-stat"><label>AI Accuracy</label><div class="val" id="accuracyValue">--</div></div>
+                                    <div class="mini-stat"><label>Status</label><div class="val" id="statusValue">--</div></div>
+                                </div>
+                                <button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Analysis</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('cancerForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const scanner = document.getElementById('neuralScanner');
+            scanner.style.display = 'flex';
+            for (let i = 0; i <= 100; i += 25) {
+                document.getElementById('scannerProgress').style.width = i + '%';
+                await new Promise(r => setTimeout(r, 600));
+            }
+
+            const formData = {
+                type: 'thyroid',
+                lump: document.getElementById('lump').value,
+                hoarse: document.getElementById('hoarse').value,
+                swallow: document.getElementById('swallow').value,
+                radiation: document.getElementById('radiation').value
+            };
+
+            const res = await fetch('/api/predict-cancer', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(formData) });
+            const result = await res.json();
+            
+            scanner.style.display = 'none';
+            document.getElementById('cancerForm').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+
+            document.getElementById('riskValue').innerText = result.risk + '%';
+            document.getElementById('riskLabel').innerText = result.risk_status.toUpperCase() + ' RISK';
+            document.getElementById('riskMsg').innerText = result.message;
+            document.getElementById('accuracyValue').innerText = result.accuracy + '%';
+            document.getElementById('statusValue').innerText = result.risk_status;
+        };
+    </script>
+</body>
+</html>

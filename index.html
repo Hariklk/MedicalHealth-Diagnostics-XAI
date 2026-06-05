@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Portal | Secure Access</title>
+    <meta name="description" content="Secure access for medical staff. HIPAA compliant login.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons for Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="medical-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Floating Settings -->
+    <div class="settings-container global-settings">
+        <button class="settings-btn" id="settingsBtn">
+            <ion-icon name="settings-outline"></ion-icon>
+        </button>
+        <div class="settings-dropdown" id="settingsDropdown">
+            <div class="setting-item">
+                <span>Appearance</span>
+                <div class="theme-switch" id="themeToggle">
+                    <div class="switch-handle">
+                        <ion-icon name="moon-outline" class="dark-icon"></ion-icon>
+                        <ion-icon name="sunny-outline" class="light-icon"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="login-wrapper">
+        <div class="login-card" id="loginCard">
+            <div class="card-header">
+                <div class="logo-icon">
+                    <ion-icon name="medkit"></ion-icon>
+                </div>
+                <h1>Medical Diagnostics AI</h1>
+                <p>Secure access for healthcare </p>
+            </div>
+
+            <form class="login-form" id="loginForm" novalidate>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-field">
+                        <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+                        <input type="email" id="email" placeholder="hari@example.com" required autocomplete="email">
+                        <div class="validation-indicator"></div>
+                    </div>
+                    <span class="error-message">Please enter a valid email address</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-field">
+                        <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+                        <input type="password" id="password" placeholder="••••••••" required
+                            autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="togglePassword"
+                            aria-label="Toggle Password Visibility">
+                            <ion-icon name="eye-off-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        <span class="text">Remember for 30 days</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Sign In</span>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </button>
+
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn google" aria-label="Login with Google">
+                        <ion-icon name="logo-google"></ion-icon>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="social-btn apple" aria-label="Login with Apple">
+                        <ion-icon name="logo-apple"></ion-icon>
+                        <span>Apple</span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="card-footer">
+                <p>Don't have an account? <a href="signup.html" class="signup-link">Create account</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Info Floating Button -->
+    <div class="info-fab-container">
+        <button class="fab-main" id="fabMain">
+            <ion-icon name="information-circle-outline"></ion-icon>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-item" data-modal="modal-xai">
+                <ion-icon name="bulb-outline"></ion-icon>
+                <span>Explainable AI</span>
+            </button>
+            <button class="fab-item" data-modal="modal-advantages">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <span>AI Advantages</span>
+            </button>
+            <button class="fab-item" data-modal="modal-about">
+                <ion-icon name="people-outline"></ion-icon>
+                <span>About Us</span>
+            </button>
+            <button class="fab-item" data-modal="modal-contact">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>Contact Us</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <!-- About Us Modal -->
+        <div class="info-modal" id="modal-about">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="people"></ion-icon>
+                <h2>About Us</h2>
+            </div>
+            <div class="modal-body">
+                <p>We are final year B.Tech students from <strong>Suguna College of Engineering</strong>, passionate
+                    about learning, innovation, and applying technology to real-world problems.</p>
+                <p><strong>Project Team:</strong></p>
+                <ul class="modal-list" style="margin-top: 10px;">
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Hariharan</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Harsha</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Devanand</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Abiniya</li>
+                </ul>
+                <p style="margin-top: 15px;">This platform showcases our skills, projects, and ideas in the field of
+                    Medical AI.</p>
+            </div>
+        </div>
+
+        <!-- Contact Us Modal -->
+        <div class="info-modal" id="modal-contact">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="mail"></ion-icon>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <p style="text-align: center;">Have questions or suggestions? Reach out to us!</p>
+                <div class="contact-methods"
+                    style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <a href="mailto:hariharan9585@gmail.com">hariharan9585@gmail.com</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <a href="tel:6381448511">6381448511</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%; align-items: flex-start;">
+                        <ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon>
+                        <span style="color: var(--text-muted); font-size: 14px;">Nehru Nagar, Coimbatore, India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explainable AI Modal -->
+        <div class="info-modal" id="modal-xai">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="analytics"></ion-icon>
+                <h2>Explainable AI (XAI)</h2>
+            </div>
+            <div class="modal-body">
+                <p>Explainable AI in medicine ensures that our diagnostic models don't just give an answer, but also
+                    provide the <strong>why</strong>.</p>
+                <ul class="modal-list">
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Increases Trust between doctors and AI.</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> highlights specific symptoms influencing results.
+                    </li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Enables human-in-the-loop verification.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Advantages Modal -->
+        <div class="info-modal" id="modal-advantages">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="shield-outline"></ion-icon>
+                <h2>AI Advantages</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <strong>Enhanced Accuracy</strong>
+                        <p>Our AI analyzes vast medical datasets to provide highly precise preliminary diagnoses.</p>
+                    </li>
+                    <li>
+                        <strong>Early Detection</strong>
+                        <p>Identifies subtle patterns that might be missed in early stages of chronic conditions.</p>
+                    </li>
+                    <li>
+                        <strong>24/7 Accessibility</strong>
+                        <p>Get instant medical insights anytime, anywhere before consulting a professional.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Forgot Password Modal -->
+        <div class="info-modal" id="modal-forgot-password">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="lock-open-outline"></ion-icon>
+                <h2>Reset Password</h2>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1: Send OTP -->
+                <div id="forgot-step-1">
+                    <p>Enter your email address to receive a 6-digit verification code.</p>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <div class="input-field">
+                            <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+                            <input type="email" id="forgot-email" placeholder="example@mail.com">
+                        </div>
+                    </div>
+                    <button type="button" class="submit-btn" id="btn-send-otp" style="margin-top: 20px;">
+                        <span>Send OTP</span>
+                    </button>
+                </div>
+
+                <!-- Step 2: Verify OTP -->
+                <div id="forgot-step-2" style="display: none;">
+                    <p>Enter the 6-digit code sent to <strong id="display-email"></strong></p>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <div class="input-field">
+                            <ion-icon name="keypad-outline" class="input-icon"></ion-icon>
+                            <input type="text" id="forgot-otp" placeholder="123456" maxlength="6">
+                        </div>
+                    </div>
+                    <button type="button" class="submit-btn" id="btn-verify-otp" style="margin-top: 20px;">
+                        <span>Verify OTP</span>
+                    </button>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div id="forgot-step-3" style="display: none;">
+                    <p>Create a new strong password for your account.</p>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <div class="input-field">
+                            <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+                            <input type="password" id="forgot-new-password" placeholder="New Password">
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top: 15px;">
+                        <div class="input-field">
+                            <ion-icon name="shield-checkmark-outline" class="input-icon"></ion-icon>
+                            <input type="password" id="forgot-confirm-password" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <button type="button" class="submit-btn" id="btn-reset-password" style="margin-top: 20px;">
+                        <span>Reset Password</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

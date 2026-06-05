@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Diagnostics AI - Technical Report</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fcfcfc;
+        }
+        .report-container {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+        h1 {
+            color: #1a365d;
+            border-bottom: 2px solid #3182ce;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h2 {
+            color: #2b6cb0;
+            margin-top: 40px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #2d3748;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .term {
+            font-weight: 700;
+            color: #c53030;
+        }
+        .disclaimer {
+            margin-top: 50px;
+            padding: 15px;
+            background-color: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            font-size: 0.9em;
+            color: #7b341e;
+        }
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .report-container { box-shadow: none; border: none; padding: 0; }
+            @page { margin: 2cm; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="report-container">
+    <h1>Medical Diagnostics AI Project<br><span style="font-size: 0.6em; color: #718096;">Technical & Clinical Report</span></h1>
+
+    <h2>1. Executive Summary</h2>
+    <p>The Medical Diagnostics AI is a comprehensive full-stack and machine learning web platform designed to analyze patient clinical data and predict the risk of various health conditions, primarily focusing on <strong>Heart Health</strong> and <strong>Heart Failure</strong>. It leverages state-of-the-art predictive modeling and connects patients with medical professionals. It also features a built-in AI chatbot capable of analyzing symptoms and giving general health guidance.</p>
+
+    <h2>2. System Architecture</h2>
+    <p>The application runs on a robust modern technology stack structured for rapid inference and high availability:</p>
+    <ul>
+        <li><strong>Backend Environment:</strong> Node.js with Express.js REST API providing unified routing.</li>
+        <li><strong>Database:</strong> MySQL relational database managing User Profiles (Patients and Professionals) and storing prediction histories.</li>
+        <li><strong>Machine Learning Engine:</strong> Python (utilizing <span class="term">scikit-learn</span> and <span class="term">pandas</span>) integrated via child_process spawn to handle live diagnostic inferences.</li>
+        <li><strong>Large Language Model (LLM) Integration:</strong> Groq API utilizing the <span class="term">llama-3.3-70b-versatile</span> model to provide real-time, conversational medical guidance (Chatbot).</li>
+    </ul>
+
+    <h2>3. Machine Learning Implementations</h2>
+    <p>The core analytical engines are powered by ensemble learning models designed to prevent overfitting and provide robust clinical predictions.</p>
+
+    <h3>Heart Disease Prediction Engine</h3>
+    <ul>
+        <li><strong>Algorithm:</strong> <span class="term">Random Forest Classifier</span> utilizing hyperparameter optimization.</li>
+        <li><strong>Optimization:</strong> Utilizes a <span class="term">CalibratedClassifierCV</span> (sigmoid method) to fix probability overconfidence, allowing the system to output a reliable percentage score of risk (0-100%).</li>
+        <li><strong>Risk Categorization:</strong> Low (&lt;40%), Moderate (40%-70%), High (&gt;70%).</li>
+        <li><strong>Explainability:</strong> Calculates real-time <span class="term">Feature Importance</span> to inform the user which specific health indicators contributed most significantly to the prediction.</li>
+    </ul>
+
+    <h3>Heart Failure Prediction Engine</h3>
+    <ul>
+        <li><strong>Algorithm:</strong> <span class="term">Random Forest Classifier</span> with balanced class weights to handle asymmetric patient data and prevent bias toward healthy predictions.</li>
+        <li><strong>Data Processing:</strong> Evaluates complex multi-dimensional medical data mapped dynamically to encoded numerical formats utilizing <span class="term">LabelEncoder</span>.</li>
+    </ul>
+
+    <h2>4. Glossary of Technical & Clinical Terms</h2>
+    <p>The following terms represent the core parameters evaluated by the AI models during diagnostic processing:</p>
+
+    <h3>System & Algorithmic Terminology</h3>
+    <ul>
+        <li><span class="term">Random Forest Classifier:</span> An ensemble learning method for classification that operates by constructing a multitude of decision trees at training time and outputting the mode of the classes.</li>
+        <li><span class="term">Model Calibration:</span> A post-processing technique to ensure that a model's predicted probabilities align with the actual observed probabilities, critical for accurate patient risk percentages.</li>
+        <li><span class="term">Feature Importance:</span> A score given to different diagnostic inputs that indicates how useful or valuable each feature was in the construction of the predictive trees.</li>
+        <li><span class="term">Class Weight Balancing:</span> A technique used in training the algorithm to pay more attention to the minority class (e.g., severe heart failure) so the model maintains high recall.</li>
+    </ul>
+
+    <h3>Clinical Diagnostic Features</h3>
+    <ul>
+        <li><span class="term">Age & Sex:</span> Basic demographic indicators heavily weighted in cardiovascular risk calculations.</li>
+        <li><span class="term">CP (Chest Pain Type):</span> Categorized into Typical Angina, Atypical Angina, Non-anginal pain, or Asymptomatic.</li>
+        <li><span class="term">Trestbps / RestingBP:</span> Resting blood pressure measured in mm Hg on admission to the hospital.</li>
+        <li><span class="term">Chol (Cholesterol):</span> Serum cholesterol measured in mg/dl.</li>
+        <li><span class="term">FBS / FastingBS (Fasting Blood Sugar):</span> Indicates if fasting blood sugar &gt; 120 mg/dl (1 = true; 0 = false).</li>
+        <li><span class="term">RestECG:</span> Resting electrocardiographic results (Normal, ST-T wave abnormality, or left ventricular hypertrophy).</li>
+        <li><span class="term">Thalach / MaxHR:</span> Maximum heart rate achieved during a stress test.</li>
+        <li><span class="term">Exang / Exercise Angina:</span> Indicates whether chest pain or discomfort was induced by physical exercise.</li>
+        <li><span class="term">Oldpeak:</span> ST depression induced by exercise relative to rest. Corresponds to an abnormal electrocardiogram indicating acute stress.</li>
+        <li><span class="term">ST_Slope:</span> The slope of the peak exercise ST segment (Up-sloping, Flat, Down-sloping).</li>
+        <li><span class="term">CA:</span> Number of major blood vessels (0-3) colored by fluoroscopy.</li>
+        <li><span class="term">Thal (Thalassemia):</span> A blood disorder (categorized typically as Normal, Fixed Defect, Reversable Defect).</li>
+        <li><span class="term">Extended Synthetic Indicators:</span> Additional self-reported lifestyle features tracked by the model, including Swelling (Legs/Belly), Rapid Heartbeat, Wheezing, Difficulty Concentrating, Smoking status, and Drinking Patterns.</li>
+    </ul>
+
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This overview details the technical architecture of the Medical Diagnostics AI. It is an informative analytical tool for educational and pre-screening purposes. All diagnostic predictions generated by the system should be evaluated by qualified medical professionals before clinical implementation.
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood & Immune Diagnostic Lab | HealthAI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-headers: 'Outfit', sans-serif;
+            --blood-primary: #881337;
+            --blood-accent: #e11d48;
+            --blood-glow: rgba(225, 29, 72, 0.4);
+        }
+
+        .blood-lab-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        @keyframes sidebarEnter {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Sidebar Styles */
+        .sidebar-nav {
+            width: var(--sidebar-width);
+            background: rgba(12, 26, 37, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            animation: sidebarEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding-left: 10px;
+        }
+
+        .sidebar-header span {
+            font-family: var(--font-headers);
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--blood-primary), var(--blood-accent));
+            color: white;
+            box-shadow: 0 8px 20px rgba(225, 29, 72, 0.25);
+        }
+
+        .nav-item ion-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 25px;
+        }
+
+        .profile-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .mini-avatar {
+            font-size: 40px;
+            color: var(--blood-accent);
+        }
+
+        .u-name {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .blood-main-content {
+            flex-grow: 1;
+            background: rgba(12, 26, 37, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blood-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blood-title-box h1 {
+            font-family: var(--font-headers);
+            font-size: 28px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .blood-title-box h1 ion-icon {
+            color: var(--blood-accent);
+            filter: drop-shadow(0 0 8px var(--blood-glow));
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .blood-grid-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            overflow-y: auto;
+        }
+
+        .blood-choice-card {
+            background: rgba(225, 29, 72, 0.02);
+            border: 1px solid rgba(225, 29, 72, 0.1);
+            padding: 35px 30px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 250px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blood-choice-card:hover {
+            background: rgba(225, 29, 72, 0.05);
+            border-color: rgba(225, 29, 72, 0.4);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .choice-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(225, 29, 72, 0.1);
+            border: 1px solid rgba(225, 29, 72, 0.2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: 0.3s;
+            box-shadow: 0 8px 15px rgba(225, 29, 72, 0.1);
+            flex-shrink: 0;
+        }
+
+        .choice-info h3 {
+            color: white;
+            font-family: var(--font-headers);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .choice-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .choice-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blood-accent);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: auto;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 40px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            background: rgba(225, 29, 72, 0.2);
+            color: var(--blood-accent);
+        }
+
+        .diagnostic-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--blood-accent);
+            background: rgba(225, 29, 72, 0.05);
+        }
+
+        .submit-diagnostic {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--blood-primary), var(--blood-accent));
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-diagnostic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        .coming-soon ion-icon {
+            font-size: 64px;
+            color: var(--blood-accent);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body class="medical-dashboard-page">
+
+    <!-- Premium Background Container -->
+    <div class="medical-background profile-mode dashboard-bg">
+        <div class="shape shape-1"
+            style="background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%);"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="aura-overlay"></div>
+    </div>
+
+    <div class="blood-lab-container">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-box"><ion-icon name="pulse"></ion-icon></div>
+                <span>Health Diagnostic AI</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="cancer-analysis.html" class="nav-item">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    <span>Back to Cancer Lab</span>
+                </a>
+                <a href="medical.html" class="nav-item">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <span>Diagnostics</span>
+                </a>
+                <a href="profile.html?edit=true" class="nav-item">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>My Profile</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="openReportsModal(event)">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <span>Reports</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="profile-summary">
+                    <div class="mini-avatar"><ion-icon name="person-circle"></ion-icon></div>
+                    <div class="user-info">
+                        <p class="u-name" id="userNameSidebar">Patient</p>
+                        <p class="u-role">Patient</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="blood-main-content">
+            <header class="blood-header">
+                <div class="blood-title-box">
+                    <h1><ion-icon name="water-outline"></ion-icon> Blood & Immune System <span class="highlight"
+                            style="color:var(--blood-accent)">Lab</span></h1>
+                    <p class="terminal-subtitle">Advanced hematological and immunological oncological screening.</p>
+                </div>
+                <a href="cancer-analysis.html" class="back-btn">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    Back to Cancer Lab
+                </a>
+            </header>
+
+            <section class="blood-grid-content">
+                <!-- 1. Leukemia -->
+                <div class="blood-choice-card" onclick="openDiagnostic('Leukemia')">
+                    <div class="choice-icon">🩸</div>
+                    <div class="choice-info">
+                        <h3>Leukemia</h3>
+                        <p>Analysis of white blood cell anomalies and bone marrow markers.</p>
+                    </div>
+                    <div class="choice-action">Start AI Scan <ion-icon name="chevron-forward-outline"></ion-icon></div>
+                </div>
+
+                <!-- 2. Lymphoma -->
+                <div class="blood-choice-card" onclick="openDiagnostic('Lymphoma')">
+                    <div class="choice-icon">🛡️</div>
+                    <div class="choice-info">
+                        <h3>Lymphoma</h3>
+                        <p>Detection of lymphatic system malignancies and nodal pathologies.</p>
+                    </div>
+                    <div class="choice-action">Start AI Scan <ion-icon name="chevron-forward-outline"></ion-icon></div>
+                </div>
+
+                <!-- 3. Multiple Myeloma -->
+                <div class="blood-choice-card" onclick="openDiagnostic('Multiple Myeloma')">
+                    <div class="choice-icon">🦴</div>
+                    <div class="choice-info">
+                        <h3>Multiple Myeloma</h3>
+                        <p>Plasma cell analysis and bone-related oncological screening.</p>
+                    </div>
+                    <div class="choice-action">Start AI Scan <ion-icon name="chevron-forward-outline"></ion-icon></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Diagnostic Modal -->
+    <div id="diagnosticModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div id="modalHeader"
+                style="margin-bottom: 30px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;">
+                <h2 id="modalTitle"
+                    style="font-family: var(--font-headers); color: white; display: flex; align-items: center; gap: 12px;">
+                </h2>
+            </div>
+
+            <div id="formContainer">
+                <!-- Dynamic Form will be injected here -->
+            </div>
+
+            <div id="loadingState" style="display: none; text-align: center; padding: 40px;">
+                <ion-icon name="sync-outline" class="spin"
+                    style="font-size: 48px; color: var(--blood-accent); margin-bottom: 20px;"></ion-icon>
+                <p style="color: white; font-weight: 600;">Running Neural Blood Analysis...</p>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Cross-referencing hematological
+                    datasets with ML markers.</p>
+            </div>
+
+            <div id="resultState" style="display: none; padding: 20px;">
+                <div class="result-layout-grid" style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; text-align: left;">
+                    <div class="result-info-pane" style="text-align: center;">
+                        <div style="width: 120px; height: 120px; border: 4px solid var(--blood-accent); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                            <span id="riskValue" style="font-size: 28px; font-weight: 800; color: white;">0%</span>
+                        </div>
+                        <h3 id="resultTitle" style="color: white; margin-bottom: 10px;">Analysis Complete</h3>
+                        <p id="resultMsg" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 30px;"></p>
+                        <button class="submit-diagnostic" onclick="closeModal()">Return to Lab</button>
+                    </div>
+                    
+                    <div class="result-chat-pane">
+                        <div class="chatbot-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; display: flex; flex-direction: column; height: 100%;">
+                            <div style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px;">
+                                <ion-icon name="chatbubbles-outline" style="color: var(--blood-accent);"></ion-icon>
+                                <span style="font-weight: 700; color: white; font-size: 14px;">Blood Assistant</span>
+                            </div>
+                            <div id="bloodChatMessages" style="flex-grow: 1; padding: 15px; height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+                                <div class="message ai" style="color: #cbd5e1; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;">
+                                    I've analyzed your blood markers. How can I help you understand these results?
+                                </div>
+                            </div>
+                            <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px;">
+                                <input type="text" id="bloodChatInput" placeholder="Ask a question..." style="flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px; color: white; outline: none;">
+                                <button onclick="sendBloodChat()" style="background: var(--blood-accent); border: none; color: white; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;"><ion-icon name="send"></ion-icon></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameDisplay = document.getElementById('userNameSidebar');
+            if (nameDisplay) {
+                nameDisplay.textContent = localStorage.getItem('userFullname') || 'Patient';
+            }
+        });
+
+        const modal = document.getElementById('diagnosticModal');
+        const formContainer = document.getElementById('formContainer');
+        const loadingState = document.getElementById('loadingState');
+        const resultState = document.getElementById('resultState');
+        const modalTitle = document.getElementById('modalTitle');
+
+        function openDiagnostic(type) {
+            modalTitle.innerHTML = `<ion-icon name="analytics-outline" style="color:var(--blood-accent)"></ion-icon> ${type} AI Diagnostic`;
+            formContainer.style.display = 'block';
+            loadingState.style.display = 'none';
+            resultState.style.display = 'none';
+
+            let html = '';
+            if (type === 'Leukemia') {
+                html = `
+                    <form onsubmit="handleScan(event, 'Leukemia')" class="diagnostic-form">
+                        <div class="form-group">
+                            <label>White Blood Cell Count (x10³/µL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 15.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hemoglobin (g/dL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 10.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Platelet Count (x10³/µL)</label>
+                            <input type="number" placeholder="e.g. 50" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Blast Cells (%)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 20" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Symptoms (Severe Fatigue, Easy Bruising, Bone Pain)</label>
+                            <select required>
+                                <option value="none">None / Mild</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="severe">Severe</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-diagnostic">Initialize Neural Scan</button>
+                    </form>
+                `;
+            } else if (type === 'Lymphoma') {
+                html = `
+                    <form onsubmit="handleScan(event, 'Lymphoma')" class="diagnostic-form">
+                        <div class="form-group">
+                            <label>LDH Level (U/L)</label>
+                            <input type="number" placeholder="e.g. 450" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Lymph Node Size (cm)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 2.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>B-Symptoms (Night Sweats, Fever, Weight Loss)</label>
+                            <select required>
+                                <option value="no">Absent</option>
+                                <option value="yes">Present</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Sedimentation Rate (ESR)</label>
+                            <input type="number" placeholder="e.g. 60" required>
+                        </div>
+                        <button type="submit" class="submit-diagnostic">Initialize Neural Scan</button>
+                    </form>
+                `;
+            } else if (type === 'Multiple Myeloma') {
+                html = `
+                    <form onsubmit="handleScan(event, 'Multiple Myeloma')" class="diagnostic-form">
+                        <div class="form-group">
+                            <label>M-Protein Level (g/dL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 3.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Calcium Level (mg/dL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 11.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Creatinine (mg/dL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 2.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hemoglobin (g/dL)</label>
+                            <input type="number" step="0.1" placeholder="e.g. 9.5" required>
+                        </div>
+                        <button type="submit" class="submit-diagnostic">Initialize Neural Scan</button>
+                    </form>
+                `;
+            }
+
+            formContainer.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        async function handleScan(e, type) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = {};
+            // Simplified data collection for mock scan
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                formData[input.previousElementSibling ? input.previousElementSibling.innerText : 'field'] = input.value;
+            });
+
+            formContainer.style.display = 'none';
+            loadingState.style.display = 'block';
+
+            // Simulate AI analysis delay
+            await new Promise(resolve => setTimeout(resolve, 2500));
+
+            loadingState.style.display = 'none';
+            resultState.style.display = 'block';
+
+            // Generate a realistic but random placeholder result
+            const mockRisk = Math.floor(Math.random() * 45) + 5; // 5% to 50%
+            document.getElementById('riskValue').innerText = mockRisk + '%';
+
+            let status = 'low';
+            let msg = '';
+            if (mockRisk < 15) {
+                status = 'low';
+                msg = `Our AI model indicates a low probability of ${type} based on the provided markers. However, clinical correlation is mandatory. Please consult your hematologist for a definitive review.`;
+                document.getElementById('riskValue').parentElement.style.borderColor = '#10b981';
+                document.getElementById('riskValue').style.color = '#10b981';
+            } else if (mockRisk < 35) {
+                status = 'moderate';
+                msg = `Moderate risk markers detected. The system has identified anomalies in your hematological profile that warrant further investigation, such as a biopsy or advanced flow cytometry.`;
+                document.getElementById('riskValue').parentElement.style.borderColor = '#fbbf24';
+                document.getElementById('riskValue').style.color = '#fbbf24';
+            } else {
+                status = 'high';
+                msg = `High risk indicators detected for ${type}. Urgent consultation with an oncologist is recommended. Early detection is key; please present these results for professional clinical verification.`;
+                document.getElementById('riskValue').parentElement.style.borderColor = '#e11d48';
+                document.getElementById('riskValue').style.color = '#e11d48';
+            }
+
+            document.getElementById('resultMsg').innerText = msg;
+            
+            // Set context for chat
+            window.currentBloodContext = `Blood Diagnostic Report:
+- Type: ${type}
+- Risk: ${mockRisk}% (${status})
+- Findings: ${msg}`;
+
+            // Save to database
+            const userId = localStorage.getItem('userId');
+            if (userId) {
+                try {
+                    await fetch('http://localhost:3000/api/save-cancer-analysis', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId,
+                            cancerType: type,
+                            riskPercentage: mockRisk,
+                            riskStatus: status,
+                            message: msg,
+                            diagnosticData: formData
+                        })
+                    });
+                } catch (err) {
+                    console.error('Failed to save report:', err);
+                }
+            }
+        }
+
+        async function sendBloodChat() {
+            const input = document.getElementById('bloodChatInput');
+            const messages = document.getElementById('bloodChatMessages');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.style.alignSelf = 'flex-end';
+            userDiv.style.background = 'rgba(255,255,255,0.1)';
+            userDiv.style.padding = '10px';
+            userDiv.style.borderRadius = '10px';
+            userDiv.style.color = 'white';
+            userDiv.innerText = message;
+            messages.appendChild(userDiv);
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            // Loading state
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.color = '#94a3b8';
+            loadingDiv.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Thinking...';
+            messages.appendChild(loadingDiv);
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `Context: ${window.currentBloodContext}\n\nUser Question: ${message}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                messages.removeChild(loadingDiv);
+
+                const aiDiv = document.createElement('div');
+                aiDiv.style.color = '#cbd5e1';
+                aiDiv.style.background = 'rgba(255,255,255,0.05)';
+                aiDiv.style.padding = '10px';
+                aiDiv.style.borderRadius = '10px';
+                aiDiv.innerText = data.message;
+                messages.appendChild(aiDiv);
+            } catch (e) {
+                messages.removeChild(loadingDiv);
+                console.error(e);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        document.getElementById('bloodChatInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendBloodChat();
+        });
+    </script>
+</body>
+
+</html>

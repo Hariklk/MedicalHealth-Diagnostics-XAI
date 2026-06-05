@@ -1,0 +1,30 @@
+                    if (endpoint.includes('signup') || endpoint.includes('login')) {
+                        window.location.href = 'profile.html';
+                    }
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                    btn.style.background = '';
+                }, 1000);
+            } else {
+                throw new Error(data.error || 'Request failed');
+            }
+        } catch (error) {
+            btn.innerHTML = `<ion-icon name="alert-circle-outline"></ion-icon> Failed`;
+            btn.style.background = 'var(--error-color)';
+            setTimeout(() => {
+                alert(error.message);
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+                btn.style.background = '';
+            }, 1000);
+        }
+    }
+
+    // --- 7. Professional Dashboard Button ---
+    const proDashBtn = document.getElementById('pro-dashboard-btn');
+    if (proDashBtn) {
+        proDashBtn.addEventListener('click', () => {
+            alert('Opening Professional Analytics Dashboard...');
+        });
+    }
+});

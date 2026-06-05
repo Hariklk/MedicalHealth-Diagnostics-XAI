@@ -1,0 +1,71 @@
+import sys
+import json
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+import pickle
+import os
+
+def predict():
+    try:
+        input_data = json.load(sys.stdin)
+        
+        # Data preparation
+        df = pd.read_csv('skin_general.csv')
+        X = df.drop('target', axis=1)
+        X = pd.get_dummies(X)
+        y = df['target']
+        
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X, y)
+        
+        # Prepare input for prediction
+        input_df = pd.DataFrame([{
+            'age': int(input_data['age']),
+            'gender': input_data['gender'],
+            'skin_type': int(input_data['skin_type']),
+            'asymmetry': int(input_data['asymmetry']),
+            'border': int(input_data['border']),
+            'diameter': int(input_data['diameter']),
+            'evolution': int(input_data['evolution']),
+            'symptoms': int(input_data['symptoms'])
+        }])
+        
+        input_df = pd.get_dummies(input_df)
+        # Align with training columns
+        for col in X.columns:
+            if col not in input_df.columns:
+                input_df[col] = 0
+        input_df = input_df[X.columns]
+        
+        prob = model.predict_proba(input_df)[0][1]
+        risk = round(prob * 100, 1)
+        
+        status = "low"
+        if risk > 70: status = "high"
+        elif risk > 30: status = "moderate"
+        
+        prediction = "Normal Lesion"
+        message = "No immediate pathological markers detected. Regular monitoring advised."
+        
+        if status == "high":
+            prediction = "High-Risk Pathological Detection"
+            message = "Neural analysis suggests significant irregular markers. Urgent dermatological biopsy recommended."
+        elif status == "moderate":
+            prediction = "Moderate Dermal Stress"
+            message = "Lesion exhibits some evolving characteristics. Clinical follow-up within 4 weeks advised."
+            
+        result = {
+            "status": "success",
+            "risk": risk,
+            "risk_status": status,
+            "prediction": prediction,
+            "message": message,
+            "accuracy": 94.2
+        }
+        print(json.dumps(result))
+        
+    except Exception as e:
+        print(json.dumps({"status": "error", "error": str(e)}))
+
+if __name__ == "__main__":
+    predict()

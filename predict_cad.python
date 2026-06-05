@@ -1,0 +1,134 @@
+import pandas as pd
+import numpy as np
+import sys
+import json
+import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+def generate_synthetic_cad_data():
+    np.random.seed(42)
+    n_samples = 1500
+    
+    # Features: Age, Gender, Chest Pain, BP, Cholesterol, Diabetes, Smoking, Heart Rate, History
+    age = np.random.randint(30, 85, n_samples)
+    gender = np.random.randint(0, 2, n_samples) # 1=Male, 0=Female
+    cp = np.random.randint(0, 5, n_samples) # 0 to 4
+    bp = np.random.randint(100, 190, n_samples)
+    chol = np.random.randint(150, 350, n_samples)
+    diabetes = np.random.randint(0, 2, n_samples)
+    smoking = np.random.randint(0, 3, n_samples) # 0=Never, 1=Former, 2=Current
+    hr = np.random.randint(60, 110, n_samples)
+    history = np.random.randint(0, 2, n_samples)
+    
+    # Calculate Risk Score for Target Generation
+    risk_score = (
+        (age - 30) * 0.5 +
+        gender * 5 +
+        (cp > 0) * 10 +
+        (bp - 100) * 0.2 +
+        (chol - 150) * 0.1 +
+        diabetes * 15 +
+        smoking * 10 +
+        (hr - 60) * 0.2 +
+        history * 25
+    )
+    
+    # Target: 1 if risk_score > median + random noise
+    target = (risk_score > np.percentile(risk_score, 65) + np.random.normal(0, 10, n_samples)).astype(int)
+    
+    data = pd.DataFrame({
+        'age': age, 'gender': gender, 'cp': cp, 'bp': bp, 'chol': chol,
+        'diabetes': diabetes, 'smoking': smoking, 'hr': hr, 'history': history,
+        'target': target
+    })
+    return data
+
+def train_model():
+    df = generate_synthetic_cad_data()
+    X = df.drop('target', axis=1)
+    y = df['target']
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+    
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    
+    return model, accuracy
+
+# Train once on load
+model, global_accuracy = train_model()
+
+def predict_cad(input_data):
+    """
+    input_data: [age, gender, cp, bp, chol, diabetes, smoking, hr, history]
+    """
+    # Map strings to numbers if necessary (though Node should send numbers)
+    # Mapping logic:
+    # Gender: Male=1, Female=0
+    # CP: None=0, Typical=1, Atypical=2, Non-anginal=3, Asymptomatic=4
+    # Diabetes: No=0, Yes=1
+    # Smoking: Never=0, Former=1, Current=2
+    # History: No=0, Yes=1
+    
+    try:
+        # Preprocessing inputs from strings to numerical
+        processed_input = []
+        
+        # Age
+        processed_input.append(float(input_data[0]))
+        # Gender
+        processed_input.append(1 if input_data[1] == 'Male' else 0)
+        # CP
+        cp_map = {'None': 0, 'Typical Angina': 1, 'Atypical Angina': 2, 'Non-anginal Pain': 3, 'Asymptomatic': 4}
+        processed_input.append(cp_map.get(input_data[2], 0))
+        # BP
+        processed_input.append(float(input_data[3]))
+        # Chol
+        processed_input.append(float(input_data[4]))
+        # Diabetes
+        processed_input.append(1 if input_data[5] == 'Yes' else 0)
+        # Smoking
+        sm_map = {'Never': 0, 'Former': 1, 'Current': 2}
+        processed_input.append(sm_map.get(input_data[6], 0))
+        # HR
+        processed_input.append(float(input_data[7]))
+        # History
+        processed_input.append(1 if input_data[8] == 'Yes' else 0)
+        
+        features = np.array(processed_input).reshape(1, -1)
+        prob = model.predict_proba(features)[0][1] * 100
+        
+        risk_status = "low"
+        message = "Your risk for Coronary Artery Disease appears low. Continue maintaining a healthy lifestyle."
+        
+        if prob > 75:
+            risk_status = "high"
+            message = "High risk indicators for CAD detected. We strongly recommend clinical evaluation and stress testing."
+        elif prob > 40:
+            risk_status = "moderate"
+            message = "Moderate risk levels detected. Consider lifestyle modifications and regular blood pressure monitoring."
+            
+        return {
+            "status": "success",
+            "risk": round(prob, 1),
+            "risk_status": risk_status,
+            "message": message,
+            "accuracy": round(global_accuracy * 100, 2)
+        }
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        # Node sends [age, gender, cp, bp, chol, diabetes, smoking, hr, history]
+        input_args = sys.argv[1:]
+        result = predict_cad(input_args)
+        print(json.dumps(result))
+    else:
+        # Test case
+        print(json.dumps(predict_cad([55, 'Male', 'Typical Angina', 140, 240, 'No', 'Current', 75, 'No'])))

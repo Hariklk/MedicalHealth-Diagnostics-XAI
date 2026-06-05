@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+import os
+
+# Set working directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+# Load the base heart failure dataset
+try:
+    df = pd.read_csv("heart failue.csv")
+    print(f"Loaded base dataset with {len(df)} rows.")
+except Exception as e:
+    print(f"Error loading base dataset: {e}")
+    exit(1)
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Define correlations for new symptoms (higher probability if HeartDisease == 1)
+# Probabilities: [p(Symptom=0|Target), p(Symptom=1|Target)]
+symptoms = {
+    'SwellingLegs': {0: [0.85, 0.15], 1: [0.25, 0.75]},
+    'RapidHeartbeat': {0: [0.75, 0.25], 1: [0.30, 0.70]},
+    'Wheezing': {0: [0.90, 0.10], 1: [0.50, 0.50]},
+    'SwellingBelly': {0: [0.95, 0.05], 1: [0.60, 0.40]},
+    'RapidWeightGain': {0: [0.92, 0.08], 1: [0.45, 0.55]},
+    'DifficultyConcentrating': {0: [0.88, 0.12], 1: [0.55, 0.45]}
+}
+
+# Generate synthetic symptom data
+for symptom, probs in symptoms.items():
+    df[symptom] = df['HeartDisease'].apply(lambda x: np.random.choice([0, 1], p=probs[x]))
+
+# Save the new enhanced training dataset
+output_file = "heart_failure_dataset_enhanced.csv"
+df.to_csv(output_file, index=False)
+
+print(f"Successfully created enhanced training dataset: {output_file}")
+print("New columns added: SwellingLegs, RapidHeartbeat, Wheezing, SwellingBelly, RapidWeightGain, DifficultyConcentrating")
+print(df.head())

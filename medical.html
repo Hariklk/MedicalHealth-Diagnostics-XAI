@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Diagnostic Terminal | HealthAI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="medical-dashboard-page">
+
+    <!-- Premium Background Container -->
+    <div class="medical-background profile-mode dashboard-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="aura-overlay"></div>
+    </div>
+
+    <!-- Main App Layout -->
+    <div class="dashboard-layout">
+
+        <!-- Glassmorphism Sidebar -->
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-box">
+                    <ion-icon name="pulse"></ion-icon>
+                </div>
+                <span>Health Diagnostic AI</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="javascript:void(0)" class="nav-item active" id="nav-diagnostics">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <span>Diagnostics</span>
+                </a>
+                <a href="profile.html?edit=true" class="nav-item">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>My Profile</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="openReportsModal(event)">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <span>Reports</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item ai-assistant-link" id="nav-ai-assistant">
+                    <ion-icon name="medkit-outline"></ion-icon>
+                    <span>AI Assistant</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <ion-icon name="settings-outline"></ion-icon>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="profile-summary">
+                    <div class="mini-avatar">
+                        <ion-icon name="person-circle"></ion-icon>
+                    </div>
+                    <div class="user-info">
+                        <p class="u-name" id="userNameSidebar">Patient</p>
+                        <p class="u-role">Patient</p>
+                    </div>
+                </div>
+                <button class="logout-btn-full" onclick="logout()">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Terminal -->
+        <main class="main-terminal">
+            <div id="diagnostics-view" class="view-content active">
+                <!-- Top Bar Actions -->
+                <header class="terminal-header">
+                    <div class="header-left">
+                        <h1 class="terminal-title">Diagnostic <span class="highlight">Terminal</span></h1>
+                        <p class="terminal-subtitle">Select an AI model to begin real-time analysis.</p>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-bar">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <input type="text" placeholder="Search models...">
+                        </div>
+                        <div class="settings-container">
+                            <button class="settings-btn" id="settingsBtn">
+                                <ion-icon name="options-outline"></ion-icon>
+                            </button>
+                            <div class="settings-dropdown" id="settingsDropdown">
+                                <div class="setting-item">
+                                    <span>Dark Mode</span>
+                                    <div class="theme-switch" id="themeToggle">
+                                        <div class="switch-handle">
+                                            <ion-icon name="moon-outline" class="dark-icon"></ion-icon>
+                                            <ion-icon name="sunny-outline" class="light-icon"></ion-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Diagnostic Grid -->
+                <section class="diagnostic-grid">
+
+                    <!-- Heart Prediction -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon heart">
+                            <ion-icon name="heart-half-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Heart Disease Analysis</h3>
+                            <p>Real-time cardiovascular risk assessment using advanced biometric mapping.</p>
+                            <div class="card-meta">
+                                <span class="conf">98.4% Accuracy</span>
+                                <span class="time">2s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-heart-analysis">Launch Model</button>
+                    </div>
+
+                    <!-- Cancer Diagnostic -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon cancer">
+                            <ion-icon name="shield-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Cancer Diagnostic</h3>
+                            <p>Early-stage detection using cellular pattern recognition algorithms.</p>
+                            <div class="card-meta">
+                                <span class="conf">97.8% Accuracy</span>
+                                <span class="time">5s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-cancer-analysis">Launch Model</button>
+                    </div>
+
+                    <!-- Skin Diagnostic -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon skin">
+                            <ion-icon name="finger-print-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Skin Diagnostic</h3>
+                            <p>Dermatological image analysis for lesions and chronic conditions.</p>
+                            <div class="card-meta">
+                                <span class="conf">94.2% Accuracy</span>
+                                <span class="time">3s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-skin-analysis"
+                            onclick="location.href='skin-analysis.html'">Launch Model</button>
+                    </div>
+
+                    <!-- Kidney Stone -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon kidney">
+                            <ion-icon name="copy-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Kidney Stone</h3>
+                            <p>Automated screening and risk factor identification from imaging data.</p>
+                            <div class="card-meta">
+                                <span class="conf">99.1% Accuracy</span>
+                                <span class="time">4s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-kidney-analysis"
+                            onclick="location.href='kidney-analysis.html'">Launch Model</button>
+                    </div>
+
+                    <!-- Cognitive -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon cognitive">
+                            <ion-icon name="bulb-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Cognitive Diagnostic</h3>
+                            <p>Neurological assessments and predictive cognitive health tracking.</p>
+                            <div class="card-meta">
+                                <span class="conf">96.5% Accuracy</span>
+                                <span class="time">8s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-cognitive-analysis"
+                            onclick="location.href='cognitive-analysis.html'">Launch Model</button>
+                    </div>
+
+                    <!-- Stomach Ulcer -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon stomach">
+                            <ion-icon name="medkit-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Stomach Ulcer</h3>
+                            <p>Gastrointestinal symptom analysis and diagnostic modeling.</p>
+                            <div class="card-meta">
+                                <span class="conf">92.0% Accuracy</span>
+                                <span class="time">3s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-stomach-analysis"
+                            onclick="location.href='stomach-analysis.html'">Launch Model</button>
+                    </div>
+
+                    <!-- Brain Tumor -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon brain">
+                            <ion-icon name="layers-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Brain Tumor</h3>
+                            <p>Refined MRI scan interpretation and tumor classification AI.</p>
+                            <div class="card-meta">
+                                <span class="conf">99.7% Accuracy</span>
+                                <span class="time">10s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-brain-tumor-analysis"
+                            onclick="location.href='brain-tumor-analysis.html'">Launch Model</button>
+                    </div>
+
+                    <!-- Anemia -->
+                    <div class="model-card group-card">
+                        <div class="card-glow"></div>
+                        <div class="card-badge">AI POWERED</div>
+                        <div class="card-icon anemia">
+                            <ion-icon name="water-outline"></ion-icon>
+                        </div>
+                        <div class="card-body">
+                            <h3>Anemia Analysis</h3>
+                            <p>Automated blood report evaluation and iron level monitoring.</p>
+                            <div class="card-meta">
+                                <span class="conf">95.9% Accuracy</span>
+                                <span class="time">2s Analysis</span>
+                            </div>
+                        </div>
+                        <button class="terminal-btn" id="btn-anemia-analysis"
+                            onclick="location.href='anemia-analysis.html'">Launch Model</button>
+                    </div>
+
+                </section>
+            </div>
+
+            <!-- Integrated AI Assistant View -->
+            <div id="ai-assistant-view" class="view-content">
+                <div class="chat-portal">
+                    <div class="chat-main">
+                        <div class="chat-header">
+                            <div class="ai-status">
+                                <div class="status-dot"></div>
+                                <div>
+                                    <h4>Neural Health Assistant </h4>
+                                    <span>Ready for Medical Diagnosis</span>
+                                </div>
+                            </div>
+                            <div class="header-actions">
+                                <button class="h-btn new-chat-btn" title="New Session">
+                                    <ion-icon name="add-circle-outline"></ion-icon>
+                                    <span>New Case</span>
+                                </button>
+                                <button class="h-btn" title="Share"><ion-icon
+                                        name="share-social-outline"></ion-icon></button>
+                                <button class="h-btn exit-chat-btn" id="exitChatBtn" title="Back to Terminal">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                    <span>Exit Chat</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="mainChatMessages">
+                            <div class="message ai-message">
+                                <div class="msg-avatar"><ion-icon name="pulse"></ion-icon></div>
+                                <div class="msg-content">
+                                    <p>Welcome to your AI Health Assistant. I am connected to the Neural Diagnostic
+                                        Cloud. How
+                                        can I assist your clinical analysis today?</p>
+                                    <div class="suggestion-chips">
+                                        <button class="chip">Analyze Symptoms</button>
+                                        <button class="chip">Drug Interactions</button>
+                                        <button class="chip">Risk Assessment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-footer">
+                            <div class="input-wrapper">
+                                <button class="attachment-btn"><ion-icon name="attach-outline"></ion-icon></button>
+                                <input type="text" id="mainChatInput" placeholder="Type your medical query here...">
+                                <button id="mainSendMessage" class="send-btn">
+                                    <ion-icon name="send"></ion-icon>
+                                </button>
+                            </div>
+                            <p class="disclaimer">AI-generated response. Please consult a qualified doctor for clinical
+                                decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Redesigned Styles -->
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-headers: 'Outfit', sans-serif;
+        }
+
+        body.medical-dashboard-page {
+            display: block;
+            background: #060b13;
+            overflow-y: auto;
+            min-height: 100vh;
+            font-family: var(--font-main);
+        }
+
+        .dashboard-bg {
+            position: fixed;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .aura-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 80%);
+            pointer-events: none;
+        }
+
+        /* Layout Structure */
+        .dashboard-layout {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Creative Sidebar */
+        @keyframes sidebarEnter {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-nav {
+            width: var(--sidebar-width);
+            background: rgba(12, 26, 37, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: sidebarEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding-left: 10px;
+        }
+
+        .sidebar-header span {
+            font-family: var(--font-headers);
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .nav-item.ai-assistant-link {
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            background: rgba(14, 165, 233, 0.05);
+            margin-top: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item.ai-assistant-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-item.ai-assistant-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-item.ai-assistant-link:hover {
+            background: rgba(14, 165, 233, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+            color: white;
+        }
+
+        .nav-item.ai-assistant-link ion-icon {
+            color: var(--primary-color);
+            font-size: 22px;
+            filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.6));
+        }
+
+        .nav-item ion-icon {
+            font-size: 20px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 25px;
+        }
+
+        .profile-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .mini-avatar {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+
+        .u-name {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .u-role {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .logout-btn-full {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            background: rgba(244, 63, 94, 0.05);
+            color: #f43f5e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .logout-btn-full:hover {
+            background: #f43f5e;
+            color: white;
+        }
+
+        /* Terminal Main Area */
+        .main-terminal {
+            flex-grow: 1;
+            background: rgba(12, 26, 37, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .terminal-title {
+            font-family: var(--font-headers);
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .terminal-title .highlight {
+            color: var(--primary-color);
+        }
+
+        .terminal-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-bar {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            padding: 10px 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 300px;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--primary-color);
+            width: 350px;
+        }
+
+        .search-bar ion-icon {
+            color: var(--text-muted);
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Scroll Down Hint Styles */
+        .scroll-down-hint {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            cursor: pointer;
+            width: fit-content;
+            padding: 8px 15px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .scroll-down-hint:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: var(--primary-color);
+            transform: translateY(2px);
+        }
+
+        .scroll-down-hint span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bounce-icon {
+            font-size: 18px;
+            color: var(--primary-color);
+            animation: bounceIndicator 2s infinite;
+        }
+
+        .pulse-text {
+            animation: textPulse 2s infinite;
+        }
+
+        @keyframes bounceIndicator {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(5px);
+            }
+
+            60% {
+                transform: translateY(3px);
+            }
+        }
+
+        @keyframes textPulse {
+            0% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Diagnostic Grid Redesign */
+        .diagnostic-grid {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            flex-grow: 1;
+        }
+
+        .diagnostic-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .diagnostic-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .diagnostic-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        .diagnostic-grid::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+            background-clip: content-box;
+        }
+
+        /* Card Styling - Creative */
+        .model-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .model-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary-color);
+            background: rgba(14, 165, 233, 0.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: 0.4s;
+            pointer-events: none;
+        }
+
+        .model-card:hover .card-glow {
+            opacity: 1;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-color);
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Themed Icons */
+        .card-icon.heart {
+            background: rgba(244, 63, 94, 0.1);
+            color: #f43f5e;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.15);
+        }
+
+        .card-icon.cancer {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+
+        .card-icon.skin {
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
+        }
+
+        .card-icon.kidney {
+            background: rgba(20, 184, 166, 0.1);
+            color: #14b8a6;
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.15);
+        }
+
+        .card-icon.cognitive {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-icon.stomach {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+        }
+
+        .card-icon.brain {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .card-icon.anemia {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+        }
+
+        .card-body h3 {
+            font-family: var(--font-headers);
+            font-size: 19px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .conf {
+            color: var(--success-color);
+        }
+
+        .time {
+            color: var(--text-muted);
+        }
+
+        .terminal-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .model-card:hover .terminal-btn {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        /* Light Theme Adaptation for Dashboard */
+        body.light-theme {
+            background: #f8fafc;
+        }
+
+        body.light-theme .sidebar-nav,
+        body.light-theme .main-terminal {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(14, 165, 233, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        body.light-theme .sidebar-header span,
+        body.light-theme .terminal-title,
+        body.light-theme .card-body h3,
+        body.light-theme .u-name {
+            color: #0f172a;
+        }
+
+        body.light-theme .terminal-subtitle,
+        body.light-theme .card-body p,
+        body.light-theme .u-role,
+        body.light-theme .nav-item span {
+            color: #475569;
+        }
+
+        body.light-theme .nav-item:hover {
+            background: rgba(14, 165, 233, 0.05);
+            color: var(--primary-color);
+        }
+
+        body.light-theme .nav-item ion-icon {
+            color: #64748b;
+        }
+
+        body.light-theme .nav-item:hover ion-icon {
+            color: var(--primary-color);
+        }
+
+        body.light-theme .nav-item.active ion-icon,
+        body.light-theme .nav-item.active span {
+            color: white;
+        }
+
+        body.light-theme .model-card {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-color: #e2e8f0;
+        }
+
+        body.light-theme .model-card:hover {
+            border-color: var(--primary-color);
+            background: #f0f9ff;
+        }
+
+        body.light-theme .search-bar {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+        }
+
+        body.light-theme .search-bar input {
+            color: #0f172a;
+        }
+
+        body.light-theme .search-bar ion-icon {
+            color: #64748b;
+        }
+
+        body.light-theme .terminal-btn {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+            color: #475569;
+        }
+
+        body.light-theme .model-card:hover .terminal-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        body.light-theme .time {
+            color: #64748b;
+        }
+
+        body.light-theme .settings-btn {
+            color: #64748b;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+
+    <!-- Info Floating Button -->
+    <div class="info-fab-container">
+        <button class="fab-main" id="fabMain">
+            <ion-icon name="information-circle-outline"></ion-icon>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-item" data-modal="modal-xai">
+                <ion-icon name="bulb-outline"></ion-icon>
+                <span>Explainable AI</span>
+            </button>
+            <button class="fab-item" data-modal="modal-advantages">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <span>AI Advantages</span>
+            </button>
+            <button class="fab-item" data-modal="modal-about">
+                <ion-icon name="people-outline"></ion-icon>
+                <span>About Us</span>
+            </button>
+            <button class="fab-item" data-modal="modal-contact">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>Contact Us</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <!-- About Us Modal -->
+        <div class="info-modal" id="modal-about">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="people"></ion-icon>
+                <h2>About Us</h2>
+            </div>
+            <div class="modal-body">
+                <p>We are final year B.Tech students from <strong>Suguna College of Engineering</strong>, passionate
+                    about learning, innovation, and applying technology to real-world problems.</p>
+                <p><strong>Project Team:</strong></p>
+                <ul class="modal-list" style="margin-top: 10px;">
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Hariharan</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Harsha</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Devanand</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Abiniya</li>
+                </ul>
+                <p style="margin-top: 15px;">This platform showcases our skills, projects, and ideas in the field of
+                    Medical AI.</p>
+            </div>
+        </div>
+
+        <!-- Contact Us Modal -->
+        <div class="info-modal" id="modal-contact">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="mail"></ion-icon>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <p style="text-align: center;">Have questions or suggestions? Reach out to us!</p>
+                <div class="contact-methods"
+                    style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <a href="mailto:hariharan9585@gmail.com">hariharan9585@gmail.com</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <a href="tel:6381448511">6381448511</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%; align-items: flex-start;">
+                        <ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon>
+                        <span style="color: var(--text-muted); font-size: 14px;">Nehru Nagar, Coimbatore, India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explainable AI Modal -->
+        <div class="info-modal" id="modal-xai">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="analytics"></ion-icon>
+                <h2>Explainable AI (XAI)</h2>
+            </div>
+            <div class="modal-body">
+                <p>Explainable AI in medicine ensures that our diagnostic models don't just give an answer, but also
+                    provide the <strong>why</strong>.</p>
+                <ul class="modal-list">
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Increases Trust between doctors and AI.</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> highlights specific symptoms influencing results.
+                    </li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Enables human-in-the-loop verification.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Advantages Modal -->
+        <div class="info-modal" id="modal-advantages">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="shield-outline"></ion-icon>
+                <h2>AI Advantages</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <strong>Enhanced Accuracy</strong>
+                        <p>Our AI analyzes vast medical datasets to provide highly precise preliminary diagnoses.</p>
+                    </li>
+                    <li>
+                        <strong>Early Detection</strong>
+                        <p>Identifies subtle patterns that might be missed in early stages of chronic conditions.</p>
+                    </li>
+                    <li>
+                        <strong>24/7 Accessibility</strong>
+                        <p>Get instant medical insights anytime, anywhere before consulting a professional.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Heart Disease Analysis Modal -->
+        <div class="info-modal" id="modal-heart">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="heart-outline"></ion-icon>
+                <h2>Heart Disease Analysis</h2>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; margin-bottom: 20px;">Select the specific cardiovascular diagnostic you
+                    wish to perform:</p>
+                <div class="diagnostic-options"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <button class="diag-opt-btn">
+                        <ion-icon name="pulse-outline"></ion-icon>
+                        <span>Overall Heart Health</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="git-network-outline"></ion-icon>
+                        <span>Coronary Artery Disease (CAD)</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="flash-outline"></ion-icon>
+                        <span>Arrhythmia (Irregular Heartbeat)</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="warning-outline"></ion-icon>
+                        <span>Heart Failure</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="layers-outline"></ion-icon>
+                        <span>Valvular Heart Disease</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="flask-outline"></ion-icon>
+                        <span>Congenital Heart Disease</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                        <span>Cardiomyopathy</span>
+                    </button>
+                    <button class="diag-opt-btn">
+                        <ion-icon name="thermometer-outline"></ion-icon>
+                        <span>Inflammatory Heart Diseases</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Reports Modal -->
+    <div id="reportsModal" class="modal-overlay reports-modal">
+        <div class="modal-content reports-modal-layout">
+            <button class="close-modal" onclick="closeReportsModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="reports-main-pane">
+                <div class="modal-header">
+                    <h2><ion-icon name="document-text-outline" style="color:#f43f5e"></ion-icon>Diagnostic History</h2>
+                </div>
+                <div id="reportsList" class="reports-list">
+                    <!-- Data injected via script.js -->
+                </div>
+            </div>
+            <div class="reports-chat-pane collapsed" id="reportsChatPane">
+                <div class="chat-pane-header">
+                    <ion-icon name="pulse-outline"></ion-icon>
+                    <h3>Report Assistant</h3>
+                    <button class="pane-toggle" onclick="toggleReportChat()"><ion-icon
+                            name="chevron-forward-outline"></ion-icon></button>
+                </div>
+                <div id="reportChatMessages" class="pane-chat-messages">
+                    <div class="message ai-message mini">
+                        <div class="msg-content">
+                            <p>Select a report to begin analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pane-chat-input">
+                    <input type="text" id="reportChatInput" placeholder="Ask about this report...">
+                    <button id="sendReportMessage"><ion-icon name="send"></ion-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

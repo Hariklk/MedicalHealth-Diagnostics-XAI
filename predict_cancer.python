@@ -1,0 +1,111 @@
+import pandas as pd
+import numpy as np
+import sys
+import json
+import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+
+# Set working directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+def load_and_train(csv_file):
+    try:
+        df = pd.read_csv(csv_file)
+        # Preprocessing: Encode any string columns
+        encoders = {}
+        for col in df.select_dtypes(include=['object']).columns:
+            le = LabelEncoder()
+            df[col] = le.fit_transform(df[col])
+            encoders[col] = le
+        
+        X = df.drop('target', axis=1)
+        y = df['target']
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X_train, y_train)
+        
+        accuracy = round(model.score(X_test, y_test) * 100, 2)
+        return model, accuracy, encoders, list(X.columns)
+    except Exception as e:
+        raise e
+
+def predict_cancer(cancer_type, inputs):
+    csv_map = {
+        'lung': 'lung_cancer.csv',
+        'skin': 'skin_cancer.csv',
+        'breast': 'breast_cancer.csv',
+        'brain': 'brain_cancer.csv',
+        'prostate': 'prostate_cancer.csv',
+        'colorectal': 'colorectal_cancer.csv',
+        'renal': 'renal_cancer.csv',
+        'thyroid': 'thyroid_cancer.csv'
+    }
+    
+    if cancer_type not in csv_map:
+        return {"status": "error", "error": f"Unsupported cancer type: {cancer_type}"}
+    
+    try:
+        model, accuracy, encoders, feature_names = load_and_train(csv_map[cancer_type])
+        
+        # Process inputs
+        processed_inputs = []
+        for i, val in enumerate(inputs):
+            # Check if this feature was encoded
+            feat_name = feature_names[i]
+            if feat_name in encoders:
+                try:
+                    # Try to transform the string input
+                    processed_inputs.append(encoders[feat_name].transform([val])[0])
+                except:
+                    # Fallback to 0 if unknown category
+                    processed_inputs.append(0)
+            else:
+                processed_inputs.append(float(val))
+        
+        features = np.array([processed_inputs])
+        risk = model.predict_proba(features)[0][1] * 100
+        prediction = model.predict(features)[0]
+        
+        status = "low"
+        if risk > 75: status = "high"
+        elif risk > 40: status = "moderate"
+        
+        messages = {
+            "lung": {
+                "low": "Respiratory patterns appear normal. No acute neoplastic markers detected.",
+                "moderate": "Atypical cellular indicators found. Pulmonary consultation recommended.",
+                "high": "CRITICAL: High probability of malignant growth. Urgent biopsy/CT scan required."
+            },
+            "skin": {
+                "low": "Dermatological mapping suggests benign lesion characteristics.",
+                "moderate": "Partial asymmetry and border irregularity noted. Dermatoscopy required.",
+                "high": "ALERT: High risk of Melanoma or Carcinoma. Immediate excision/biopsy advised."
+            }
+        }
+        
+        # Default message if specific one not defined
+        msg = messages.get(cancer_type, {}).get(status, f"{status.capitalize()} risk detected for {cancer_type} cancer.")
+        
+        return {
+            "status": "success",
+            "type": cancer_type,
+            "risk": round(risk, 2),
+            "risk_status": status,
+            "message": msg,
+            "accuracy": accuracy,
+            "prediction": "POS" if int(prediction) == 1 else "NEG"
+        }
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print(json.dumps({"status": "error", "error": "Usage: py predict_cancer.py <type> <val1> <val2> ..."}))
+    else:
+        cancer_type = sys.argv[1]
+        inputs = sys.argv[2:]
+        result = predict_cancer(cancer_type, inputs)
+        print(json.dumps(result))

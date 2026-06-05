@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Diagnostic | HealthAI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+</head>
+
+<body class="medical-dashboard-page">
+
+    <!-- Premium Background Container -->
+    <div class="medical-background profile-mode dashboard-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="aura-overlay"></div>
+    </div>
+
+    <!-- Main App Layout -->
+    <div class="dashboard-layout">
+
+        <!-- Glassmorphism Sidebar -->
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-box">
+                    <ion-icon name="pulse"></ion-icon>
+                </div>
+                <span>Health Diagnostic AI</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="medical.html" class="nav-item">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <span>Diagnostics</span>
+                </a>
+                <a href="heart-analysis.html" class="nav-item active">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <span>Heart Lab</span>
+                </a>
+                <a href="profile.html?edit=true" class="nav-item">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>My Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='heart-analysis.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text">
+                        <span class="cmd">NAV_TERMINAL</span>
+                        <span class="label">Back to Heart Lab</span>
+                    </div>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <div class="header-left">
+                    <h1 class="terminal-title">CAD <span class="highlight" style="color:#f43f5e">Diagnostic Terminal</span></h1>
+                    <p class="terminal-subtitle">Advanced Coronary Artery Disease risk mapping & neural assessment.</p>
+                </div>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium">
+                    <form id="cadForm" class="diagnostic-form-full">
+                        <!-- Neural Scanning Overlay (Hidden by default) -->
+                        <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                            <div class="scanner-content">
+                                <div class="pulse-ring"></div>
+                                <div class="scanner-icon"><ion-icon name="scan-outline"></ion-icon></div>
+                                <div class="scanner-text">
+                                    <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar-fill" id="scannerProgress"></div>
+                                    </div>
+                                    <p id="scannerLog">Awaiting Biometric Stream...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Demographics Section -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <h3>Patient Demographics</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                                    <input type="number" id="cad_age" required min="1" max="120" placeholder="e.g. 55">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="male-female-outline"></ion-icon> Gender</label>
+                                    <select id="cad_sex" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="thermometer-outline"></ion-icon> Chest Pain</label>
+                                    <select id="cad_cp" required>
+                                        <option value="None">None</option>
+                                        <option value="Typical Angina">Typical Angina</option>
+                                        <option value="Atypical Angina">Atypical Angina</option>
+                                        <option value="Non-anginal Pain">Non-anginal Pain</option>
+                                        <option value="Asymptomatic">Asymptomatic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clinical Measurements -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="pulse-outline"></ion-icon>
+                                <h3>Clinical Measurements</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="speedometer-outline"></ion-icon> Systolic BP</label>
+                                    <input type="number" id="cad_bp" required placeholder="e.g. 140">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="water-outline"></ion-icon> Cholesterol</label>
+                                    <input type="number" id="cad_chol" required placeholder="e.g. 240">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="heart-outline"></ion-icon> Heart Rate</label>
+                                    <input type="number" id="cad_hr" required placeholder="e.g. 75">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lifestyle & History -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="flask-outline"></ion-icon>
+                                <h3>Lifestyle & History</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="medkit-outline"></ion-icon> Diabetes</label>
+                                    <select id="cad_diabetes" required>
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="leaf-outline"></ion-icon> Smoking</label>
+                                    <select id="cad_smoking" required>
+                                        <option value="Never">Never</option>
+                                        <option value="Former">Former</option>
+                                        <option value="Current">Current</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="git-branch-outline"></ion-icon> CAD History</label>
+                                    <select id="cad_history" required>
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <p class="form-hint">AI Engine: Random Forest v2.1 • Accuracy: 96.4%</p>
+                            <button type="submit" class="submit-cad-btn" id="cadSubmitBtn">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                Run AI Analysis
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Result Area (Hidden initially) -->
+                    <div id="cadResultArea" class="result-area-premium" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats-column">
+                                <div class="result-main-card">
+                                    <div class="risk-circle-container">
+                                        <div class="risk-circle" id="cadRiskMeter">
+                                            <span class="risk-percent" id="cadRiskValue">0%</span>
+                                            <span class="risk-title">Risk Score</span>
+                                        </div>
+                                    </div>
+                                    <div class="risk-details">
+                                        <h2 id="cadRiskLabel">Calculating...</h2>
+                                        <p id="cadRiskMsg"></p>
+                                    </div>
+                                </div>
+
+                                <div class="mini-stats-grid">
+                                    <div class="mini-stat">
+                                        <label>AI Confidence</label>
+                                        <div class="val" id="cadAccuracyValue">96.4%</div>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <label>Biometric Status</label>
+                                        <div class="val" id="cadProbValue">Analyzing</div>
+                                    </div>
+                                </div>
+
+                                <div class="terminal-action-center">
+                                    <div class="action-group-title">Diagnostic Commands</div>
+                                    <div class="action-bar-premium">
+                                        <button class="terminal-btn primary" onclick="resetCADDiagnostic()">
+                                            <div class="btn-icon"><ion-icon name="refresh-outline"></ion-icon></div>
+                                            <div class="btn-text">
+                                                <span class="cmd">CMD_REINIT</span>
+                                                <span class="label">New Analysis</span>
+                                            </div>
+                                        </button>
+                                        <button class="terminal-btn secondary" onclick="window.print()">
+                                            <div class="btn-icon"><ion-icon name="document-attach-outline"></ion-icon></div>
+                                            <div class="btn-text">
+                                                <span class="cmd">CMD_EXPORT_PDF</span>
+                                                <span class="label">Save Report</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="action-group-title">Consultation Links</div>
+                                    <div class="action-bar-premium">
+                                        <button class="terminal-btn info" onclick="triggerAiAssist('Explain this CAD risk')">
+                                            <ion-icon name="bulb-outline"></ion-icon>
+                                            <span>Deep Insight</span>
+                                        </button>
+                                        <button class="terminal-btn info" onclick="triggerAiAssist('Next medical steps')">
+                                            <ion-icon name="medkit-outline"></ion-icon>
+                                            <span>Medical Path</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chatbot Analysis Column -->
+                            <div class="chatbot-analysis-column">
+                                <div class="chatbot-card">
+                                    <div class="chat-card-header">
+                                        <div class="ai-avatar">
+                                            <ion-icon name="pulse"></ion-icon>
+                                        </div>
+                                        <div>
+                                            <h4>Neural Insight Assistant</h4>
+                                            <span class="status-online">Analyzing Your Report...</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-content" id="cadChatMessages">
+                                        <div class="msg ai">
+                                            <p>Analysis Complete. I've processed your biometric data. What would you like to know about your CAD risk profile?</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-box">
+                                        <input type="text" id="cadChatInput" placeholder="Ask about your report...">
+                                        <button id="cadSendChat"><ion-icon name="send"></ion-icon></button>
+                                    </div>
+                                    <div class="terminal-footer-bar">
+                                        <span class="sys-code">SYS_SEC_ACTIVE</span>
+                                        <span class="sys-code">AI_MODEL_RF_2.1</span>
+                                        <span class="sys-code">ENCRYPT_AES_256</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        /* Neural Scanner Styles */
+        .neural-scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 15, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .scanner-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .pulse-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #f43f5e;
+            position: absolute;
+            animation: ringPulse 1.5s infinite;
+        }
+
+        @keyframes ringPulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .scanner-icon {
+            font-size: 40px;
+            color: #f43f5e;
+            animation: scanBounce 2s infinite;
+        }
+
+        @keyframes scanBounce {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(244, 63, 94, 0.8)); }
+        }
+
+        .scanner-text h4 {
+            font-family: 'Outfit';
+            font-size: 18px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar-wrap {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #f43f5e, #e11d48);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px #f43f5e;
+        }
+
+        .scanner-text p {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Result Heartbeat Animation */
+        .risk-circle::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(244, 63, 94, 0.3);
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); opacity: 0.5; }
+            10% { transform: scale(1.1); opacity: 0.8; }
+            20% { transform: scale(1); opacity: 0.5; }
+            30% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .terminal-nav-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .terminal-nav-btn ion-icon {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .terminal-nav-btn .nav-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .terminal-nav-btn .cmd {
+            font-family: 'Courier New', monospace;
+            font-size: 9px;
+            color: #f43f5e;
+            font-weight: 700;
+        }
+
+        .terminal-nav-btn .label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .terminal-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #f43f5e;
+            transform: translateX(-5px);
+        }
+
+        .terminal-action-center {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-group-title {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .terminal-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 18px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .terminal-btn .btn-icon {
+            font-size: 24px;
+            color: #f43f5e;
+            opacity: 0.8;
+        }
+
+        .terminal-btn .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .terminal-btn .cmd {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+        }
+
+        .terminal-btn .label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .terminal-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .terminal-btn.primary {
+            border-left: 4px solid #f43f5e;
+        }
+
+        .terminal-btn.secondary {
+            border-left: 4px solid #10b981;
+        }
+
+        .terminal-btn.info {
+            gap: 10px;
+            padding: 10px 15px;
+            font-size: 13px;
+            background: rgba(14, 165, 233, 0.05);
+            border-color: rgba(14, 165, 233, 0.1);
+        }
+
+        .terminal-btn.info ion-icon {
+            color: #0ea5e9;
+        }
+
+        .terminal-footer-bar {
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 20px;
+        }
+
+        .sys-code {
+            font-family: 'Courier New', monospace;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 700;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .diagnostic-container-page {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagnostic-card-premium {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-section-header ion-icon {
+            font-size: 22px;
+            color: #f43f5e;
+            filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.3));
+        }
+
+        .form-section-header h3 {
+            font-family: 'Outfit';
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .form-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .form-group-p {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group-p label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group-p label ion-icon {
+            font-size: 16px;
+            color: #f43f5e;
+            opacity: 0.8;
+        }
+
+        .form-group-p input, .form-group-p select {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px 18px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .form-group-p input:focus, .form-group-p select:focus {
+            border-color: #f43f5e;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .submit-cad-btn {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 16px;
+            font-family: 'Outfit';
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.3);
+        }
+
+        .submit-cad-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(244, 63, 94, 0.4);
+        }
+
+        /* Result Layout Grid */
+        .result-layout-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .result-main-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .risk-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid #f43f5e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 40px rgba(244, 63, 94, 0.15);
+        }
+
+        .risk-percent {
+            font-size: 38px;
+            font-weight: 800;
+            color: white;
+            font-family: 'Outfit';
+        }
+
+        .mini-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mini-stat {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .mini-stat label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .mini-stat .val {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Outfit';
+        }
+
+        /* Chatbot Widget Styles */
+        .chatbot-card {
+            background: rgba(12, 26, 37, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-card-header {
+            padding: 20px;
+            background: rgba(14, 165, 233, 0.05);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ai-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(14, 165, 233, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0ea5e9;
+            font-size: 24px;
+        }
+
+        .chat-card-header h4 {
+            color: white;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .status-online {
+            font-size: 11px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-online::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            display: block;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .chat-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .msg.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-bottom-left-radius: 2px;
+        }
+
+        .msg.user {
+            align-self: flex-end;
+            background: #0ea5e9;
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-input-box {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-box input {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: white;
+            outline: none;
+        }
+
+        .chat-input-box button {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .chat-input-box button:hover {
+            transform: scale(1.05);
+            background: #0284c7;
+        }
+
+        @media (max-width: 900px) {
+            .result-layout-grid { grid-template-columns: 1fr; }
+            .form-grid-three { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+
+    <script>
+        const cadForm = document.getElementById('cadForm');
+        const cadResultArea = document.getElementById('cadResultArea');
+        const cadSubmitBtn = document.getElementById('cadSubmitBtn');
+
+        function resetCADDiagnostic() {
+            cadForm.style.display = 'block';
+            cadResultArea.style.display = 'none';
+            cadForm.reset();
+        }
+
+        cadForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = {
+                userId: localStorage.getItem('userId'),
+                age: document.getElementById('cad_age').value,
+                sex: document.getElementById('cad_sex').value,
+                chestPain: document.getElementById('cad_cp').value,
+                bp: document.getElementById('cad_bp').value,
+                chol: document.getElementById('cad_chol').value,
+                diabetes: document.getElementById('cad_diabetes').value,
+                smoking: document.getElementById('cad_smoking').value,
+                heartRate: document.getElementById('cad_hr').value,
+                history: document.getElementById('cad_history').value
+            };
+
+            // Show Scanner
+            const scanner = document.getElementById('neuralScanner');
+            const scannerStatus = document.getElementById('scannerStatus');
+            const scannerLog = document.getElementById('scannerLog');
+            const scannerProgress = document.getElementById('scannerProgress');
+            
+            scanner.style.display = 'flex';
+            
+            const runScanner = async () => {
+                const stages = [
+                    { status: 'Mapping Biometrics...', log: 'SYS_LOAD: Patient Clinical Grid', progress: 20 },
+                    { status: 'Analyzing Lipid Profile...', log: 'CALC: Cholesterol Artery Impact', progress: 45 },
+                    { status: 'Stress Level Mapping...', log: 'MAP: BP & Heart Rate Correlation', progress: 70 },
+                    { status: 'Neural Risk Assessment...', log: 'AI_PROC: Random Forest v2.1', progress: 90 }
+                ];
+
+                for (const stage of stages) {
+                    scannerStatus.innerText = stage.status;
+                    scannerLog.innerText = stage.log;
+                    scannerProgress.style.width = stage.progress + '%';
+                    await new Promise(r => setTimeout(r, 600));
+                }
+            };
+
+            await runScanner();
+
+            try {
+                const response = await fetch('/api/predict-cad', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    scannerProgress.style.width = '100%';
+                    scannerStatus.innerText = 'Analysis Complete';
+                    scannerLog.innerText = 'SUCCESS: Risk Mapped';
+                    
+                    setTimeout(() => {
+                        scanner.style.display = 'none';
+                        displayCADResult(result);
+                        initializeChat(result);
+                    }, 500);
+                } else {
+                    scanner.style.display = 'none';
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                scanner.style.display = 'none';
+                console.error('Error:', error);
+                alert('Connection failed. Please check server status.');
+            }
+        };
+
+        function displayCADResult(data) {
+            cadForm.style.display = 'none';
+            cadResultArea.style.display = 'block';
+
+            document.getElementById('cadRiskValue').innerText = data.risk + '%';
+            document.getElementById('cadProbValue').innerText = data.risk_status.toUpperCase();
+            document.getElementById('cadAccuracyValue').innerText = data.accuracy + '%';
+
+            const cadRiskLabel = document.getElementById('cadRiskLabel');
+            const cadRiskMeter = document.getElementById('cadRiskMeter');
+            const cadRiskMsg = document.getElementById('cadRiskMsg');
+
+            let color = '#10b981';
+            let labelText = 'Low CAD Risk Profile';
+
+            if (data.risk_status === 'high') {
+                color = '#f43f5e';
+                labelText = 'High Pathological Detection';
+            } else if (data.risk_status === 'moderate') {
+                color = '#fbbf24';
+                labelText = 'Moderate Stress Detected';
+            }
+
+            cadRiskLabel.innerText = labelText;
+            cadRiskLabel.style.color = color;
+            cadRiskMeter.style.borderColor = color;
+            cadRiskMsg.innerText = data.message;
+        }
+
+        // Chatbot Logic
+        const chatMessages = document.getElementById('cadChatMessages');
+        const chatInput = document.getElementById('cadChatInput');
+        const sendBtn = document.getElementById('cadSendChat');
+
+        function appendMessage(text, role) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${role}`;
+            msgDiv.innerHTML = `<p>${text}</p>`;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function initializeChat(data) {
+            appendMessage(`Based on your data, I've calculated a **${data.risk}% risk** for Coronary Artery Disease. This is considered **${data.risk_status}**. Would you like me to explain what this means for your heart health?`, 'ai');
+        }
+
+        sendBtn.onclick = async () => {
+            const query = chatInput.value.trim();
+            if (!query) return;
+
+            appendMessage(query, 'user');
+            chatInput.value = '';
+
+            const loadingId = 'loading-' + Date.now();
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'msg ai';
+            loadingDiv.id = loadingId;
+            loadingDiv.innerHTML = '<p><ion-icon name="sync-outline" class="spin"></ion-icon> Analyzing clinical markers...</p>';
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: `Context: CAD Diagnostic - Risk ${document.getElementById('cadRiskValue').innerText}, Status: ${document.getElementById('cadProbValue').innerText}. Findings: ${document.getElementById('cadRiskMsg').innerText}. User Question: ${query}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                const loader = document.getElementById(loadingId);
+                if(loader) chatMessages.removeChild(loader);
+                appendMessage(data.message, 'ai');
+            } catch (e) {
+                const loader = document.getElementById(loadingId);
+                if(loader) loader.innerHTML = '<p>Assistant currently unavailable.</p>';
+            }
+        };
+
+        chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendBtn.onclick(); };
+    </script>
+</body>
+
+</html>

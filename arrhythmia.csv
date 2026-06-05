@@ -1,0 +1,1501 @@
+age,gender,pulse_regularity,resting_hr,palpitations,dizziness,target
+69,Male,Regular,65,0,1,0
+32,Male,Occasional Skip,128,0,0,0
+89,Female,Irregular,49,1,1,1
+78,Male,Irregular,92,1,0,1
+38,Male,Occasional Skip,118,1,0,0
+41,Female,Regular,98,0,1,0
+20,Female,Regular,61,0,1,0
+39,Male,Irregular,90,0,1,0
+70,Female,Irregular,87,0,0,0
+19,Male,Regular,60,0,0,0
+47,Male,Occasional Skip,159,0,1,0
+55,Male,Irregular,61,1,0,0
+19,Male,Regular,139,1,1,0
+81,Female,Irregular,137,0,0,0
+77,Male,Occasional Skip,69,1,1,1
+38,Female,Regular,64,1,1,0
+50,Female,Irregular,148,0,0,0
+75,Female,Occasional Skip,67,0,1,0
+39,Female,Irregular,104,1,1,1
+66,Male,Occasional Skip,152,0,0,1
+76,Female,Occasional Skip,84,0,1,0
+59,Male,Regular,107,1,0,0
+77,Female,Occasional Skip,46,0,1,1
+32,Female,Irregular,88,1,0,0
+79,Male,Occasional Skip,48,1,1,1
+79,Male,Occasional Skip,75,1,1,1
+64,Male,Regular,122,1,1,0
+79,Female,Occasional Skip,40,1,1,1
+68,Female,Occasional Skip,49,0,0,1
+72,Male,Irregular,75,0,0,0
+81,Male,Regular,112,0,0,0
+20,Male,Regular,148,0,0,0
+68,Male,Regular,85,1,0,0
+24,Female,Occasional Skip,145,1,0,1
+38,Male,Regular,71,0,0,0
+56,Male,Occasional Skip,71,1,1,0
+35,Male,Occasional Skip,45,0,1,1
+21,Male,Irregular,87,0,1,0
+77,Female,Irregular,77,0,1,0
+31,Male,Irregular,56,1,0,0
+26,Female,Irregular,113,1,0,0
+70,Male,Irregular,153,1,0,1
+19,Male,Occasional Skip,66,1,1,0
+77,Female,Occasional Skip,93,0,0,0
+88,Male,Regular,89,1,1,0
+61,Female,Occasional Skip,74,1,0,0
+25,Female,Occasional Skip,155,1,0,0
+64,Male,Irregular,124,0,0,0
+52,Female,Occasional Skip,64,0,0,0
+53,Female,Irregular,67,1,1,0
+67,Female,Regular,150,1,1,1
+21,Female,Regular,54,1,0,0
+19,Female,Occasional Skip,43,1,1,1
+23,Female,Regular,132,0,0,0
+71,Female,Occasional Skip,112,1,0,1
+21,Female,Regular,66,1,0,0
+71,Male,Irregular,65,1,0,0
+80,Male,Irregular,58,0,1,0
+35,Female,Irregular,159,0,0,0
+61,Male,Irregular,131,1,0,1
+51,Female,Occasional Skip,56,1,1,0
+79,Female,Regular,82,1,0,0
+31,Male,Occasional Skip,80,1,1,1
+65,Female,Irregular,81,1,0,0
+32,Female,Occasional Skip,89,0,0,0
+89,Female,Regular,123,0,0,0
+79,Female,Occasional Skip,148,0,0,1
+57,Male,Regular,79,1,0,0
+70,Female,Occasional Skip,78,0,0,0
+41,Female,Regular,152,0,1,0
+43,Female,Regular,156,0,0,0
+77,Male,Irregular,62,1,1,1
+58,Female,Regular,150,1,1,0
+46,Male,Irregular,135,0,0,0
+32,Male,Irregular,91,1,1,1
+62,Female,Irregular,86,0,0,0
+82,Female,Occasional Skip,102,0,1,1
+88,Male,Occasional Skip,136,0,0,1
+26,Female,Occasional Skip,149,0,1,1
+18,Male,Occasional Skip,108,1,1,1
+25,Male,Regular,82,1,0,0
+80,Female,Regular,87,1,1,0
+28,Female,Occasional Skip,73,1,0,0
+25,Male,Regular,79,0,0,0
+52,Male,Regular,114,1,0,0
+52,Male,Irregular,100,0,0,0
+50,Male,Irregular,89,1,0,0
+22,Female,Irregular,106,1,1,1
+58,Female,Irregular,101,1,1,1
+45,Female,Regular,97,0,1,0
+24,Female,Occasional Skip,72,0,0,0
+89,Female,Regular,114,0,1,0
+29,Male,Regular,55,0,1,0
+51,Female,Regular,121,1,1,0
+50,Female,Irregular,133,0,1,1
+65,Female,Irregular,87,0,1,0
+40,Female,Irregular,158,1,0,1
+79,Female,Occasional Skip,49,1,0,1
+54,Male,Regular,121,0,1,0
+61,Male,Occasional Skip,77,1,0,0
+52,Male,Irregular,58,0,0,0
+82,Female,Occasional Skip,75,1,1,1
+64,Male,Regular,98,0,1,0
+20,Male,Regular,102,0,0,0
+18,Female,Irregular,116,0,1,1
+22,Female,Irregular,159,0,0,0
+31,Female,Occasional Skip,85,0,0,0
+44,Male,Irregular,42,1,1,1
+26,Male,Irregular,113,0,0,0
+32,Female,Regular,141,0,0,0
+59,Female,Irregular,104,0,0,0
+68,Male,Irregular,158,0,1,1
+80,Male,Regular,159,0,1,0
+69,Female,Regular,130,1,1,0
+21,Female,Occasional Skip,149,1,1,1
+40,Male,Irregular,47,0,0,0
+32,Female,Regular,90,1,1,0
+60,Male,Occasional Skip,149,0,1,0
+46,Male,Occasional Skip,145,1,1,1
+53,Male,Irregular,120,1,1,1
+30,Male,Irregular,112,0,0,0
+49,Female,Occasional Skip,45,1,0,0
+88,Female,Regular,146,1,0,0
+76,Male,Occasional Skip,128,0,1,1
+45,Male,Irregular,78,0,1,0
+83,Male,Regular,152,1,0,0
+59,Male,Regular,99,1,1,0
+62,Male,Occasional Skip,67,1,1,0
+79,Female,Irregular,136,0,0,1
+74,Female,Occasional Skip,93,1,0,0
+23,Female,Occasional Skip,76,1,1,1
+45,Female,Occasional Skip,48,1,1,1
+45,Male,Regular,121,0,1,0
+61,Male,Regular,95,0,0,0
+47,Male,Irregular,98,0,0,0
+79,Male,Irregular,124,0,0,0
+79,Male,Occasional Skip,41,1,0,1
+18,Female,Occasional Skip,100,0,1,0
+44,Male,Occasional Skip,97,1,0,0
+79,Female,Irregular,146,1,0,1
+20,Female,Regular,99,1,1,0
+87,Female,Regular,141,1,1,0
+89,Female,Occasional Skip,79,0,1,0
+44,Male,Occasional Skip,75,0,0,0
+26,Female,Occasional Skip,153,0,1,1
+79,Female,Occasional Skip,146,0,1,1
+54,Female,Irregular,76,0,0,0
+68,Male,Regular,118,1,0,0
+61,Male,Occasional Skip,131,0,1,0
+41,Male,Irregular,57,0,0,0
+76,Female,Occasional Skip,137,0,1,1
+49,Female,Occasional Skip,102,0,1,1
+69,Male,Regular,61,1,0,0
+79,Female,Occasional Skip,50,1,1,1
+75,Male,Regular,97,1,0,0
+69,Male,Regular,96,1,0,0
+29,Female,Regular,116,1,0,0
+56,Female,Irregular,43,0,1,0
+19,Female,Irregular,125,1,0,0
+20,Female,Regular,46,1,0,0
+73,Male,Occasional Skip,100,1,1,1
+76,Male,Regular,146,0,1,0
+19,Male,Occasional Skip,93,0,1,0
+19,Male,Regular,127,1,1,0
+71,Male,Occasional Skip,107,0,0,1
+18,Female,Irregular,131,0,0,0
+36,Male,Occasional Skip,118,1,0,0
+19,Male,Regular,40,0,1,0
+70,Male,Irregular,94,0,1,0
+61,Female,Occasional Skip,42,0,0,0
+49,Female,Occasional Skip,117,1,1,1
+87,Female,Occasional Skip,77,1,1,1
+49,Female,Occasional Skip,153,1,0,0
+85,Male,Occasional Skip,40,0,0,0
+72,Male,Irregular,141,1,1,1
+73,Female,Irregular,77,0,1,1
+34,Female,Irregular,124,0,1,1
+55,Male,Irregular,151,0,0,0
+41,Male,Regular,68,1,0,0
+86,Female,Irregular,44,1,0,1
+87,Female,Occasional Skip,152,1,0,1
+28,Female,Occasional Skip,113,1,0,0
+33,Female,Irregular,131,0,1,1
+76,Male,Occasional Skip,60,1,1,1
+87,Male,Irregular,153,0,1,1
+20,Male,Occasional Skip,110,1,0,1
+37,Female,Regular,106,1,0,0
+76,Female,Regular,148,1,0,0
+53,Male,Irregular,86,0,1,0
+36,Male,Irregular,123,0,0,0
+84,Male,Irregular,122,0,0,0
+36,Male,Occasional Skip,74,0,1,0
+37,Female,Irregular,107,0,0,0
+88,Male,Regular,108,1,1,0
+69,Male,Occasional Skip,40,0,0,0
+50,Male,Irregular,107,0,0,0
+57,Male,Occasional Skip,51,0,1,0
+56,Male,Occasional Skip,99,0,1,0
+18,Male,Irregular,66,1,1,1
+28,Male,Occasional Skip,95,0,1,0
+74,Female,Regular,145,1,1,0
+67,Female,Regular,62,1,1,0
+40,Female,Occasional Skip,64,1,0,0
+48,Female,Irregular,60,0,0,0
+59,Male,Occasional Skip,100,1,1,0
+24,Female,Regular,102,0,0,0
+33,Female,Occasional Skip,91,0,1,0
+77,Male,Occasional Skip,127,0,0,0
+19,Male,Regular,64,0,1,0
+18,Female,Occasional Skip,148,0,0,0
+65,Female,Occasional Skip,94,1,0,0
+29,Male,Irregular,85,1,0,0
+86,Female,Irregular,71,0,0,0
+54,Male,Regular,94,1,0,0
+49,Male,Regular,135,0,1,0
+26,Male,Regular,44,1,1,0
+36,Male,Irregular,75,1,1,1
+65,Female,Regular,149,1,0,0
+20,Male,Regular,145,1,1,0
+37,Male,Regular,88,1,0,0
+41,Female,Irregular,145,0,0,0
+71,Male,Occasional Skip,97,0,0,0
+50,Female,Regular,78,1,1,0
+41,Female,Occasional Skip,119,0,0,0
+89,Female,Regular,136,1,1,0
+53,Male,Occasional Skip,152,0,1,0
+55,Female,Irregular,124,1,0,0
+42,Female,Irregular,100,1,0,0
+35,Male,Regular,48,1,1,0
+83,Female,Occasional Skip,45,0,1,1
+71,Female,Irregular,154,0,1,1
+52,Female,Regular,148,1,1,0
+78,Female,Regular,74,1,1,0
+58,Female,Irregular,78,0,1,0
+50,Male,Irregular,61,0,0,0
+85,Female,Regular,80,0,1,0
+50,Female,Occasional Skip,157,0,1,1
+31,Male,Occasional Skip,44,0,1,0
+38,Male,Occasional Skip,81,1,1,1
+65,Male,Regular,126,0,0,0
+37,Female,Irregular,120,1,0,1
+25,Male,Regular,115,1,1,0
+24,Female,Irregular,126,0,1,1
+84,Female,Occasional Skip,119,0,1,1
+34,Male,Occasional Skip,106,1,0,0
+50,Male,Irregular,69,0,0,0
+65,Female,Irregular,96,1,0,0
+76,Male,Regular,125,0,0,0
+39,Female,Occasional Skip,112,0,0,0
+47,Male,Regular,68,0,0,0
+55,Male,Regular,150,1,1,0
+68,Male,Regular,76,0,0,0
+71,Female,Occasional Skip,126,1,0,1
+25,Male,Regular,52,0,1,0
+44,Female,Regular,71,1,0,0
+44,Female,Regular,85,0,1,0
+38,Female,Regular,155,1,0,0
+47,Female,Regular,150,1,1,0
+45,Male,Regular,151,1,1,0
+81,Female,Occasional Skip,62,1,1,1
+86,Female,Regular,84,1,1,0
+78,Male,Irregular,56,1,1,1
+65,Female,Regular,158,0,0,0
+36,Male,Regular,143,1,0,0
+21,Female,Occasional Skip,124,1,1,1
+52,Male,Occasional Skip,105,1,1,1
+81,Female,Irregular,140,0,1,1
+66,Male,Irregular,45,0,0,1
+34,Female,Occasional Skip,147,0,1,1
+61,Female,Occasional Skip,57,1,1,0
+47,Male,Regular,133,0,1,0
+63,Male,Occasional Skip,61,0,1,0
+23,Male,Irregular,157,1,0,1
+54,Male,Regular,72,1,1,0
+41,Female,Irregular,69,0,1,0
+63,Female,Regular,120,1,0,0
+70,Male,Occasional Skip,146,1,1,1
+77,Female,Irregular,71,1,1,1
+80,Male,Regular,81,1,0,0
+49,Male,Regular,154,0,0,0
+50,Female,Occasional Skip,117,1,0,0
+84,Female,Occasional Skip,49,0,1,1
+35,Female,Occasional Skip,150,0,1,0
+42,Female,Irregular,154,0,0,0
+71,Female,Regular,75,0,0,0
+75,Female,Occasional Skip,73,1,0,0
+84,Female,Irregular,112,1,1,1
+63,Male,Irregular,145,1,1,1
+41,Male,Irregular,67,0,0,0
+49,Male,Occasional Skip,50,0,1,0
+64,Male,Occasional Skip,117,0,0,0
+40,Male,Regular,78,1,1,0
+83,Female,Regular,158,0,1,0
+44,Male,Occasional Skip,86,1,1,0
+19,Male,Irregular,157,1,1,1
+34,Male,Irregular,58,1,0,0
+50,Male,Irregular,157,1,1,1
+26,Male,Regular,54,0,1,0
+60,Male,Irregular,67,1,0,0
+65,Male,Regular,63,0,1,0
+56,Female,Regular,111,1,0,0
+59,Female,Irregular,146,0,0,0
+43,Male,Irregular,48,0,1,0
+67,Female,Occasional Skip,86,1,1,1
+42,Female,Occasional Skip,72,1,0,0
+41,Female,Irregular,101,1,0,1
+30,Female,Regular,136,0,0,0
+77,Male,Regular,58,1,1,0
+24,Female,Regular,106,1,0,0
+74,Female,Regular,113,0,0,0
+53,Female,Regular,79,1,0,0
+62,Male,Occasional Skip,86,0,1,0
+37,Male,Irregular,145,1,0,1
+82,Male,Occasional Skip,104,0,1,1
+25,Male,Regular,68,0,1,0
+33,Male,Regular,89,1,0,0
+31,Male,Regular,137,0,1,0
+32,Male,Regular,154,1,0,0
+83,Female,Irregular,52,1,1,1
+49,Female,Regular,157,0,1,0
+80,Female,Irregular,40,1,0,1
+68,Male,Regular,73,0,0,0
+42,Male,Irregular,132,0,0,0
+75,Male,Occasional Skip,87,0,1,0
+80,Male,Regular,150,0,1,0
+79,Male,Irregular,116,0,0,1
+39,Female,Occasional Skip,87,0,0,0
+75,Female,Regular,88,0,1,0
+75,Male,Regular,156,0,1,0
+66,Male,Regular,103,1,1,0
+69,Male,Irregular,100,1,0,0
+59,Male,Irregular,68,0,1,0
+87,Female,Occasional Skip,78,1,0,0
+32,Male,Irregular,127,1,1,1
+71,Male,Irregular,65,1,1,1
+77,Male,Regular,56,1,0,0
+25,Male,Regular,110,1,0,0
+70,Female,Regular,52,1,0,0
+77,Male,Regular,108,0,1,0
+22,Male,Regular,65,1,1,0
+85,Female,Regular,88,1,1,0
+23,Female,Regular,106,1,0,0
+64,Female,Occasional Skip,46,1,1,1
+72,Male,Occasional Skip,97,0,0,0
+57,Male,Occasional Skip,88,0,0,0
+69,Female,Occasional Skip,142,0,0,0
+33,Female,Regular,92,0,1,0
+30,Female,Occasional Skip,104,1,1,1
+47,Female,Regular,152,0,0,0
+36,Female,Occasional Skip,101,0,1,0
+34,Female,Irregular,56,0,0,0
+80,Male,Occasional Skip,82,0,0,0
+36,Male,Occasional Skip,64,1,1,0
+75,Male,Regular,42,0,0,0
+72,Female,Occasional Skip,118,1,0,1
+79,Female,Irregular,68,0,1,0
+40,Female,Regular,156,1,0,0
+26,Female,Regular,146,1,0,0
+29,Female,Occasional Skip,71,0,0,0
+18,Female,Regular,65,0,0,0
+75,Male,Regular,55,0,0,0
+18,Male,Regular,64,0,0,0
+51,Female,Regular,93,1,0,0
+65,Male,Regular,67,1,1,0
+18,Female,Regular,112,0,1,0
+33,Male,Irregular,159,0,0,0
+78,Female,Occasional Skip,95,1,0,0
+81,Female,Irregular,104,0,1,1
+80,Male,Regular,132,1,1,0
+86,Male,Regular,125,0,1,0
+39,Female,Occasional Skip,119,1,1,1
+84,Female,Irregular,80,1,1,1
+43,Male,Occasional Skip,154,1,0,0
+33,Male,Irregular,147,1,1,1
+68,Female,Regular,90,1,1,0
+74,Male,Occasional Skip,157,0,1,1
+46,Female,Occasional Skip,144,1,0,1
+86,Female,Regular,110,0,0,0
+64,Female,Occasional Skip,117,1,0,1
+79,Female,Irregular,68,1,0,0
+86,Male,Irregular,122,0,0,1
+33,Male,Irregular,58,0,0,0
+65,Male,Irregular,105,0,1,0
+56,Male,Regular,80,0,0,0
+50,Male,Occasional Skip,84,1,0,0
+40,Male,Irregular,54,0,1,0
+27,Male,Regular,42,1,0,0
+86,Female,Occasional Skip,50,0,1,0
+51,Male,Occasional Skip,92,0,1,0
+69,Male,Regular,85,1,0,0
+27,Female,Regular,69,1,1,0
+36,Male,Irregular,96,0,1,0
+75,Male,Occasional Skip,143,1,1,1
+18,Female,Occasional Skip,57,1,1,1
+86,Male,Regular,90,1,0,0
+21,Male,Occasional Skip,87,1,1,1
+33,Male,Irregular,105,1,0,1
+41,Female,Occasional Skip,135,1,1,1
+19,Male,Regular,47,1,1,0
+49,Male,Regular,61,1,1,0
+41,Female,Irregular,45,0,0,0
+29,Male,Irregular,115,1,0,0
+67,Female,Occasional Skip,150,0,0,0
+52,Female,Occasional Skip,96,1,1,0
+50,Male,Regular,143,1,1,0
+50,Female,Irregular,75,1,1,0
+78,Female,Irregular,118,1,1,1
+68,Male,Irregular,131,0,0,1
+60,Female,Occasional Skip,155,0,1,1
+29,Female,Irregular,96,1,0,0
+84,Male,Regular,88,0,1,0
+82,Male,Regular,84,1,0,0
+50,Male,Occasional Skip,121,1,0,0
+57,Female,Occasional Skip,105,0,1,0
+60,Male,Irregular,116,0,1,1
+61,Female,Occasional Skip,84,1,0,0
+46,Female,Regular,157,1,1,0
+30,Female,Irregular,118,0,1,1
+29,Female,Regular,59,1,0,0
+63,Female,Irregular,103,0,0,0
+19,Female,Occasional Skip,132,1,0,1
+52,Female,Irregular,145,1,0,1
+25,Male,Irregular,132,0,1,0
+43,Male,Regular,106,0,0,0
+51,Female,Regular,122,0,0,0
+24,Female,Irregular,42,1,0,0
+85,Male,Occasional Skip,93,1,1,1
+75,Female,Occasional Skip,117,1,0,1
+46,Male,Regular,103,1,1,0
+53,Male,Occasional Skip,79,0,0,0
+38,Male,Regular,98,1,0,0
+53,Female,Occasional Skip,94,1,1,1
+27,Female,Irregular,101,1,0,0
+41,Male,Regular,43,0,0,0
+81,Male,Regular,99,1,1,0
+66,Male,Irregular,155,1,0,1
+53,Male,Regular,114,0,0,0
+41,Male,Occasional Skip,134,1,0,0
+40,Female,Occasional Skip,146,1,0,1
+79,Male,Regular,135,0,1,0
+54,Female,Occasional Skip,130,1,0,0
+29,Male,Regular,69,1,1,0
+72,Female,Irregular,146,1,0,1
+30,Female,Regular,41,0,1,0
+40,Female,Irregular,101,1,0,1
+47,Female,Occasional Skip,88,1,1,0
+34,Female,Irregular,48,0,0,0
+79,Female,Occasional Skip,131,0,1,1
+30,Male,Regular,70,1,1,0
+76,Female,Occasional Skip,137,1,0,1
+36,Male,Regular,100,1,1,0
+66,Female,Regular,159,1,0,0
+29,Female,Irregular,118,0,0,0
+78,Male,Irregular,87,1,0,0
+36,Female,Irregular,64,0,0,0
+26,Male,Irregular,75,0,0,0
+88,Male,Occasional Skip,47,1,1,1
+45,Male,Occasional Skip,112,1,0,1
+69,Male,Occasional Skip,97,0,0,0
+33,Female,Regular,140,0,0,0
+86,Female,Occasional Skip,151,1,0,1
+29,Male,Occasional Skip,84,0,0,0
+42,Female,Occasional Skip,101,1,0,0
+69,Female,Irregular,78,1,1,1
+70,Male,Occasional Skip,135,0,1,1
+40,Female,Regular,97,0,0,0
+33,Male,Irregular,155,1,1,1
+74,Male,Regular,120,0,0,0
+56,Female,Occasional Skip,138,1,0,1
+70,Female,Irregular,140,1,0,1
+59,Female,Regular,122,1,0,0
+75,Male,Occasional Skip,103,0,0,0
+56,Male,Regular,83,1,1,0
+31,Female,Regular,68,1,1,0
+22,Female,Regular,98,1,1,0
+52,Female,Occasional Skip,110,1,1,1
+35,Female,Occasional Skip,131,1,0,0
+26,Male,Regular,48,1,1,0
+75,Female,Irregular,131,1,0,1
+34,Male,Irregular,45,1,1,1
+24,Male,Occasional Skip,68,1,1,0
+63,Female,Occasional Skip,97,1,1,0
+30,Female,Occasional Skip,56,1,1,0
+57,Female,Occasional Skip,55,0,0,0
+59,Male,Occasional Skip,126,1,1,1
+26,Female,Irregular,134,1,1,1
+67,Female,Occasional Skip,42,1,0,1
+44,Male,Regular,60,0,0,0
+83,Female,Regular,103,1,1,1
+22,Male,Irregular,129,0,0,0
+46,Female,Regular,75,1,0,0
+54,Male,Irregular,145,1,0,0
+55,Female,Irregular,140,0,1,0
+25,Female,Regular,156,1,0,0
+82,Male,Occasional Skip,125,0,1,1
+34,Male,Regular,101,0,1,0
+88,Female,Regular,81,1,1,0
+62,Male,Irregular,115,1,1,1
+21,Male,Regular,81,1,0,0
+53,Male,Irregular,100,1,1,0
+87,Male,Occasional Skip,52,0,0,0
+48,Female,Occasional Skip,50,0,1,0
+36,Female,Occasional Skip,93,1,0,0
+78,Male,Regular,55,0,1,0
+71,Male,Irregular,47,0,0,0
+56,Male,Occasional Skip,143,1,1,1
+36,Male,Irregular,98,0,1,0
+56,Female,Irregular,96,0,0,0
+84,Female,Occasional Skip,79,1,1,1
+62,Male,Occasional Skip,148,0,1,1
+30,Male,Irregular,98,1,1,0
+75,Male,Occasional Skip,41,0,0,1
+37,Female,Irregular,133,1,1,1
+89,Male,Irregular,133,0,1,1
+78,Female,Occasional Skip,115,0,0,1
+56,Male,Regular,49,1,0,0
+18,Female,Occasional Skip,83,1,0,0
+20,Male,Regular,50,1,0,0
+79,Female,Irregular,118,1,0,1
+80,Male,Irregular,119,0,1,1
+42,Male,Regular,120,0,1,0
+73,Male,Irregular,129,0,1,1
+50,Female,Regular,41,1,0,0
+55,Male,Regular,89,0,1,0
+23,Female,Irregular,51,0,0,0
+75,Female,Regular,154,1,0,0
+61,Male,Occasional Skip,129,1,1,1
+62,Male,Occasional Skip,62,0,0,0
+49,Male,Irregular,57,1,0,0
+62,Female,Irregular,101,0,1,1
+78,Male,Regular,135,0,0,0
+64,Female,Regular,152,1,0,0
+38,Female,Regular,101,0,1,0
+53,Male,Regular,77,1,0,0
+36,Male,Occasional Skip,150,1,0,1
+37,Male,Occasional Skip,106,0,1,0
+74,Male,Irregular,77,0,1,1
+35,Male,Regular,106,0,1,0
+64,Male,Regular,133,1,1,0
+66,Female,Irregular,100,0,0,0
+31,Female,Regular,40,1,0,0
+32,Female,Regular,133,1,1,0
+48,Male,Regular,84,0,0,0
+18,Female,Regular,135,1,0,0
+71,Female,Regular,67,0,1,0
+20,Female,Irregular,60,0,1,0
+33,Female,Regular,149,0,0,0
+74,Female,Irregular,52,0,1,0
+29,Male,Regular,66,0,1,0
+33,Male,Occasional Skip,139,0,1,1
+89,Female,Occasional Skip,46,0,0,1
+41,Female,Occasional Skip,61,1,1,0
+45,Female,Occasional Skip,113,0,0,0
+25,Male,Irregular,142,1,0,1
+53,Male,Irregular,92,1,0,0
+25,Female,Regular,118,1,1,0
+75,Male,Occasional Skip,118,0,1,1
+77,Male,Irregular,43,1,1,1
+67,Female,Regular,135,1,1,0
+45,Male,Regular,62,0,1,0
+58,Male,Irregular,158,0,0,0
+81,Female,Occasional Skip,109,1,0,1
+44,Male,Regular,127,0,0,0
+80,Male,Occasional Skip,123,0,1,1
+34,Female,Occasional Skip,140,0,0,0
+50,Male,Occasional Skip,123,0,0,0
+46,Male,Regular,115,1,1,0
+30,Female,Occasional Skip,72,0,1,0
+63,Female,Regular,67,0,0,0
+52,Female,Occasional Skip,47,0,0,0
+23,Male,Regular,40,1,1,0
+86,Female,Occasional Skip,76,1,1,1
+64,Male,Irregular,102,0,1,0
+42,Female,Occasional Skip,61,0,1,0
+83,Male,Occasional Skip,109,1,0,1
+27,Female,Regular,60,0,0,0
+73,Female,Regular,135,0,1,0
+47,Female,Occasional Skip,74,1,0,0
+22,Female,Irregular,118,0,0,0
+50,Male,Irregular,44,0,1,1
+82,Female,Regular,99,1,0,0
+35,Female,Irregular,159,1,0,1
+66,Male,Occasional Skip,85,0,0,0
+28,Female,Regular,89,1,1,0
+43,Male,Occasional Skip,87,0,1,0
+80,Female,Regular,45,0,0,0
+76,Female,Regular,128,0,1,0
+44,Female,Regular,95,1,1,0
+66,Male,Regular,149,1,1,0
+50,Female,Irregular,98,0,0,0
+18,Female,Occasional Skip,159,0,0,0
+38,Female,Occasional Skip,143,1,1,1
+72,Male,Occasional Skip,68,1,0,1
+23,Male,Regular,110,1,0,0
+86,Female,Irregular,143,0,0,1
+22,Male,Occasional Skip,116,1,0,1
+20,Female,Irregular,141,1,0,0
+70,Female,Regular,57,0,1,0
+40,Female,Occasional Skip,41,0,0,0
+70,Female,Irregular,47,0,0,0
+54,Female,Regular,114,1,0,0
+34,Female,Irregular,136,0,1,1
+18,Female,Occasional Skip,93,0,1,0
+68,Male,Occasional Skip,77,0,1,0
+62,Male,Regular,87,0,0,0
+21,Male,Regular,66,1,1,0
+79,Male,Regular,59,0,1,0
+82,Male,Irregular,51,1,1,1
+49,Male,Irregular,82,1,1,1
+51,Male,Irregular,100,1,0,0
+89,Female,Regular,70,0,1,0
+56,Female,Occasional Skip,130,1,1,1
+43,Female,Occasional Skip,135,0,0,0
+51,Female,Irregular,100,0,0,0
+71,Male,Irregular,113,0,1,1
+20,Male,Occasional Skip,106,1,0,0
+67,Female,Occasional Skip,148,0,1,1
+29,Female,Irregular,130,0,0,0
+82,Male,Irregular,74,0,0,0
+71,Female,Occasional Skip,134,1,1,1
+22,Female,Regular,54,1,0,0
+74,Female,Irregular,55,1,1,1
+34,Female,Occasional Skip,52,0,0,0
+64,Male,Occasional Skip,152,1,1,1
+40,Female,Occasional Skip,74,0,0,0
+31,Female,Occasional Skip,155,0,0,0
+83,Male,Regular,114,1,0,0
+68,Male,Occasional Skip,98,0,0,0
+55,Female,Irregular,60,1,0,0
+81,Male,Regular,154,0,1,0
+55,Female,Occasional Skip,93,1,0,0
+67,Female,Regular,114,0,1,0
+47,Male,Irregular,69,0,1,0
+68,Female,Occasional Skip,87,0,1,1
+80,Female,Irregular,156,0,0,1
+69,Female,Occasional Skip,74,0,1,0
+55,Female,Occasional Skip,125,1,0,1
+47,Male,Occasional Skip,77,0,1,0
+68,Male,Occasional Skip,70,1,1,1
+22,Female,Occasional Skip,117,1,1,1
+46,Male,Regular,63,1,1,0
+21,Female,Occasional Skip,153,0,1,0
+27,Female,Occasional Skip,88,0,0,0
+73,Female,Regular,135,0,1,0
+34,Female,Regular,139,1,1,0
+34,Female,Regular,71,0,0,0
+86,Male,Regular,94,0,0,0
+51,Female,Regular,118,1,0,0
+23,Male,Regular,146,1,1,0
+70,Male,Occasional Skip,97,1,1,1
+83,Female,Occasional Skip,138,1,1,1
+60,Female,Irregular,42,1,1,1
+40,Female,Occasional Skip,119,1,1,1
+72,Female,Occasional Skip,108,0,1,1
+33,Female,Regular,124,1,0,0
+25,Male,Regular,49,0,0,0
+21,Female,Occasional Skip,122,0,1,0
+21,Female,Irregular,64,0,1,0
+73,Male,Regular,107,1,1,0
+42,Male,Occasional Skip,100,0,1,0
+84,Female,Occasional Skip,68,1,1,1
+84,Male,Irregular,58,1,0,0
+44,Female,Irregular,82,0,0,0
+49,Male,Regular,105,1,1,0
+67,Male,Irregular,113,0,0,1
+78,Female,Occasional Skip,100,0,1,1
+68,Male,Occasional Skip,82,1,1,1
+36,Male,Irregular,64,0,1,0
+38,Male,Irregular,59,0,0,0
+22,Male,Irregular,87,0,0,0
+59,Male,Irregular,122,1,1,1
+78,Male,Regular,126,0,0,0
+39,Female,Irregular,63,1,0,0
+38,Female,Regular,50,1,1,0
+87,Male,Occasional Skip,149,0,0,0
+18,Female,Irregular,137,0,0,0
+22,Female,Regular,94,1,1,0
+29,Female,Irregular,67,1,1,0
+63,Male,Occasional Skip,108,0,0,0
+51,Female,Occasional Skip,102,0,1,0
+66,Male,Occasional Skip,98,1,0,0
+62,Female,Irregular,44,1,1,1
+44,Male,Irregular,90,1,1,0
+43,Male,Regular,60,1,1,0
+64,Female,Occasional Skip,51,1,1,0
+73,Female,Irregular,89,0,0,0
+80,Male,Occasional Skip,43,1,1,1
+65,Female,Occasional Skip,157,1,1,1
+78,Female,Regular,152,0,1,0
+43,Female,Regular,81,0,0,0
+53,Male,Regular,123,1,0,0
+18,Male,Regular,77,1,1,0
+25,Female,Occasional Skip,64,0,1,0
+69,Female,Regular,53,1,1,0
+64,Female,Regular,114,1,1,0
+73,Male,Regular,71,0,1,0
+31,Male,Regular,50,1,1,0
+45,Female,Occasional Skip,100,0,0,0
+19,Female,Regular,57,0,1,0
+43,Female,Occasional Skip,66,0,1,0
+31,Female,Irregular,94,0,1,0
+76,Female,Occasional Skip,93,1,1,1
+73,Female,Occasional Skip,121,0,1,1
+24,Male,Regular,159,1,1,0
+20,Female,Irregular,126,1,0,1
+40,Male,Irregular,114,1,0,1
+35,Female,Irregular,60,1,0,0
+55,Female,Irregular,83,1,0,0
+32,Male,Occasional Skip,44,0,0,0
+81,Male,Irregular,126,0,0,0
+45,Male,Occasional Skip,80,0,1,0
+56,Male,Occasional Skip,98,0,1,0
+74,Female,Occasional Skip,128,1,1,1
+34,Male,Irregular,144,0,1,1
+61,Female,Regular,93,1,1,0
+42,Male,Regular,113,1,1,0
+34,Female,Irregular,61,0,0,0
+30,Female,Regular,122,0,1,0
+42,Female,Regular,104,0,0,0
+85,Female,Occasional Skip,103,0,0,1
+27,Female,Occasional Skip,110,1,1,1
+84,Female,Irregular,43,1,1,1
+35,Male,Irregular,104,0,1,1
+51,Female,Regular,54,1,1,0
+25,Male,Occasional Skip,143,1,1,1
+57,Male,Irregular,115,1,1,1
+59,Female,Irregular,61,0,1,0
+58,Male,Irregular,125,1,0,0
+23,Female,Irregular,153,0,1,0
+69,Male,Irregular,86,0,1,0
+43,Female,Irregular,120,1,0,1
+81,Male,Regular,132,1,1,1
+76,Female,Occasional Skip,85,0,1,1
+73,Female,Occasional Skip,53,1,0,1
+76,Female,Irregular,89,1,1,1
+87,Female,Occasional Skip,59,0,1,0
+50,Male,Occasional Skip,89,0,1,0
+70,Female,Occasional Skip,151,0,1,1
+39,Male,Irregular,72,0,1,0
+38,Male,Irregular,158,1,1,1
+87,Male,Occasional Skip,98,1,0,0
+87,Female,Occasional Skip,82,0,1,0
+21,Male,Irregular,118,0,1,0
+79,Male,Regular,51,0,0,0
+79,Male,Occasional Skip,79,1,0,0
+41,Female,Regular,157,0,1,0
+72,Female,Occasional Skip,59,1,0,0
+26,Male,Regular,133,0,1,0
+20,Female,Regular,77,0,1,0
+48,Female,Regular,42,0,0,0
+57,Male,Irregular,67,1,1,0
+53,Male,Regular,95,1,1,0
+41,Female,Regular,129,1,0,0
+23,Male,Regular,133,0,0,0
+83,Female,Occasional Skip,52,1,0,0
+21,Female,Regular,116,1,0,0
+23,Female,Occasional Skip,105,0,1,0
+68,Female,Regular,76,0,0,0
+79,Female,Regular,88,1,0,0
+74,Female,Irregular,141,1,0,1
+83,Male,Occasional Skip,105,1,0,1
+25,Male,Regular,75,1,0,0
+43,Female,Occasional Skip,93,0,1,0
+68,Female,Occasional Skip,65,0,0,0
+62,Female,Irregular,114,0,1,0
+61,Male,Irregular,111,1,0,0
+22,Female,Irregular,147,1,0,1
+87,Male,Irregular,79,0,0,0
+43,Female,Irregular,82,0,0,0
+85,Female,Irregular,61,1,0,0
+36,Male,Irregular,59,1,0,0
+37,Male,Irregular,47,0,0,0
+29,Female,Regular,68,0,0,0
+64,Female,Occasional Skip,79,0,1,0
+18,Female,Irregular,129,1,0,1
+31,Male,Irregular,69,1,1,0
+81,Male,Occasional Skip,120,1,0,1
+55,Male,Regular,123,1,1,0
+54,Male,Occasional Skip,155,1,0,1
+28,Male,Occasional Skip,94,1,0,0
+20,Male,Irregular,55,0,0,0
+50,Female,Occasional Skip,85,0,1,0
+23,Female,Occasional Skip,101,1,1,1
+67,Male,Irregular,146,0,1,1
+27,Female,Irregular,46,1,1,1
+22,Female,Irregular,119,0,0,0
+40,Male,Irregular,84,1,0,0
+27,Female,Occasional Skip,98,0,0,0
+61,Male,Occasional Skip,150,0,1,1
+19,Male,Regular,95,1,0,0
+30,Female,Regular,87,1,1,0
+57,Male,Occasional Skip,66,0,1,0
+19,Male,Regular,92,0,1,0
+82,Male,Occasional Skip,126,1,1,1
+80,Male,Regular,127,0,1,0
+34,Male,Irregular,112,1,0,1
+26,Male,Regular,74,1,1,0
+32,Male,Irregular,90,0,1,0
+41,Male,Irregular,123,1,0,0
+55,Female,Irregular,76,0,1,0
+52,Female,Irregular,145,0,1,1
+66,Female,Regular,120,1,0,0
+86,Male,Occasional Skip,150,0,0,0
+79,Male,Irregular,134,1,0,1
+77,Female,Regular,158,1,1,1
+67,Female,Irregular,96,1,0,0
+26,Female,Regular,47,0,0,0
+51,Male,Regular,118,1,0,0
+52,Female,Regular,134,0,1,0
+18,Female,Occasional Skip,156,1,0,0
+57,Male,Regular,133,1,1,0
+81,Female,Regular,149,1,1,0
+39,Male,Occasional Skip,59,0,0,0
+77,Male,Occasional Skip,142,0,1,1
+81,Male,Regular,92,1,1,0
+89,Female,Occasional Skip,158,1,0,1
+28,Female,Irregular,51,0,1,0
+31,Male,Irregular,88,0,0,0
+77,Female,Occasional Skip,56,0,1,0
+47,Female,Occasional Skip,103,1,1,1
+52,Female,Regular,81,0,0,0
+54,Female,Occasional Skip,133,1,0,1
+22,Male,Regular,68,0,1,0
+43,Female,Irregular,58,1,1,0
+79,Male,Occasional Skip,149,1,0,1
+21,Male,Regular,50,1,1,0
+59,Female,Regular,137,0,1,0
+35,Male,Irregular,89,0,1,0
+57,Female,Occasional Skip,110,0,1,1
+89,Female,Irregular,147,1,0,1
+56,Male,Regular,97,1,0,0
+31,Male,Regular,73,0,0,0
+49,Male,Occasional Skip,59,1,0,0
+68,Male,Regular,89,1,0,0
+55,Female,Occasional Skip,141,1,0,0
+40,Female,Irregular,127,0,1,0
+80,Female,Occasional Skip,49,1,0,1
+32,Male,Occasional Skip,71,0,1,0
+42,Male,Regular,91,0,1,0
+34,Male,Regular,54,0,1,0
+83,Female,Occasional Skip,140,0,0,0
+70,Male,Regular,123,0,1,0
+68,Female,Regular,42,1,0,0
+56,Male,Regular,76,0,1,0
+68,Female,Occasional Skip,79,0,1,0
+87,Female,Regular,111,0,0,0
+23,Male,Occasional Skip,79,1,1,0
+84,Male,Regular,147,1,1,0
+24,Female,Irregular,95,1,1,1
+68,Female,Regular,62,1,1,0
+89,Male,Regular,143,0,0,0
+59,Male,Occasional Skip,50,0,1,0
+81,Female,Occasional Skip,149,1,1,1
+32,Male,Regular,103,1,0,0
+46,Female,Irregular,47,1,1,1
+50,Female,Regular,132,1,1,0
+44,Male,Regular,133,0,1,0
+53,Male,Irregular,95,1,1,0
+46,Male,Occasional Skip,99,1,0,0
+55,Male,Regular,49,1,1,0
+74,Male,Occasional Skip,78,1,0,0
+44,Female,Occasional Skip,67,1,1,0
+72,Female,Irregular,88,1,1,1
+50,Male,Irregular,75,1,1,0
+85,Male,Occasional Skip,52,0,0,0
+83,Male,Regular,135,0,1,0
+27,Female,Occasional Skip,75,0,1,0
+22,Male,Regular,140,0,0,0
+55,Male,Regular,65,0,0,0
+30,Female,Irregular,125,0,0,0
+48,Female,Regular,43,1,0,0
+64,Male,Regular,134,1,1,0
+69,Male,Occasional Skip,121,0,1,1
+73,Male,Irregular,103,1,1,1
+32,Female,Regular,77,0,1,0
+46,Male,Regular,127,1,0,0
+25,Male,Irregular,159,1,1,1
+22,Male,Occasional Skip,126,1,1,1
+46,Female,Irregular,61,1,1,1
+64,Female,Irregular,41,1,1,1
+85,Male,Regular,70,1,0,0
+62,Male,Regular,158,0,1,0
+19,Female,Occasional Skip,50,0,1,0
+44,Female,Regular,131,1,1,0
+53,Female,Regular,85,0,0,0
+53,Female,Irregular,135,1,0,1
+43,Female,Regular,101,0,1,0
+60,Female,Occasional Skip,108,1,1,1
+44,Female,Irregular,103,0,1,0
+86,Female,Occasional Skip,141,1,0,1
+37,Female,Irregular,49,0,1,0
+28,Male,Regular,79,1,1,0
+55,Male,Irregular,149,0,1,1
+23,Male,Irregular,63,1,0,0
+89,Female,Regular,138,1,1,0
+40,Male,Regular,83,1,1,0
+64,Female,Occasional Skip,151,0,0,0
+63,Female,Occasional Skip,99,0,0,0
+29,Male,Regular,101,0,1,0
+30,Female,Regular,126,1,0,0
+79,Male,Regular,56,0,1,0
+77,Male,Irregular,104,1,0,1
+60,Male,Irregular,158,0,0,0
+85,Female,Irregular,134,0,1,1
+22,Male,Regular,134,0,1,0
+54,Female,Occasional Skip,145,0,1,1
+89,Male,Regular,96,1,0,0
+48,Male,Irregular,94,0,1,0
+26,Male,Irregular,145,0,1,0
+68,Female,Regular,92,1,1,0
+46,Female,Regular,95,1,1,0
+57,Female,Irregular,137,0,1,1
+58,Male,Irregular,48,0,0,0
+28,Male,Irregular,61,1,1,0
+40,Female,Regular,52,1,1,0
+18,Female,Irregular,128,1,0,0
+63,Female,Irregular,87,0,1,0
+38,Female,Occasional Skip,57,0,1,0
+53,Female,Regular,154,0,1,0
+71,Female,Occasional Skip,115,1,1,1
+74,Male,Occasional Skip,79,1,1,1
+18,Female,Irregular,56,1,0,0
+80,Male,Regular,54,0,0,0
+71,Male,Irregular,145,1,0,1
+72,Female,Regular,54,0,1,0
+57,Female,Occasional Skip,118,1,0,1
+32,Male,Regular,102,0,1,0
+38,Female,Irregular,158,0,1,1
+64,Female,Irregular,78,1,1,0
+70,Male,Irregular,52,0,0,0
+26,Male,Regular,120,1,0,0
+69,Male,Occasional Skip,71,0,0,0
+74,Female,Occasional Skip,48,1,1,1
+43,Male,Regular,79,1,0,0
+58,Female,Irregular,59,0,1,0
+52,Male,Occasional Skip,129,1,0,1
+80,Male,Irregular,130,0,0,1
+42,Male,Regular,124,1,1,0
+55,Female,Irregular,121,1,1,1
+19,Female,Occasional Skip,116,1,0,1
+24,Male,Occasional Skip,119,1,0,1
+51,Male,Irregular,112,0,0,0
+34,Male,Regular,102,1,1,0
+60,Female,Irregular,115,1,1,1
+76,Male,Regular,83,0,0,0
+68,Female,Irregular,77,0,0,0
+71,Male,Occasional Skip,122,0,1,1
+41,Male,Regular,99,0,0,0
+42,Male,Regular,110,0,1,0
+88,Male,Regular,138,0,1,0
+69,Male,Occasional Skip,87,1,1,1
+87,Male,Irregular,57,0,1,0
+50,Female,Occasional Skip,55,1,1,1
+66,Male,Regular,94,0,1,0
+46,Female,Irregular,78,1,0,0
+80,Male,Occasional Skip,107,1,1,1
+39,Male,Regular,98,1,1,0
+43,Female,Regular,128,0,0,0
+45,Male,Occasional Skip,135,0,1,1
+66,Female,Occasional Skip,101,0,0,1
+88,Female,Occasional Skip,143,0,1,1
+66,Male,Regular,52,1,0,0
+37,Female,Occasional Skip,148,0,0,0
+80,Female,Regular,120,1,1,0
+78,Male,Occasional Skip,152,1,1,1
+66,Female,Regular,140,0,1,0
+88,Male,Regular,45,0,1,0
+18,Male,Irregular,122,0,0,0
+30,Male,Occasional Skip,116,1,0,0
+68,Male,Occasional Skip,99,0,0,0
+73,Female,Regular,129,1,1,0
+79,Male,Regular,53,0,0,0
+49,Male,Regular,134,1,1,0
+47,Female,Irregular,93,0,1,0
+46,Male,Irregular,43,0,0,0
+66,Male,Regular,78,1,1,0
+62,Female,Occasional Skip,111,0,0,0
+47,Female,Occasional Skip,64,0,1,0
+33,Female,Irregular,116,0,0,0
+57,Female,Irregular,71,0,1,0
+36,Female,Regular,98,0,0,0
+35,Female,Occasional Skip,141,0,0,0
+18,Female,Regular,102,0,1,0
+64,Male,Irregular,77,1,1,1
+83,Female,Occasional Skip,159,1,0,1
+55,Female,Occasional Skip,131,0,1,0
+68,Female,Irregular,92,0,1,0
+80,Male,Regular,133,0,1,0
+21,Male,Regular,106,1,0,0
+18,Female,Occasional Skip,67,1,0,0
+25,Female,Irregular,42,0,1,1
+46,Female,Occasional Skip,148,1,1,1
+72,Male,Irregular,157,0,0,0
+20,Male,Regular,137,0,1,0
+49,Female,Irregular,119,0,0,0
+27,Male,Regular,61,0,1,0
+51,Female,Irregular,135,1,1,1
+72,Male,Occasional Skip,77,1,1,1
+49,Male,Regular,111,0,0,0
+67,Female,Occasional Skip,158,1,0,1
+24,Female,Occasional Skip,111,1,0,0
+25,Female,Regular,101,0,0,0
+82,Female,Regular,96,1,1,0
+74,Male,Occasional Skip,45,0,1,1
+84,Male,Occasional Skip,117,0,0,1
+76,Male,Occasional Skip,71,0,1,1
+89,Female,Occasional Skip,138,0,1,1
+71,Male,Regular,49,1,0,0
+84,Female,Regular,42,0,1,0
+68,Male,Occasional Skip,98,1,1,1
+25,Female,Irregular,115,0,0,0
+51,Female,Irregular,88,0,1,0
+52,Male,Regular,98,1,1,0
+49,Female,Occasional Skip,70,0,1,0
+63,Female,Occasional Skip,132,1,0,1
+33,Male,Regular,108,1,0,0
+85,Female,Irregular,101,0,1,1
+54,Female,Irregular,91,0,1,0
+71,Female,Irregular,128,0,1,1
+31,Male,Regular,80,0,0,0
+72,Male,Irregular,70,0,0,0
+65,Female,Regular,124,0,0,0
+24,Male,Regular,123,1,1,0
+24,Female,Occasional Skip,142,1,1,1
+50,Female,Irregular,61,0,1,0
+40,Female,Regular,43,1,1,0
+36,Female,Irregular,52,1,1,1
+36,Female,Irregular,84,0,0,0
+53,Male,Occasional Skip,81,0,1,0
+46,Female,Irregular,153,1,1,1
+77,Male,Occasional Skip,88,0,1,1
+19,Male,Regular,59,1,0,0
+18,Female,Irregular,155,0,1,1
+64,Female,Regular,116,1,0,0
+86,Male,Irregular,120,1,0,1
+37,Male,Regular,93,1,0,0
+28,Male,Irregular,75,1,0,0
+19,Female,Irregular,136,0,0,0
+84,Male,Irregular,40,0,1,1
+29,Female,Irregular,54,1,1,0
+37,Female,Irregular,116,1,0,0
+22,Female,Irregular,56,0,0,0
+54,Male,Irregular,63,0,0,0
+55,Female,Irregular,97,1,1,0
+26,Female,Irregular,111,1,1,1
+70,Female,Regular,153,1,0,0
+61,Female,Occasional Skip,130,1,1,1
+41,Female,Irregular,148,1,1,1
+47,Male,Occasional Skip,62,0,0,0
+76,Female,Irregular,85,1,0,0
+31,Female,Irregular,111,0,1,1
+26,Male,Regular,47,0,1,0
+57,Female,Regular,98,0,1,0
+83,Male,Occasional Skip,129,1,0,1
+42,Female,Regular,150,0,0,0
+39,Male,Regular,98,0,0,0
+21,Male,Occasional Skip,52,0,1,0
+43,Female,Regular,78,0,1,0
+75,Female,Irregular,140,1,0,1
+46,Female,Occasional Skip,152,1,1,1
+54,Male,Occasional Skip,67,0,0,0
+87,Male,Irregular,128,0,1,1
+35,Male,Regular,100,1,0,0
+59,Female,Occasional Skip,55,1,1,0
+58,Male,Occasional Skip,158,1,1,1
+55,Male,Irregular,41,0,0,0
+51,Female,Irregular,157,1,0,1
+34,Male,Regular,121,0,0,0
+54,Male,Occasional Skip,56,0,0,0
+42,Female,Regular,69,1,0,0
+44,Male,Regular,142,0,1,0
+74,Female,Irregular,52,1,0,0
+48,Female,Occasional Skip,135,0,0,0
+23,Female,Occasional Skip,153,1,0,1
+57,Female,Occasional Skip,132,0,0,0
+29,Female,Irregular,149,0,0,0
+70,Male,Irregular,133,1,1,1
+88,Male,Irregular,121,1,0,1
+27,Female,Irregular,52,1,0,0
+62,Female,Irregular,82,1,0,0
+34,Male,Occasional Skip,124,0,1,0
+43,Female,Regular,133,1,1,0
+79,Female,Occasional Skip,60,1,0,0
+63,Female,Regular,151,0,0,0
+81,Male,Irregular,94,1,1,1
+19,Male,Regular,120,1,1,0
+71,Female,Occasional Skip,79,0,1,0
+82,Female,Occasional Skip,122,1,0,1
+68,Male,Regular,155,1,0,0
+70,Male,Irregular,54,1,1,1
+53,Female,Irregular,112,1,0,0
+43,Female,Occasional Skip,91,1,1,0
+46,Male,Regular,113,1,1,0
+38,Male,Irregular,147,0,1,1
+28,Male,Irregular,134,1,0,1
+57,Female,Occasional Skip,92,0,1,0
+28,Male,Irregular,126,0,1,1
+53,Female,Regular,91,0,0,0
+76,Male,Occasional Skip,69,0,1,1
+56,Male,Occasional Skip,72,1,0,0
+71,Male,Regular,96,1,1,0
+72,Male,Occasional Skip,91,1,0,0
+41,Female,Irregular,48,0,1,1
+39,Female,Irregular,93,1,1,0
+86,Male,Regular,150,1,1,0
+73,Female,Irregular,40,1,1,1
+50,Male,Regular,83,0,1,0
+53,Male,Regular,138,0,0,0
+37,Male,Irregular,114,1,0,0
+79,Male,Regular,137,0,1,0
+43,Female,Irregular,119,0,1,0
+83,Male,Occasional Skip,48,1,1,1
+57,Male,Occasional Skip,71,0,0,0
+34,Female,Regular,54,0,0,0
+18,Male,Irregular,51,1,1,1
+78,Male,Irregular,136,0,0,1
+60,Male,Occasional Skip,148,0,1,1
+59,Female,Occasional Skip,117,0,1,1
+42,Male,Irregular,96,0,1,0
+56,Female,Regular,47,0,0,0
+52,Male,Occasional Skip,111,0,1,0
+20,Male,Regular,66,0,1,0
+61,Female,Regular,101,0,1,0
+68,Male,Occasional Skip,51,1,0,1
+29,Male,Regular,104,1,0,0
+36,Female,Regular,146,1,0,0
+61,Female,Irregular,143,1,1,1
+76,Female,Regular,81,0,0,0
+66,Female,Irregular,101,1,1,1
+78,Female,Occasional Skip,154,1,0,1
+34,Male,Occasional Skip,50,0,1,0
+74,Female,Irregular,142,0,0,1
+72,Male,Occasional Skip,82,0,1,0
+64,Male,Regular,134,0,0,0
+29,Male,Regular,56,0,0,0
+79,Female,Regular,136,1,0,0
+25,Female,Occasional Skip,71,0,1,0
+38,Male,Regular,132,1,0,0
+87,Female,Occasional Skip,124,1,0,1
+89,Female,Regular,124,0,0,0
+42,Female,Irregular,79,1,0,0
+29,Female,Occasional Skip,62,1,1,0
+32,Male,Occasional Skip,95,0,0,0
+76,Male,Regular,45,1,1,0
+43,Female,Occasional Skip,125,1,1,1
+43,Male,Occasional Skip,89,1,1,1
+64,Female,Irregular,141,0,1,1
+49,Female,Irregular,76,0,0,0
+27,Male,Regular,148,0,1,0
+33,Male,Irregular,103,1,1,1
+88,Male,Regular,154,0,1,0
+34,Female,Regular,93,1,1,0
+40,Male,Regular,111,0,0,0
+43,Female,Occasional Skip,144,1,0,0
+24,Male,Irregular,88,0,1,0
+31,Male,Regular,138,0,1,0
+24,Female,Irregular,154,1,1,1
+26,Female,Regular,50,0,0,0
+65,Female,Irregular,127,1,0,1
+89,Female,Irregular,88,0,0,0
+76,Female,Regular,60,0,0,0
+56,Female,Occasional Skip,154,1,0,0
+35,Female,Irregular,105,1,1,1
+76,Female,Occasional Skip,102,1,0,1
+34,Male,Occasional Skip,143,0,0,0
+31,Female,Regular,122,1,1,0
+48,Female,Regular,142,0,0,0
+41,Male,Regular,67,1,0,0
+77,Female,Irregular,56,1,0,0
+62,Male,Regular,45,1,1,0
+20,Male,Regular,58,1,0,0
+54,Female,Irregular,95,1,1,0
+60,Male,Irregular,141,1,1,1
+57,Female,Regular,67,0,0,0
+72,Male,Regular,105,1,0,0
+56,Male,Regular,77,0,0,0
+32,Male,Regular,158,1,0,0
+21,Female,Occasional Skip,76,1,1,1
+42,Female,Occasional Skip,154,1,0,0
+30,Male,Regular,155,0,1,0
+50,Male,Occasional Skip,107,0,1,0
+33,Female,Irregular,125,1,1,1
+59,Female,Occasional Skip,129,0,1,1
+83,Male,Occasional Skip,88,1,1,1
+72,Male,Regular,82,1,0,0
+59,Female,Occasional Skip,75,0,1,0
+51,Female,Occasional Skip,97,0,1,0
+47,Female,Occasional Skip,52,0,0,0
+30,Female,Occasional Skip,91,0,0,0
+30,Female,Irregular,97,1,1,0
+35,Male,Regular,71,0,1,0
+49,Female,Regular,120,0,0,0
+56,Male,Irregular,144,1,1,1
+63,Female,Occasional Skip,139,0,0,0
+46,Male,Irregular,158,0,0,0
+79,Female,Occasional Skip,99,0,1,0
+79,Female,Irregular,149,0,0,0
+74,Male,Regular,122,1,1,0
+33,Male,Regular,97,1,1,0
+73,Female,Regular,138,0,1,0
+27,Female,Occasional Skip,149,0,0,0
+47,Female,Occasional Skip,143,1,1,1
+42,Female,Irregular,95,0,0,0
+22,Female,Irregular,67,0,1,0
+82,Male,Regular,40,0,1,0
+66,Male,Occasional Skip,81,0,0,0
+20,Female,Irregular,121,0,1,0
+62,Male,Occasional Skip,87,0,1,0
+31,Male,Occasional Skip,79,0,0,0
+47,Male,Regular,136,0,0,0
+85,Female,Regular,102,0,0,0
+35,Male,Occasional Skip,115,1,1,1
+79,Female,Occasional Skip,111,1,0,1
+54,Male,Occasional Skip,127,1,0,0
+42,Female,Occasional Skip,119,0,1,1
+65,Male,Regular,153,0,0,0
+82,Female,Irregular,43,1,1,1
+70,Female,Regular,77,0,1,0
+32,Male,Irregular,147,1,0,1
+66,Female,Occasional Skip,66,0,1,0
+85,Female,Irregular,48,1,0,1
+29,Female,Regular,150,1,0,0
+76,Female,Regular,55,1,0,0
+54,Female,Occasional Skip,95,0,0,0
+78,Female,Regular,115,1,1,0
+60,Female,Occasional Skip,70,0,1,0
+87,Female,Regular,127,0,0,0
+56,Male,Regular,158,0,0,0
+73,Male,Occasional Skip,53,0,1,0
+80,Female,Irregular,148,0,0,0
+63,Female,Regular,64,0,1,0
+28,Male,Irregular,73,0,0,0
+79,Male,Regular,106,1,1,0
+42,Male,Regular,63,1,1,0
+88,Female,Regular,157,1,1,0
+69,Male,Regular,145,0,0,0
+21,Female,Irregular,112,0,0,0
+76,Female,Irregular,65,0,0,0
+89,Male,Regular,59,0,0,0
+37,Female,Regular,103,1,0,0
+80,Female,Irregular,143,0,1,1
+71,Female,Occasional Skip,49,1,1,1
+74,Female,Occasional Skip,122,0,1,1
+58,Male,Irregular,106,1,1,1
+20,Male,Regular,63,0,1,0
+23,Female,Regular,44,1,1,0
+22,Female,Occasional Skip,106,0,1,1
+22,Male,Occasional Skip,97,1,0,0
+71,Female,Irregular,66,0,1,0
+64,Male,Occasional Skip,119,1,0,0
+66,Female,Irregular,152,1,1,1
+26,Female,Occasional Skip,54,0,1,0
+37,Male,Occasional Skip,74,1,0,0
+78,Male,Occasional Skip,115,0,1,1
+52,Male,Regular,144,0,0,0
+67,Male,Regular,92,0,1,0
+79,Female,Regular,83,1,0,0
+34,Male,Occasional Skip,65,1,1,0
+20,Female,Irregular,86,0,0,0
+49,Male,Irregular,73,0,0,0
+30,Male,Irregular,126,1,1,1
+85,Female,Irregular,134,1,1,1
+31,Male,Regular,89,1,0,0
+28,Male,Regular,123,0,1,0
+73,Male,Occasional Skip,51,0,0,0
+84,Male,Occasional Skip,126,0,1,1
+46,Female,Irregular,43,0,0,0
+26,Female,Regular,126,0,1,0
+84,Male,Irregular,87,1,0,0
+42,Male,Occasional Skip,94,0,1,0
+59,Male,Occasional Skip,151,1,0,0
+26,Female,Irregular,40,1,0,0
+57,Female,Occasional Skip,157,0,1,0
+42,Female,Irregular,128,1,1,1
+22,Female,Regular,105,0,0,0
+28,Male,Irregular,69,1,0,0
+76,Male,Regular,42,0,0,0
+55,Male,Regular,60,0,0,0
+89,Female,Occasional Skip,128,1,1,1
+22,Male,Occasional Skip,123,0,0,0
+65,Female,Occasional Skip,88,1,0,0
+35,Female,Irregular,155,0,0,0
+87,Male,Irregular,125,0,1,1
+54,Male,Occasional Skip,124,0,0,0
+77,Male,Irregular,101,1,1,1
+65,Female,Occasional Skip,136,1,1,1
+45,Female,Irregular,155,0,1,1
+86,Male,Regular,77,1,1,0
+57,Male,Regular,54,0,1,0
+62,Female,Occasional Skip,149,1,1,1
+79,Male,Irregular,91,1,1,1
+75,Female,Irregular,118,0,0,0
+84,Female,Regular,85,0,0,0
+73,Male,Regular,64,0,1,0
+57,Male,Occasional Skip,60,0,0,0
+57,Male,Regular,127,0,0,0
+50,Male,Occasional Skip,44,1,1,1
+23,Female,Regular,109,1,0,0
+36,Female,Regular,152,0,1,0
+57,Female,Irregular,146,0,0,0
+76,Male,Regular,151,0,1,0
+76,Female,Regular,147,1,1,0
+65,Male,Occasional Skip,86,0,0,0
+58,Male,Regular,126,0,0,0
+30,Male,Occasional Skip,107,1,1,1
+62,Male,Regular,130,1,1,0
+70,Male,Regular,57,1,1,0
+59,Male,Occasional Skip,60,1,0,0
+80,Female,Irregular,131,0,0,1
+44,Male,Occasional Skip,138,1,0,0
+55,Female,Occasional Skip,125,1,0,1
+77,Female,Occasional Skip,143,0,1,1
+24,Male,Irregular,62,0,1,0
+22,Male,Regular,103,0,1,0
+62,Male,Occasional Skip,106,1,1,1
+75,Female,Occasional Skip,79,0,0,0
+48,Male,Irregular,153,1,1,1
+40,Female,Occasional Skip,49,1,1,1
+59,Male,Regular,128,1,0,0
+27,Male,Irregular,91,0,0,0
+49,Female,Regular,152,1,1,0
+70,Female,Regular,111,0,0,0
+47,Male,Irregular,158,0,1,0
+56,Female,Occasional Skip,114,0,0,0
+48,Female,Regular,100,1,0,0
+19,Female,Regular,103,1,1,0
+29,Female,Regular,44,1,0,0
+56,Female,Regular,148,0,1,0
+83,Male,Irregular,92,1,0,0
+30,Male,Irregular,94,1,0,0
+63,Female,Regular,76,1,0,0
+44,Male,Occasional Skip,95,1,0,0
+34,Male,Regular,98,1,0,0
+77,Female,Occasional Skip,148,0,1,1
+81,Male,Regular,141,0,0,0
+52,Female,Occasional Skip,132,0,1,0
+87,Female,Regular,108,0,0,0
+47,Male,Occasional Skip,112,1,1,1
+88,Female,Regular,98,0,0,0
+80,Female,Regular,151,1,1,0
+45,Female,Occasional Skip,41,0,1,0
+77,Female,Irregular,104,0,0,0
+54,Female,Occasional Skip,143,0,0,0
+39,Male,Irregular,99,1,0,0
+85,Male,Regular,90,1,1,0
+37,Female,Occasional Skip,69,0,1,0
+85,Female,Occasional Skip,50,1,0,0
+81,Male,Occasional Skip,131,0,0,0
+34,Female,Irregular,147,0,1,1
+29,Male,Irregular,115,0,1,1
+39,Female,Regular,78,1,0,0
+34,Female,Irregular,129,0,1,0
+27,Female,Irregular,116,0,0,0
+82,Female,Regular,111,0,0,0
+39,Female,Occasional Skip,102,1,0,0
+67,Female,Occasional Skip,103,0,1,1
+31,Female,Regular,100,1,1,0
+81,Male,Occasional Skip,93,0,1,0
+64,Male,Irregular,131,1,1,1
+46,Male,Regular,133,0,0,0
+53,Female,Regular,112,0,1,0
+69,Female,Regular,142,1,0,0
+24,Female,Occasional Skip,134,1,0,0
+46,Female,Regular,97,0,0,0
+28,Female,Regular,124,1,1,0
+50,Female,Regular,95,0,0,0
+23,Female,Occasional Skip,150,0,0,0
+49,Male,Irregular,73,0,1,0
+68,Female,Regular,158,1,0,0
+75,Male,Irregular,70,0,1,0
+43,Male,Occasional Skip,91,1,1,0
+63,Female,Occasional Skip,128,0,1,0
+46,Female,Occasional Skip,115,1,0,1
+21,Male,Occasional Skip,40,1,1,1
+30,Male,Irregular,94,0,1,0
+56,Female,Regular,61,1,1,0
+32,Female,Occasional Skip,79,0,1,0
+46,Male,Occasional Skip,140,0,0,0
+46,Female,Irregular,150,0,1,1
+49,Female,Irregular,40,0,0,0
+19,Female,Occasional Skip,104,0,1,1
+64,Male,Regular,102,1,0,0
+39,Male,Regular,145,0,1,0
+44,Male,Occasional Skip,93,1,0,0
+84,Female,Irregular,81,1,1,1
+73,Female,Occasional Skip,60,0,0,0
+38,Male,Occasional Skip,118,1,0,1
+64,Male,Irregular,120,0,0,0
+76,Male,Occasional Skip,61,1,1,1
+23,Female,Occasional Skip,77,1,0,0
+36,Male,Occasional Skip,138,1,0,0
+74,Male,Irregular,148,0,0,0
+86,Female,Regular,119,1,0,0
+20,Female,Regular,47,0,1,0
+18,Female,Irregular,101,1,0,0
+75,Male,Regular,86,1,0,0
+55,Female,Occasional Skip,56,1,0,0
+32,Female,Regular,56,1,1,0
+51,Male,Occasional Skip,157,0,0,0
+78,Female,Regular,129,0,0,0
+52,Male,Irregular,52,1,0,0
+81,Male,Regular,56,1,0,0
+42,Female,Regular,77,0,1,0
+41,Female,Regular,120,0,0,0
+29,Female,Irregular,151,0,0,0
+35,Female,Regular,117,0,1,0
+32,Female,Irregular,84,1,1,0
+44,Female,Occasional Skip,45,1,1,1
+89,Male,Regular,74,0,0,0
+77,Male,Irregular,149,0,1,1
+63,Female,Irregular,53,0,0,0
+34,Male,Regular,150,0,1,0
+70,Female,Occasional Skip,111,0,0,1
+25,Male,Irregular,100,0,1,0
+44,Male,Regular,54,1,0,0
+63,Male,Occasional Skip,93,1,1,0
+67,Female,Irregular,66,1,0,0
+88,Male,Irregular,52,0,0,0
+20,Female,Occasional Skip,152,0,0,0
+81,Male,Occasional Skip,70,0,0,0
+61,Male,Regular,156,1,0,0
+70,Male,Regular,159,0,0,0
+41,Male,Irregular,74,0,0,0
+77,Male,Occasional Skip,99,1,0,1
+20,Female,Occasional Skip,45,0,1,0
+37,Female,Occasional Skip,108,1,0,0
+63,Male,Irregular,125,1,0,1
+32,Male,Occasional Skip,97,0,1,0
+42,Male,Occasional Skip,88,1,0,0
+88,Male,Irregular,62,0,1,0
+34,Female,Regular,128,1,0,0
+26,Male,Regular,73,0,1,0
+55,Female,Irregular,65,1,1,1
+65,Male,Occasional Skip,86,0,0,0
+77,Female,Irregular,44,1,1,1
+80,Male,Regular,129,1,0,0
+19,Male,Regular,59,1,0,0
+89,Female,Irregular,45,0,0,1
+28,Male,Irregular,109,0,0,0
+81,Male,Regular,98,1,1,0
+89,Male,Irregular,103,0,0,1
+38,Female,Regular,153,1,1,0
+35,Male,Irregular,57,0,1,0
+81,Male,Irregular,43,1,0,1
+55,Female,Irregular,56,0,0,0
+49,Female,Regular,53,1,0,0
+28,Female,Irregular,117,1,0,1
+62,Male,Regular,52,1,1,0
+50,Male,Regular,46,1,0,0
+58,Male,Irregular,83,0,1,0
+25,Female,Irregular,158,1,0,0
+28,Male,Regular,54,0,0,0
+68,Male,Regular,58,0,0,0
+58,Female,Occasional Skip,102,1,0,0
+34,Female,Regular,146,0,1,0
+63,Female,Occasional Skip,150,0,1,1
+49,Female,Occasional Skip,147,0,0,0
+71,Female,Occasional Skip,74,1,1,1
+37,Male,Irregular,120,0,1,1
+50,Female,Irregular,74,0,0,0
+57,Male,Regular,58,1,0,0
+49,Male,Occasional Skip,59,1,1,0
+19,Female,Irregular,139,0,1,1
+50,Female,Irregular,74,1,1,1
+47,Female,Irregular,71,0,1,0
+50,Male,Irregular,87,0,0,0
+43,Female,Irregular,83,0,0,0
+39,Female,Occasional Skip,143,1,1,1
+83,Female,Occasional Skip,63,0,0,0
+55,Female,Occasional Skip,100,1,1,1
+63,Female,Occasional Skip,56,1,1,0
+32,Male,Regular,110,0,0,0
+61,Male,Occasional Skip,146,1,1,1
+66,Male,Irregular,89,1,1,1
+78,Female,Occasional Skip,104,1,0,1
+84,Female,Regular,138,1,0,0
+23,Female,Irregular,71,1,1,0
+26,Male,Occasional Skip,75,0,1,0
+23,Female,Occasional Skip,52,1,0,0
+49,Female,Occasional Skip,109,0,1,0
+58,Female,Irregular,97,0,1,0
+25,Male,Irregular,53,0,0,0
+89,Female,Regular,76,0,0,0
+67,Male,Irregular,151,0,0,1
+79,Female,Irregular,118,0,0,1
+79,Male,Occasional Skip,150,1,0,1
+24,Male,Irregular,107,1,0,0
+21,Male,Occasional Skip,79,1,1,0
+23,Female,Occasional Skip,98,0,1,0
+75,Female,Irregular,119,1,0,1
+39,Male,Regular,131,1,0,0
+43,Male,Regular,55,1,1,0
+20,Female,Irregular,101,0,1,1
+58,Female,Regular,43,1,1,0
+77,Male,Occasional Skip,84,0,0,0
+31,Female,Occasional Skip,129,1,0,0
+29,Female,Irregular,67,0,1,0
+29,Female,Regular,135,0,0,0
+30,Female,Regular,148,0,0,0
+42,Male,Occasional Skip,105,1,0,1

@@ -1,0 +1,507 @@
+/* ═══════════════════════════════════════════════════
+   PREMIUM DIAGNOSTIC FORM SYSTEM
+   Shared across all heart diagnostic portals
+   ═══════════════════════════════════════════════════ */
+
+:root {
+    --form-accent: #f43f5e;
+    --form-bg: rgba(255, 255, 255, 0.03);
+    --form-border: rgba(255, 255, 255, 0.08);
+    --form-focus: rgba(244, 63, 94, 0.15);
+    --form-text: rgba(255, 255, 255, 0.9);
+    --form-muted: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Main Terminal Container ── */
+.main-terminal {
+    padding: 40px;
+    min-height: 100vh;
+}
+
+.terminal-header {
+    margin-bottom: 35px;
+}
+
+.terminal-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.terminal-subtitle {
+    color: var(--form-muted);
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* ── Premium Card Container ── */
+.diagnostic-card-premium {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--form-border);
+    border-radius: 28px;
+    padding: 45px;
+    max-width: 1050px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+/* ── Stepper Header ── */
+.stepper-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 22px 28px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid var(--form-border);
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.35;
+    transition: all 0.4s ease;
+}
+
+.step-item.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--form-accent);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+    transition: all 0.4s ease;
+}
+
+.step-item.active .step-num {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+}
+
+.step-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.step-divider {
+    flex-grow: 1;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    margin: 0 20px;
+    border-radius: 1px;
+}
+
+/* ── Form Steps ── */
+.form-step-container {
+    display: none;
+    animation: formSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.form-step-container.active {
+    display: block;
+}
+
+@keyframes formSlide {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Section Headers ── */
+.form-step-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--form-border);
+}
+
+.form-step-container h3 ion-icon {
+    font-size: 24px;
+    color: var(--form-accent);
+    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.3));
+}
+
+/* ── Form Group (Individual Input) ── */
+.form-group-p {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.form-group-p label {
+    color: var(--form-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-group-p label ion-icon {
+    font-size: 16px;
+    color: var(--form-accent);
+    opacity: 0.7;
+}
+
+.form-group-p input,
+.form-group-p select {
+    background: var(--form-bg);
+    border: 1px solid var(--form-border);
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: var(--form-text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-group-p select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f43f5e' d='M6 8.5L1 3.5h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form-group-p select option {
+    background: #0f172a;
+    color: white;
+    padding: 12px;
+}
+
+.form-group-p input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-style: italic;
+}
+
+.form-group-p input:focus,
+.form-group-p select:focus {
+    border-color: var(--form-accent);
+    background: var(--form-focus);
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.form-group-p input:hover,
+.form-group-p select:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Step Controls ── */
+.step-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--form-border);
+}
+
+.next-step-btn,
+.prev-step-btn {
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: 0.5px;
+}
+
+.next-step-btn {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: white;
+    border: none;
+    box-shadow: 0 6px 20px rgba(244, 63, 94, 0.25);
+}
+
+.next-step-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(244, 63, 94, 0.35);
+}
+
+.prev-step-btn {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--form-border);
+}
+
+.prev-step-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.next-step-btn ion-icon,
+.prev-step-btn ion-icon {
+    font-size: 18px;
+}
+
+/* ── Neural Scanner Overlay ── */
+.neural-scanner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 12, 22, 0.98);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.neural-scanner-overlay ion-icon {
+    font-size: 55px;
+    color: var(--form-accent);
+    animation: scanPulse 2s ease-in-out infinite;
+}
+
+@keyframes scanPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.3)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.6)); }
+}
+
+.neural-scanner-overlay h4 {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.neural-scanner-overlay p {
+    color: var(--form-muted);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.progress-bar-wrap {
+    width: 320px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f43f5e, #e11d48);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+}
+
+/* ── Result Area ── */
+.result-layout-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+}
+
+.risk-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 6px solid var(--form-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(244, 63, 94, 0.15);
+    transition: border-color 0.5s, box-shadow 0.5s;
+}
+
+.risk-percent {
+    font-size: 42px;
+    font-weight: 800;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+}
+
+/* ── Terminal Action Buttons ── */
+.terminal-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--form-border);
+    border-radius: 14px;
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    flex: 1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.terminal-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.terminal-btn.primary {
+    border-left: 4px solid var(--form-accent);
+}
+
+.terminal-btn ion-icon {
+    font-size: 20px;
+    color: var(--form-accent);
+}
+
+/* ── Chat Card ── */
+.chat-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    border-radius: 22px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.msg {
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 13px;
+    max-width: 85%;
+    line-height: 1.5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.msg.ai {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    align-self: flex-start;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.msg.user {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    align-self: flex-end;
+    color: white;
+}
+
+/* ── Sidebar Nav Button ── */
+.terminal-nav-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--form-border);
+    border-radius: 14px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+}
+
+.terminal-nav-btn:hover {
+    background: rgba(244, 63, 94, 0.08);
+    border-color: rgba(244, 63, 94, 0.3);
+}
+
+.terminal-nav-btn ion-icon {
+    font-size: 20px;
+    color: var(--form-accent);
+}
+
+.terminal-nav-btn .nav-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-nav-btn .cmd {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: var(--form-accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.terminal-nav-btn .label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .result-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .stepper-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .step-divider {
+        display: none;
+    }
+    .diagnostic-card-premium {
+        padding: 25px;
+    }
+}

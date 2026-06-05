@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile | Medical Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="medical-background profile-mode">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <main class="login-wrapper">
+        <div class="login-card" id="profileCard" style="max-width: 500px;">
+            <div class="card-header">
+                <div class="logo-icon">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+                <h1 id="profile-title">Complete Profile</h1>
+                <p id="profile-subtitle">Please update your details.</p>
+            </div>
+
+            <form class="login-form" id="profileForm" novalidate>
+                <!-- Role Switcher -->
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label>Completing Profile As</label>
+                    <div class="role-toggle-container">
+                        <button type="button" class="role-toggle-btn active" id="btn-user-mode">
+                            <ion-icon name="person-outline"></ion-icon>
+                            Patient
+                        </button>
+                        <button type="button" class="role-toggle-btn" id="btn-pro-mode">
+                            <ion-icon name="medkit-outline"></ion-icon>
+                            Professional
+                        </button>
+                    </div>
+                </div>
+
+                <!-- common Field: Name -->
+                <div class="input-group">
+                    <label for="profile-name">Full Name</label>
+                    <div class="input-field">
+                        <ion-icon name="person-outline" class="input-icon"></ion-icon>
+                        <input type="text" id="profile-name" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <!-- SECTION: NORMAL USER / PATIENT -->
+                <div id="section-user" class="profile-section">
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="gender">Gender</label>
+                            <div class="input-field select-field">
+                                <ion-icon name="male-female-outline" class="input-icon"></ion-icon>
+                                <select id="gender">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="age">Age</label>
+                            <div class="input-field">
+                                <ion-icon name="calendar-outline" class="input-icon"></ion-icon>
+                                <input type="number" id="age" placeholder="25" min="1" max="120">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="height">Height (cm)</label>
+                            <div class="input-field">
+                                <ion-icon name="resize-outline" class="input-icon"
+                                    style="transform: rotate(90deg);"></ion-icon>
+                                <input type="number" id="height" placeholder="175" min="1">
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="weight">Weight (kg)</label>
+                            <div class="input-field">
+                                <ion-icon name="fitness-outline" class="input-icon"></ion-icon>
+                                <input type="number" id="weight" placeholder="70" min="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="blood-group">Blood Group</label>
+                            <div class="input-field select-field">
+                                <ion-icon name="water-outline" class="input-icon"></ion-icon>
+                                <select id="blood-group">
+                                    <option value="" disabled selected>Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 2;">
+                            <label for="medical-history">History (Optional)</label>
+                            <div class="input-field">
+                                <ion-icon name="clipboard-outline" class="input-icon"></ion-icon>
+                                <input type="text" id="medical-history" placeholder="Allergies...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="medical-report">Upload Report (PDF/JPG)</label>
+                        <div class="input-field">
+                            <ion-icon name="cloud-upload-outline" class="input-icon"></ion-icon>
+                            <input type="file" id="medical-report" accept=".pdf, .jpg, .jpeg, .png"
+                                style="padding: 10px 10px 10px 42px;">
+                        </div>
+                        <div id="existing-report-link" style="margin-top: 8px; font-size: 13px; display: none;">
+                            <ion-icon name="document-text-outline"
+                                style="vertical-align: middle; color: var(--primary-color);"></ion-icon>
+                            <a href="#" target="_blank" style="color: var(--primary-color); text-decoration: none;">View
+                                Saved Report</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: MEDICAL PROFESSIONAL -->
+                <div id="section-professional" class="profile-section" style="display: none;">
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="profession-type">Medical Professional</label>
+                            <div class="input-field select-field">
+                                <ion-icon name="briefcase-outline" class="input-icon"></ion-icon>
+                                <select id="profession-type" required>
+                                    <option value="" disabled selected>Select Professional</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-gender">Gender</label>
+                            <div class="input-field select-field">
+                                <ion-icon name="male-female-outline" class="input-icon"></ion-icon>
+                                <select id="pro-gender">
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-country">Country</label>
+                            <div class="input-field select-field">
+                                <ion-icon name="globe-outline" class="input-icon"></ion-icon>
+                                <select id="pro-country" required>
+                                    <option value="" disabled selected>Select Country</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-hospital">Hospital Name</label>
+                            <div class="input-field">
+                                <ion-icon name="business-outline" class="input-icon"></ion-icon>
+                                <input type="text" id="pro-hospital" placeholder="City General Hospital">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-specialization">Clinic / Specialization</label>
+                            <div class="input-field">
+                                <ion-icon name="medical-outline" class="input-icon"></ion-icon>
+                                <input type="text" id="pro-specialization" placeholder="e.g. Cardiology">
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-license">License Number</label>
+                            <div class="input-field">
+                                <ion-icon name="id-card-outline" class="input-icon"></ion-icon>
+                                <input type="text" id="pro-license" placeholder="MC-123456">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-experience">Exp. (Years)</label>
+                            <div class="input-field">
+                                <ion-icon name="time-outline" class="input-icon"></ion-icon>
+                                <input type="number" id="pro-experience" placeholder="10">
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-fee">Consultation Fee ($)</label>
+                            <div class="input-field">
+                                <ion-icon name="cash-outline" class="input-icon"></ion-icon>
+                                <input type="number" id="pro-fee" placeholder="50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="display: flex; gap: 16px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label for="pro-contact">Contact Number</label>
+                            <div class="input-field">
+                                <ion-icon name="call-outline" class="input-icon"></ion-icon>
+                                <input type="text" id="pro-contact" placeholder="+1 234 567 890">
+                            </div>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <!-- Empty for balance -->
+                        </div>
+                    </div>
+
+                    <div class="pro-actions" style="margin-top: 20px; display: flex; gap: 12px;">
+                        <button type="button" class="submit-btn secondary-btn" id="pro-dashboard-btn"
+                            style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--primary-color);">
+                            <ion-icon name="analytics-outline"></ion-icon>
+                            <span>Access Dashboard</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 10px; display: flex; gap: 12px;">
+                    <button type="submit" class="submit-btn" style="flex: 2;">
+                        <span>Save Profile</span>
+                        <ion-icon name="save-outline"></ion-icon>
+                    </button>
+                    <button type="button" class="submit-btn secondary-btn" id="skip-profile-btn"
+                        style="flex: 1; display: none; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border);">
+                        <span>Back</span>
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Info Floating Button -->
+    <div class="info-fab-container">
+        <button class="fab-main" id="fabMain">
+            <ion-icon name="information-circle-outline"></ion-icon>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-item" data-modal="modal-xai">
+                <ion-icon name="bulb-outline"></ion-icon>
+                <span>Explainable AI</span>
+            </button>
+            <button class="fab-item" data-modal="modal-advantages">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <span>AI Advantages</span>
+            </button>
+            <button class="fab-item" data-modal="modal-about">
+                <ion-icon name="people-outline"></ion-icon>
+                <span>About Us</span>
+            </button>
+            <button class="fab-item" data-modal="modal-contact">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>Contact Us</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <!-- About Us Modal -->
+        <div class="info-modal" id="modal-about">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="people"></ion-icon>
+                <h2>About Us</h2>
+            </div>
+            <div class="modal-body">
+                <p>We are final year B.Tech students from <strong>Suguna College of Engineering</strong>, passionate
+                    about learning, innovation, and applying technology to real-world problems.</p>
+                <p><strong>Project Team:</strong></p>
+                <ul class="modal-list" style="margin-top: 10px;">
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Hariharan</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Harsha</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Devanand</li>
+                    <li><ion-icon name="person-circle-outline"></ion-icon> Abiniya</li>
+                </ul>
+                <p style="margin-top: 15px;">This platform showcases our skills, projects, and ideas in the field of
+                    Medical AI.</p>
+            </div>
+        </div>
+
+        <!-- Contact Us Modal -->
+        <div class="info-modal" id="modal-contact">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="mail"></ion-icon>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <p style="text-align: center;">Have questions or suggestions? Reach out to us!</p>
+                <div class="contact-methods"
+                    style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <a href="mailto:hariharan9585@gmail.com">hariharan9585@gmail.com</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%;">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <a href="tel:6381448511">6381448511</a>
+                    </div>
+                    <div class="contact-link" style="margin-top: 0; width: 100%; align-items: flex-start;">
+                        <ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon>
+                        <span style="color: var(--text-muted); font-size: 14px;">Nehru Nagar, Coimbatore, India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explainable AI Modal -->
+        <div class="info-modal" id="modal-xai">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="analytics"></ion-icon>
+                <h2>Explainable AI (XAI)</h2>
+            </div>
+            <div class="modal-body">
+                <p>Explainable AI in medicine ensures that our diagnostic models don't just give an answer, but also
+                    provide the <strong>why</strong>.</p>
+                <ul class="modal-list">
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Increases Trust between doctors and AI.</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> highlights specific symptoms influencing results.
+                    </li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Enables human-in-the-loop verification.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Advantages Modal -->
+        <div class="info-modal" id="modal-advantages">
+            <button class="close-modal"><ion-icon name="close-outline"></ion-icon></button>
+            <div class="modal-header">
+                <ion-icon name="shield-outline"></ion-icon>
+                <h2>AI Advantages</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <strong>Enhanced Accuracy</strong>
+                        <p>Our AI analyzes vast medical datasets to provide highly precise preliminary diagnoses.</p>
+                    </li>
+                    <li>
+                        <strong>Early Detection</strong>
+                        <p>Identifies subtle patterns that might be missed in early stages of chronic conditions.</p>
+                    </li>
+                    <li>
+                        <strong>24/7 Accessibility</strong>
+                        <p>Get instant medical insights anytime, anywhere before consulting a professional.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <style>
+        /* Add styles for select dropdown to match input fields */
+        select {
+            width: 100%;
+            background: rgba(12, 26, 37, 0.5);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: var(--radius-md);
+            padding: 12px 14px 12px 40px;
+            font-size: 15px;
+            color: white;
+            font-family: inherit;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(12, 26, 37, 0.8);
+        }
+
+        option {
+            background-color: #0c1a25;
+            color: white;
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .role-toggle-btn.active {
+            background: var(--primary-color) !important;
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .role-toggle-btn:not(.active):hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+    </style>
+</body>
+
+</html>

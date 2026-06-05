@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+import os
+
+def generate_arrhythmia_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(18, 90, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    pulse = np.random.choice(['Regular', 'Irregular', 'Occasional Skip'], n)
+    hr = np.random.randint(40, 160, n)
+    palpitations = np.random.randint(0, 2, n)
+    dizziness = np.random.randint(0, 2, n)
+    
+    # Risk logic for target (using numpy element-wise ops)
+    risk = (age > 65) * 15 + (pulse != 'Regular') * 35 + ((hr > 100) | (hr < 50)) * 20 + palpitations * 15 + dizziness * 15
+    target = (risk > np.percentile(risk, 75) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'pulse_regularity': pulse, 
+        'resting_hr': hr, 'palpitations': palpitations, 'dizziness': dizziness,
+        'target': target
+    })
+    df.to_csv('arrhythmia.csv', index=False)
+    print("Created arrhythmia.csv")
+
+def generate_valvular_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(20, 90, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    murmur = np.random.randint(0, 2, n)
+    fatigue = np.random.choice(['Normal', 'Moderate', 'Severe'], n)
+    sob = np.random.randint(0, 2, n)
+    
+    risk = (age > 70) * 10 + murmur * 45 + (fatigue == 'Severe') * 20 + (fatigue == 'Moderate') * 10 + sob * 15
+    target = (risk > np.percentile(risk, 80) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'murmur': murmur, 
+        'fatigue_level': fatigue, 'shortness_of_breath': sob,
+        'target': target
+    })
+    df.to_csv('valvular.csv', index=False)
+    print("Created valvular.csv")
+
+def generate_cardiomyopathy_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(18, 90, n)
+    enlargement = np.random.randint(0, 2, n)
+    fluid = np.random.randint(0, 2, n)
+    intolerance = np.random.randint(0, 2, n)
+    
+    risk = enlargement * 40 + fluid * 25 + intolerance * 25 + (age > 55) * 10
+    target = (risk > np.percentile(risk, 78) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'heart_enlargement': enlargement, 'fluid_retention': fluid, 
+        'exercise_intolerance': intolerance, 'target': target
+    })
+    df.to_csv('cardiomyopathy.csv', index=False)
+    print("Created cardiomyopathy.csv")
+
+if __name__ == "__main__":
+    generate_arrhythmia_dataset()
+    generate_valvular_dataset()
+    generate_cardiomyopathy_dataset()

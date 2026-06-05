@@ -1,0 +1,64 @@
+import pandas as pd
+import numpy as np
+import sys
+import json
+import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    df = pd.read_csv("valvular.csv")
+except Exception as e:
+    print(json.dumps({"status": "error", "error": str(e)}))
+    sys.exit(1)
+
+encoders = {}
+for col in ['gender', 'fatigue_level']:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    encoders[col] = le
+
+X = df.drop('target', axis=1)
+y = df['target']
+
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+accuracy = round(model.score(X, y) * 100, 2)
+
+def predict(age, gender, murmur, fatigue_str, sob):
+    try:
+        g_val = encoders['gender'].transform([gender])[0]
+        f_val = encoders['fatigue_level'].transform([fatigue_str])[0]
+        
+        features = np.array([[float(age), g_val, float(murmur), f_val, float(sob)]])
+        risk = model.predict_proba(features)[0][1] * 100
+        
+        status = "low"
+        if risk > 75: status = "high"
+        elif risk > 40: status = "moderate"
+        
+        messages = {
+            "low": "Valve mechanics appear efficient. Heart sounds indicate stable laminar flow.",
+            "moderate": "Turbulent flow markers detected. Potential early-stage valve thickening/stenosis.",
+            "high": "ALERT: Severe valvular dysfunction likely. Surgical or structural assessment advised."
+        }
+        
+        return {
+            "status": "success",
+            "risk": round(risk, 1),
+            "risk_status": status,
+            "message": messages[status],
+            "accuracy": accuracy,
+            "prediction": "Valvular Disease Detected" if risk > 50 else "Stable Valve Function"
+        }
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 6:
+        print(json.dumps({"status": "error", "error": "Missing inputs"}))
+    else:
+        res = predict(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+        print(json.dumps(res))

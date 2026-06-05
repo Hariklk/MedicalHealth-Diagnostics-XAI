@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrhythmia Diagnostic | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='heart-analysis.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Heart Lab</span></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <h1 class="terminal-title">Arrhythmia <span class="highlight" style="color:#a855f7">Neural Mapper</span></h1>
+                <p class="terminal-subtitle">Deep analysis of cardiac electrical conduction and rhythm stability.</p>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium" id="tiltCard">
+                    <div class="stepper-header">
+                        <div class="step-item active" id="step-1-head"><div class="step-num">01</div><div class="step-label">Vitals</div></div>
+                        <div class="step-divider"></div>
+                        <div class="step-item" id="step-2-head"><div class="step-num">02</div><div class="step-label">Electrical</div></div>
+                        <div class="step-divider"></div>
+                        <div class="step-item" id="step-3-head"><div class="step-num">03</div><div class="step-label">Symptoms</div></div>
+                    </div>
+
+                    <form id="arrhythmiaForm">
+                        <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                            <ion-icon name="scan-outline"></ion-icon>
+                            <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div>
+                            <p id="scannerLog">Awaiting Biometric Stream...</p>
+                        </div>
+
+                        <!-- Step 1: Vitals -->
+                        <div class="form-step-container active" id="step-1">
+                            <h3><ion-icon name="person-outline"></ion-icon> Patient Vitals</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                                    <input type="number" id="arr_age" required placeholder="e.g. 45" min="1" max="120">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="male-female-outline"></ion-icon> Gender</label>
+                                    <select id="arr_gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="step-controls">
+                                <div></div>
+                                <button type="button" class="next-step-btn" onclick="goToStep(2)">Next Phase <ion-icon name="arrow-forward-outline"></ion-icon></button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Electrical -->
+                        <div class="form-step-container" id="step-2">
+                            <h3><ion-icon name="flash-outline"></ion-icon> Electrical Mapping</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="pulse-outline"></ion-icon> Pulse Regularity</label>
+                                    <select id="arr_pulse">
+                                        <option value="Regular">Regular</option>
+                                        <option value="Irregular">Irregular</option>
+                                        <option value="Occasional Skip">Occasional Skip</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="heart-outline"></ion-icon> Resting Heart Rate (BPM)</label>
+                                    <input type="number" id="arr_hr" required placeholder="e.g. 72" min="30" max="220">
+                                </div>
+                            </div>
+                            <div class="step-controls">
+                                <button type="button" class="prev-step-btn" onclick="goToStep(1)"><ion-icon name="arrow-back-outline"></ion-icon> Previous</button>
+                                <button type="button" class="next-step-btn" onclick="goToStep(3)">Next Phase <ion-icon name="arrow-forward-outline"></ion-icon></button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Symptoms -->
+                        <div class="form-step-container" id="step-3">
+                            <h3><ion-icon name="alert-circle-outline"></ion-icon> Neurological Symptoms</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="fitness-outline"></ion-icon> Palpitations</label>
+                                    <select id="arr_palp">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes — Frequent</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="eye-off-outline"></ion-icon> Dizziness / Fainting</label>
+                                    <select id="arr_diz">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes — Episodic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="step-controls">
+                                <button type="button" class="prev-step-btn" onclick="goToStep(2)"><ion-icon name="arrow-back-outline"></ion-icon> Previous</button>
+                                <button type="submit" class="next-step-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                                    <ion-icon name="analytics-outline"></ion-icon> Run AI Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Results Area -->
+                    <div id="arrResultArea" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats">
+                                <div class="risk-circle">
+                                    <span class="risk-percent" id="arrRiskValue">0%</span>
+                                    <span style="font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px;">Risk Score</span>
+                                </div>
+                                <h2 id="arrRiskLabel" style="text-align: center; margin-bottom: 20px; font-family: 'Outfit';">Calculating...</h2>
+                                <p id="arrRiskMsg" style="color: rgba(255,255,255,0.6); text-align: center; line-height: 1.7; margin-bottom: 30px; font-size: 14px;"></p>
+                                <div style="display: flex; gap: 15px;">
+                                    <button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Test</span></button>
+                                    <button class="terminal-btn" onclick="window.print()"><ion-icon name="download-outline"></ion-icon><span>Save Report</span></button>
+                                </div>
+                            </div>
+                            <div class="chat-column">
+                                <div class="chat-card">
+                                    <div style="padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px;">
+                                        <ion-icon name="chatbubbles" style="color: #0ea5e9; font-size: 20px;"></ion-icon>
+                                        <span style="font-weight: 700; color: white; font-family: 'Outfit';">Neural Insight Assistant</span>
+                                    </div>
+                                    <div class="chat-content" id="arrChat">
+                                        <div class="msg ai">Analysis complete. Ask me anything about your heart rhythm patterns.</div>
+                                    </div>
+                                    <div style="padding: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.06);">
+                                        <input type="text" id="arrChatInput" placeholder="Ask about your report..." style="flex:1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; color: white; padding: 12px 16px; font-size: 13px; outline: none; font-family: 'Plus Jakarta Sans';">
+                                        <button onclick="sendChat()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); border: none; color: white; padding: 12px 16px; border-radius: 12px; cursor: pointer;"><ion-icon name="send"></ion-icon></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tiltCard = document.getElementById('tiltCard');
+        tiltCard.addEventListener('mousemove', (e) => {
+            const rect = tiltCard.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            tiltCard.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+        });
+        tiltCard.addEventListener('mouseleave', () => tiltCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
+
+        function goToStep(step) {
+            document.querySelectorAll('.form-step-container').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            document.querySelectorAll('.step-item').forEach(i => i.classList.remove('active'));
+            document.getElementById(`step-${step}-head`).classList.add('active');
+        }
+
+        document.getElementById('arrhythmiaForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const scanner = document.getElementById('neuralScanner');
+            scanner.style.display = 'flex';
+            const stages = ['Mapping Sinus Rhythm...', 'Analyzing QRS Intervals...', 'Processing P-Wave Data...', 'Neural Assessment Complete'];
+            for(let i = 0; i < stages.length; i++){
+                document.getElementById('scannerStatus').innerText = stages[i];
+                document.getElementById('scannerProgress').style.width = ((i+1)*25) + '%';
+                document.getElementById('scannerLog').innerText = `[STEP ${i+1}/4] ${stages[i]}`;
+                await new Promise(r => setTimeout(r, 700));
+            }
+            const data = {
+                userId: localStorage.getItem('userId'),
+                age: document.getElementById('arr_age').value,
+                gender: document.getElementById('arr_gender').value,
+                pulse: document.getElementById('arr_pulse').value,
+                hr: document.getElementById('arr_hr').value,
+                palpitations: document.getElementById('arr_palp').value,
+                dizziness: document.getElementById('arr_diz').value
+            };
+            try {
+                const res = await fetch('/api/predict-arrhythmia', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+                const result = await res.json();
+                
+                if (!res.ok || result.status === 'error') {
+                    throw new Error(result.error || 'Neural Engine failure');
+                }
+
+                scanner.style.display = 'none';
+                document.getElementById('arrhythmiaForm').style.display = 'none';
+                document.querySelector('.stepper-header').style.display = 'none';
+                document.getElementById('arrResultArea').style.display = 'block';
+                document.getElementById('arrRiskValue').innerText = result.risk + '%';
+                document.getElementById('arrRiskLabel').innerText = result.prediction;
+                document.getElementById('arrRiskMsg').innerText = result.message;
+                let color = '#10b981';
+                if(result.risk_status === 'high') color = '#f43f5e';
+                else if(result.risk_status === 'moderate') color = '#fbbf24';
+                document.getElementById('arrRiskValue').style.color = color;
+                document.querySelector('.risk-circle').style.borderColor = color;
+                document.querySelector('.risk-circle').style.boxShadow = `0 0 30px ${color}33`;
+                document.getElementById('arrRiskLabel').style.color = color;
+            } catch(err) { 
+                alert('Analysis Error: ' + err.message); 
+                scanner.style.display = 'none'; 
+            }
+        };
+
+        async function sendChat() {
+            const input = document.getElementById('arrChatInput');
+            const message = input.value.trim();
+            if(!message) return;
+            const chat = document.getElementById('arrChat');
+            
+            // User message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user';
+            userDiv.innerText = message;
+            chat.appendChild(userDiv);
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            // Loading
+            const loading = document.createElement('div');
+            loading.className = 'msg ai';
+            loading.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Processing Neural Patterns...';
+            chat.appendChild(loading);
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: `Context: Arrhythmia Report - Risk ${document.getElementById('arrRiskValue').innerText}, Prediction: ${document.getElementById('arrRiskLabel').innerText}. Findings: ${document.getElementById('arrRiskMsg').innerText}. User: ${message}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                chat.removeChild(loading);
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'msg ai';
+                aiDiv.innerText = data.message;
+                chat.appendChild(aiDiv);
+            } catch (e) {
+                chat.removeChild(loading);
+            }
+            chat.scrollTop = chat.scrollHeight;
+        }
+        document.getElementById('arrChatInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChat(); });
+    </script>
+</body>
+</html>

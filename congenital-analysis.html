@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congenital Diagnostic | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer"><button class="terminal-nav-btn" onclick="location.href='heart-analysis.html'"><ion-icon name="chevron-back-outline"></ion-icon><div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Heart Lab</span></div></button></div>
+        </aside>
+        <main class="main-terminal">
+            <header class="terminal-header"><h1 class="terminal-title">Congenital <span class="highlight" style="color:#3b82f6">Genetic Mapper</span></h1><p class="terminal-subtitle">Deep analysis of inherited heart conditions and structural abnormalities.</p></header>
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium" id="tiltCard">
+                    <div class="stepper-header">
+                        <div class="step-item active" id="step-1-head"><div class="step-num">01</div><div class="step-label">Bio</div></div>
+                        <div class="step-divider"></div>
+                        <div class="step-item" id="step-2-head"><div class="step-num">02</div><div class="step-label">Genetics</div></div>
+                        <div class="step-divider"></div>
+                        <div class="step-item" id="step-3-head"><div class="step-num">03</div><div class="step-label">Pathology</div></div>
+                    </div>
+                    <form id="congenitalForm">
+                        <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;"><ion-icon name="scan-outline"></ion-icon><h4 id="scannerStatus">Initializing...</h4><div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div><p id="scannerLog">Awaiting...</p></div>
+                        <div class="form-step-container active" id="step-1">
+                            <h3><ion-icon name="person-outline"></ion-icon> Patient Bio</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p"><label><ion-icon name="calendar-outline"></ion-icon> Age</label><input type="number" id="con_age" required placeholder="e.g. 8" min="0" max="120"></div>
+                            </div>
+                            <div class="step-controls"><div></div><button type="button" class="next-step-btn" onclick="goToStep(2)">Next Phase <ion-icon name="arrow-forward-outline"></ion-icon></button></div>
+                        </div>
+                        <div class="form-step-container" id="step-2">
+                            <h3><ion-icon name="git-branch-outline"></ion-icon> Genetic History</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p"><label><ion-icon name="people-outline"></ion-icon> Family History of CHD</label><select id="con_family"><option value="0">No — No Known Cases</option><option value="1">Yes — Direct Relative</option></select></div>
+                            </div>
+                            <div class="step-controls"><button type="button" class="prev-step-btn" onclick="goToStep(1)"><ion-icon name="arrow-back-outline"></ion-icon> Previous</button><button type="button" class="next-step-btn" onclick="goToStep(3)">Next Phase <ion-icon name="arrow-forward-outline"></ion-icon></button></div>
+                        </div>
+                        <div class="form-step-container" id="step-3">
+                            <h3><ion-icon name="flask-outline"></ion-icon> Pathological Signs</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                                <div class="form-group-p"><label><ion-icon name="color-fill-outline"></ion-icon> Cyanosis (Blue Tint)</label><select id="con_cyanosis"><option value="0">No — Normal Skin Color</option><option value="1">Yes — Bluish Discoloration</option></select></div>
+                                <div class="form-group-p"><label><ion-icon name="trending-down-outline"></ion-icon> Growth / Feeding Issues</label><select id="con_growth"><option value="0">No — Normal Development</option><option value="1">Yes — Delayed Growth</option></select></div>
+                            </div>
+                            <div class="step-controls"><button type="button" class="prev-step-btn" onclick="goToStep(2)"><ion-icon name="arrow-back-outline"></ion-icon> Previous</button><button type="submit" class="next-step-btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"><ion-icon name="analytics-outline"></ion-icon> Run AI Analysis</button></div>
+                        </div>
+                    </form>
+                    <div id="conResultArea" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats">
+                                <div class="risk-circle"><span class="risk-percent" id="conRiskValue">0%</span><span style="font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px;">Risk Score</span></div>
+                                <h2 id="conRiskLabel" style="text-align: center; margin-bottom: 20px; font-family: 'Outfit';">Calculating...</h2>
+                                <p id="conRiskMsg" style="color: rgba(255,255,255,0.6); text-align: center; line-height: 1.7; margin-bottom: 30px; font-size: 14px;"></p>
+                                <div style="display: flex; gap: 15px;"><button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Test</span></button><button class="terminal-btn" onclick="window.print()"><ion-icon name="download-outline"></ion-icon><span>Save Report</span></button></div>
+                            </div>
+                            <div class="chat-column"><div class="chat-card"><div style="padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px;"><ion-icon name="chatbubbles" style="color: #0ea5e9; font-size: 20px;"></ion-icon><span style="font-weight: 700; color: white; font-family: 'Outfit';">Neural Insight Assistant</span></div><div class="chat-content" id="conChat"><div class="msg ai">Structural analysis complete. Ask me about ASD, VSD, or other congenital patterns.</div></div><div style="padding: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.06);"><input type="text" id="conChatInput" placeholder="Ask about your report..." style="flex:1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; color: white; padding: 12px 16px; font-size: 13px; outline: none; font-family: 'Plus Jakarta Sans';"><button onclick="sendChat()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); border: none; color: white; padding: 12px 16px; border-radius: 12px; cursor: pointer;"><ion-icon name="send"></ion-icon></button></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const tiltCard = document.getElementById('tiltCard');
+        tiltCard.addEventListener('mousemove', (e) => { const r = tiltCard.getBoundingClientRect(); tiltCard.style.transform = `perspective(1000px) rotateX(${-((e.clientY-r.top)/r.height-0.5)*4}deg) rotateY(${((e.clientX-r.left)/r.width-0.5)*4}deg)`; });
+        tiltCard.addEventListener('mouseleave', () => tiltCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
+        function goToStep(s) { document.querySelectorAll('.form-step-container').forEach(e => e.classList.remove('active')); document.getElementById(`step-${s}`).classList.add('active'); document.querySelectorAll('.step-item').forEach(e => e.classList.remove('active')); document.getElementById(`step-${s}-head`).classList.add('active'); }
+        document.getElementById('congenitalForm').onsubmit = async (e) => {
+            e.preventDefault(); const sc = document.getElementById('neuralScanner'); sc.style.display = 'flex';
+            for(let i=0; i<4; i++){ document.getElementById('scannerStatus').innerText = ['Mapping Genetic Stream...','Analyzing Heart Structure...','Processing Septal Data...','Neural Assessment Complete'][i]; document.getElementById('scannerProgress').style.width = ((i+1)*25)+'%'; await new Promise(r=>setTimeout(r,700)); }
+            const d = { userId: localStorage.getItem('userId'), age: document.getElementById('con_age').value, family: document.getElementById('con_family').value, cyanosis: document.getElementById('con_cyanosis').value, growth: document.getElementById('con_growth').value };
+            try { 
+                const r = await fetch('/api/predict-congenital', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d) }); 
+                const res = await r.json(); 
+                if (!r.ok || res.status === 'error') throw new Error(res.error || 'Neural Engine failure');
+                sc.style.display='none'; document.getElementById('congenitalForm').style.display='none'; document.querySelector('.stepper-header').style.display='none'; document.getElementById('conResultArea').style.display='block'; document.getElementById('conRiskValue').innerText=res.risk+'%'; document.getElementById('conRiskLabel').innerText=res.prediction; document.getElementById('conRiskMsg').innerText=res.message; let c='#10b981'; if(res.risk_status==='high')c='#f43f5e'; else if(res.risk_status==='moderate')c='#fbbf24'; document.getElementById('conRiskValue').style.color=c; document.querySelector('.risk-circle').style.borderColor=c; document.getElementById('conRiskLabel').style.color=c; 
+            } catch(err){ alert('Analysis Error: ' + err.message); sc.style.display='none'; }
+        };
+        async function sendChat(){ 
+            const i=document.getElementById('conChatInput'); 
+            const msg = i.value.trim();
+            if(!msg)return; 
+            const c=document.getElementById('conChat'); 
+            
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user';
+            userDiv.innerText = msg;
+            c.appendChild(userDiv);
+            i.value=''; 
+            c.scrollTop=c.scrollHeight;
+
+            const loading = document.createElement('div');
+            loading.className = 'msg ai';
+            loading.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Analyzing genetics...';
+            c.appendChild(loading);
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: `Context: Congenital Diagnostic - Risk ${document.getElementById('conRiskValue').innerText}, Prediction: ${document.getElementById('conRiskLabel').innerText}. Findings: ${document.getElementById('conRiskMsg').innerText}. User: ${msg}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                c.removeChild(loading);
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'msg ai';
+                aiDiv.innerText = data.message;
+                c.appendChild(aiDiv);
+            } catch (e) {
+                c.removeChild(loading);
+            }
+            c.scrollTop=c.scrollHeight;
+        }
+        document.getElementById('conChatInput').addEventListener('keypress',(e)=>{if(e.key==='Enter')sendChat();});
+    </script>
+</body>
+</html>

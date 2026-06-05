@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Diagnostic Lab | HealthAI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-headers: 'Outfit', sans-serif;
+        }
+
+        .heart-lab-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        @keyframes sidebarEnter {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Sidebar Styles */
+        .sidebar-nav {
+            width: var(--sidebar-width);
+            background: rgba(12, 26, 37, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            animation: sidebarEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding-left: 10px;
+        }
+
+        .sidebar-header span {
+            font-family: var(--font-headers);
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-item span {
+            font-size: 15px;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .nav-item ion-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 25px;
+        }
+
+        .profile-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .mini-avatar {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+
+        .u-name {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .u-role {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .logout-btn-full {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            background: rgba(244, 63, 94, 0.05);
+            color: #f43f5e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .heart-main-content {
+            flex-grow: 1;
+            background: rgba(12, 26, 37, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .heart-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .heart-title-box h1 {
+            font-family: var(--font-headers);
+            font-size: 28px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .heart-title-box h1 ion-icon {
+            color: #f43f5e;
+            filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.5));
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Card Visibility Fixes */
+        .heart-grid-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            overflow-y: auto;
+        }
+
+        /* ═══════════════════════════════════════════
+           PREMIUM DIAGNOSTIC CARD SYSTEM
+           Each card has a unique color identity 
+           ═══════════════════════════════════════════ */
+
+        /* Color Palette per Model */
+        .heart-choice-card { --card-hue: 348; --card-color: #f43f5e; --card-glow: rgba(244, 63, 94, 0.3); }
+        .heart-choice-card:nth-child(2) { --card-hue: 190; --card-color: #06b6d4; --card-glow: rgba(6, 182, 212, 0.3); }
+        .heart-choice-card:nth-child(3) { --card-hue: 270; --card-color: #a855f7; --card-glow: rgba(168, 85, 247, 0.3); }
+        .heart-choice-card:nth-child(4) { --card-hue: 25; --card-color: #f97316; --card-glow: rgba(249, 115, 22, 0.3); }
+        .heart-choice-card:nth-child(5) { --card-hue: 160; --card-color: #10b981; --card-glow: rgba(16, 185, 129, 0.3); }
+        .heart-choice-card:nth-child(6) { --card-hue: 210; --card-color: #3b82f6; --card-glow: rgba(59, 130, 246, 0.3); }
+        .heart-choice-card:nth-child(7) { --card-hue: 330; --card-color: #ec4899; --card-glow: rgba(236, 72, 153, 0.3); }
+        .heart-choice-card:nth-child(8) { --card-hue: 45; --card-color: #eab308; --card-glow: rgba(234, 179, 8, 0.3); }
+
+        .heart-choice-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 32px 28px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 310px;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animated gradient border on hover */
+        .heart-choice-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                var(--card-color) 25%,
+                transparent 50%,
+                var(--card-color) 75%,
+                transparent 100%
+            );
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: borderSpin 3s linear infinite;
+        }
+
+        @keyframes borderSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        .heart-choice-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Inner background overlay to mask the spinning border */
+        .heart-choice-card::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border-radius: 23px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 100%);
+            z-index: -1;
+        }
+
+        /* Floating particle accent */
+        .card-particle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--card-glow) 0%, transparent 70%);
+            top: -30px;
+            right: -30px;
+            opacity: 0.4;
+            transition: 0.5s;
+            filter: blur(20px);
+        }
+
+        .heart-choice-card:hover .card-particle {
+            opacity: 0.8;
+            transform: scale(1.5);
+        }
+
+        .heart-choice-card:hover {
+            transform: translateY(-14px) scale(1.03);
+            border-color: var(--card-color);
+            box-shadow: 0 20px 60px var(--card-glow), 0 0 0 1px var(--card-color), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        /* Status Tag */
+        .status-tag {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+            color: #10b981;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            z-index: 1;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Model Accuracy Badge */
+        .model-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--card-color);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 8px;
+        }
+
+        /* Icon */
+        .choice-icon {
+            width: 68px;
+            height: 68px;
+            background: var(--card-glow);
+            border: 1px solid var(--card-glow);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--card-color);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart-choice-card:hover .choice-icon {
+            transform: rotateY(180deg) scale(1.15);
+            background: var(--card-color);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 30px var(--card-glow);
+        }
+
+        .choice-info {
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .choice-info h3 {
+            color: white;
+            font-family: var(--font-headers);
+            font-size: 21px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .choice-info p {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 13px;
+            line-height: 1.65;
+            margin-bottom: 0;
+        }
+
+        .choice-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--card-color);
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-glow {
+            width: 34px;
+            height: 34px;
+            background: var(--card-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid var(--card-glow);
+        }
+
+        .heart-choice-card:hover .btn-glow {
+            background: var(--card-color);
+            color: white;
+            transform: translateX(6px);
+            box-shadow: 0 0 15px var(--card-glow);
+            border-color: transparent;
+        }
+
+        .heart-choice-card:hover .choice-action span {
+            text-shadow: 0 0 10px var(--card-glow);
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-headers);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            background: rgba(244, 63, 94, 0.2);
+            color: #f43f5e;
+        }
+
+        .diagnostic-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background-color: #0f172a;
+            /* Solid dark background for consistency */
+            color: white;
+            padding: 10px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #f43f5e;
+            background: rgba(244, 63, 94, 0.05);
+            box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.2);
+        }
+
+        .submit-diagnostic {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-diagnostic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
+        }
+
+        .result-container {
+            margin-top: 30px;
+            display: none;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .risk-meter {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .risk-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .risk-label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .risk-msg {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .stat-card label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .importance-list {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .importance-list h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .importance-item {
+            margin-bottom: 12px;
+        }
+
+        .importance-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .importance-bar-bg {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .importance-bar-fill {
+            height: 100%;
+            background: #f43f5e;
+            border-radius: 3px;
+            transition: width 1s ease-out;
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* AI Assistance Grid Styles */
+        .ai-assist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .assist-btn {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .assist-btn:hover {
+            background: rgba(14, 165, 233, 0.15);
+            border-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .assist-btn ion-icon {
+            font-size: 18px;
+            color: #0ea5e9;
+            filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.4));
+        }
+
+        .reports-modal .modal-content {
+            max-width: 600px;
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+
+
+
+        @media (max-width: 600px) {
+            .diagnostic-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .submit-diagnostic {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="medical-dashboard-page">
+
+    <!-- Premium Background Container -->
+    <div class="medical-background profile-mode dashboard-bg">
+        <div class="shape shape-1"
+            style="background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%);"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="aura-overlay"></div>
+    </div>
+
+    <div class="heart-lab-container">
+        <!-- Sidebar remains for navigation consistency -->
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <div class="logo-box">
+                    <ion-icon name="pulse"></ion-icon>
+                </div>
+                <span>Health Diagnostic AI</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="medical.html" class="nav-item active">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <span>Diagnostics</span>
+                </a>
+                <a href="profile.html?edit=true" class="nav-item">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>My Profile</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" onclick="openReportsModal(event)">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <ion-icon name="settings-outline"></ion-icon>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="profile-summary">
+                    <div class="mini-avatar">
+                        <ion-icon name="person-circle"></ion-icon>
+                    </div>
+                    <div class="user-info">
+                        <p class="u-name" id="userNameSidebar">Patient</p>
+                        <p class="u-role">Patient</p>
+                    </div>
+                </div>
+                <button class="logout-btn-full" onclick="logout()">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="heart-main-content">
+            <header class="heart-header">
+                <div class="heart-title-box">
+                    <h1><ion-icon name="heart"></ion-icon> Heart Disease <span class="highlight"
+                            style="color:#f43f5e">Analysis Lab</span></h1>
+                    <p class="terminal-subtitle">Comprehensive cardiovascular risk assessment portal.</p>
+                </div>
+                <a href="medical.html" class="back-btn">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    Back to Terminal
+                </a>
+            </header>
+
+            <section class="heart-grid-content">
+                <!-- 1. Overall Health — Rose -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="pulse-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Overall Heart Health</h3>
+                        <p>Complete cardiovascular baseline analysis using 18 clinical parameters and general fitness assessment.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v3.2 &bull; 96.7% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>INIT_SCAN.SYS</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 2. CAD — Cyan -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Coronary Artery Disease (CAD)</h3>
+                        <p>Evaluate arterial plaque buildup and blood flow efficiency to the heart muscle.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v2.8 &bull; 95.2% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>LOAD_NEURAL_MAP</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 3. Arrhythmia — Violet -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="flash-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Arrhythmia (Irregular Heartbeat)</h3>
+                        <p>Detection of abnormal heart rhythms, Tachycardia, and Bradycardia electrical patterns.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> NN v1.4 &bull; 94.8% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>START_SIGNAL_SYNC</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 4. Heart Failure — Orange -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="warning-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Heart Failure</h3>
+                        <p>Assessment of the heart's pumping capacity and congestive risk factors with symptom profiling.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v3.0 &bull; 93.6% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>INIT_FAILURE_MAP</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 5. Valvular — Emerald -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="layers-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Valvular Heart Disease</h3>
+                        <p>Analysis of heart valve functionality, stenosis markers, and regurgitation signal patterns.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v2.1 &bull; 92.4% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>SCAN_VALVE_MECH</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 6. Congenital — Blue -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="flask-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Congenital Heart Disease</h3>
+                        <p>Structural abnormality screening for inherited or birth-related cardiac conditions (ASD/VSD).</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> NN v1.2 &bull; 91.0% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>LOAD_GENETIC_PROFILE</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 7. Cardiomyopathy — Fuchsia -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="fitness-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Cardiomyopathy</h3>
+                        <p>Deep tissue analysis of the heart muscle for enlargement, stiffening, or dilated pathologies.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v2.5 &bull; 93.2% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>MAP_MUSCLE_DENSITY</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <!-- 8. Inflammatory — Gold -->
+                <div class="heart-choice-card">
+                    <div class="card-particle"></div>
+                    <div class="status-tag"><div class="pulse-dot"></div> ONLINE</div>
+                    <div class="choice-icon"><ion-icon name="thermometer-outline"></ion-icon></div>
+                    <div class="choice-info">
+                        <h3>Inflammatory Heart Diseases</h3>
+                        <p>Detection of Endocarditis, Myocarditis, Pericarditis and other infectious pathologies.</p>
+                        <div class="model-badge"><ion-icon name="hardware-chip-outline"></ion-icon> RF v1.8 &bull; 89.5% Acc</div>
+                    </div>
+                    <div class="choice-action">
+                        <span>TRACE_INF_PATHWAY</span>
+                        <div class="btn-glow"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Heart Failure Modal -->
+    <div id="heartFailureModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeHFModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="modal-header">
+                <h2><ion-icon name="warning-outline" style="color:#f43f5e"></ion-icon> Heart Failure Diagnostic</h2>
+            </div>
+
+            <form id="hfForm" class="diagnostic-form">
+                <div class="form-group-p">
+                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                    <input type="number" id="hf_age" required min="1" max="120" placeholder="e.g. 50">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="male-female-outline"></ion-icon> Sex</label>
+                    <select id="hf_sex" required>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="thermometer-outline"></ion-icon> Chest Pain Type</label>
+                    <select id="hf_cp" required>
+                        <option value="ATA">Atypical Angina (ATA)</option>
+                        <option value="NAP">Non-Anginal Pain (NAP)</option>
+                        <option value="ASY">Asymptomatic (ASY)</option>
+                        <option value="TA">Typical Angina (TA)</option>
+                        <option value="NCP">No Chest Pain (NCP)</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="speedometer-outline"></ion-icon> Resting Blood Pressure</label>
+                    <input type="number" id="hf_trestbps" required placeholder="e.g. 130">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="water-outline"></ion-icon> Cholesterol</label>
+                    <input type="number" id="hf_chol" required placeholder="e.g. 230">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="flask-outline"></ion-icon> Fasting Blood Sugar &gt; 120 mg/dl</label>
+                    <select id="hf_fbs" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="pulse-outline"></ion-icon> Resting ECG</label>
+                    <select id="hf_restecg" required>
+                        <option value="Normal">Normal</option>
+                        <option value="ST">ST-T Wave Abnormality</option>
+                        <option value="LVH">Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="heart-outline"></ion-icon> Max Heart Rate</label>
+                    <input type="number" id="hf_thalach" required placeholder="e.g. 160">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="walk-outline"></ion-icon> Exercise Induced Angina</label>
+                    <select id="hf_exang" required>
+                        <option value="N">No</option>
+                        <option value="Y">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="trending-down-outline"></ion-icon> Oldpeak (ST Depression)</label>
+                    <input type="number" id="hf_oldpeak" required step="0.1" placeholder="e.g. 1.2">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="analytics-outline"></ion-icon> ST Slope</label>
+                    <select id="hf_slope" required>
+                        <option value="Up">Up</option>
+                        <option value="Flat">Flat</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width"
+                    style="border-top: 1px solid var(--glass-border); padding-top: 20px; margin-top: 10px;">
+                    <label style="color: white; font-size: 15px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-weight: 700; font-family: 'Outfit';"><ion-icon name="medkit-outline" style="color: #f43f5e;"></ion-icon> Clinical Symptoms &
+                        Observations</label>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_swelling_legs" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Swelling in
+                            legs/ankles/feet
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_rapid_heart" style="width: 18px; height: 18px; accent-color: #f43f5e;">
+                            Rapid/Irregular Heartbeat
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_wheezing" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Wheezing
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_swelling_belly" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Swelling
+                            of belly area
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_weight_gain" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Rapid fluid
+                            weight gain
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="hf_conc" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Difficulty
+                            concentrating
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-diagnostic" id="hfSubmitBtn">
+                    <ion-icon name="analytics-outline"></ion-icon>
+                    <span>Analyze Risk</span>
+                </button>
+            </form>
+
+            <div id="hfResultArea" class="result-container">
+                <div class="risk-meter" id="hfRiskMeter">
+                    <span class="risk-value" id="hfRiskValue">0%</span>
+                </div>
+                <span class="risk-label" id="hfRiskLabel">Calculating...</span>
+                <p class="risk-msg" id="hfRiskMsg"></p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <label>Prediction</label>
+                        <div class="value" id="hfPredictionValue">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <label>Accuracy</label>
+                        <div class="value" id="hfAccuracyValue">-</div>
+                    </div>
+                </div>
+
+                <div class="ai-assist-grid">
+                    <button class="assist-btn" onclick="triggerAiAssist('Explain this risk level for Heart Failure')">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Explain Risk</span>
+                    </button>
+                    <button class="assist-btn" onclick="triggerAiAssist('Lifestyle advice for heart failure risk')">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                        <span>Lifestyle Tips</span>
+                    </button>
+                    <button class="assist-btn"
+                        onclick="triggerAiAssist('Next clinical steps for this heart failure risk')">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                        <span>Next Steps</span>
+                    </button>
+                    <button class="assist-btn" onclick="triggerAiAssist('Recommend specialist for heart failure')">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span>Find Specialist</span>
+                    </button>
+                </div>
+
+                <div style="display:flex; gap: 15px; margin-top: 30px;">
+                    <button class="submit-diagnostic" style="flex:1; margin-top: 0;" onclick="resetHFDiagnostic()">
+                        <ion-icon name="refresh-outline"></ion-icon>
+                        New Test
+                    </button>
+                    <button class="submit-diagnostic" style="flex:1; margin-top: 0; background:#334155;"
+                        onclick="window.print()">
+                        <ion-icon name="download-outline"></ion-icon>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Diagnostic Modal -->
+    <div id="diagnosticModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="modal-header">
+                <h2><ion-icon name="pulse-outline" style="color:#f43f5e"></ion-icon> Heart Health Diagnostic</h2>
+            </div>
+
+            <form id="heartForm" class="diagnostic-form">
+                <div class="form-group-p">
+                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                    <input type="number" id="age" required min="1" max="120" placeholder="e.g. 45">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="male-female-outline"></ion-icon> Sex</label>
+                    <select id="sex" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="thermometer-outline"></ion-icon> Chest Pain Type</label>
+                    <select id="cp" required>
+                        <option value="0">Typical Angina</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-anginal Pain</option>
+                        <option value="3">Asymptomatic</option>
+                        <option value="4">No Chest Pain</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="speedometer-outline"></ion-icon> Resting Blood Pressure (mm Hg)</label>
+                    <input type="number" id="trestbps" required min="80" max="220" placeholder="e.g. 120">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="water-outline"></ion-icon> Cholesterol (mg/dl)</label>
+                    <input type="number" id="chol" required min="100" max="600" placeholder="e.g. 200">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="flask-outline"></ion-icon> Fasting Blood Sugar &gt; 120 mg/dl</label>
+                    <select id="fbs" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="pulse-outline"></ion-icon> Resting ECG Results</label>
+                    <select id="restecg" required>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T Wave Abnormality</option>
+                        <option value="2">Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="heart-outline"></ion-icon> Max Heart Rate Achieved</label>
+                    <input type="number" id="thalach" required min="60" max="220" placeholder="e.g. 150">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="walk-outline"></ion-icon> Exercise Induced Angina</label>
+                    <select id="exang" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="trending-down-outline"></ion-icon> ST Depression (Oldpeak)</label>
+                    <input type="number" id="oldpeak" required step="0.1" min="0" max="10" placeholder="e.g. 1.5">
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="analytics-outline"></ion-icon> Slope of Peak Exercise ST</label>
+                    <select id="slope" required>
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="git-network-outline"></ion-icon> Number of Major Vessels (0-3)</label>
+                    <select id="ca" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="form-group-p">
+                    <label><ion-icon name="color-palette-outline"></ion-icon> Thalassemia</label>
+                    <select id="thal" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed Defect</option>
+                        <option value="3">Reversable Defect</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width"
+                    style="border-top: 1px solid var(--glass-border); padding-top: 20px; margin-top: 10px;">
+                    <label style="color: white; font-size: 15px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-weight: 700; font-family: 'Outfit';"><ion-icon name="medkit-outline" style="color: #f43f5e;"></ion-icon> Lifestyle & Clinical
+                        Observations</label>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="smoking" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Smoking History
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="drinking" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Alcohol Consumption
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="leg_pain" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Persistent Leg Pain
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="sob" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Shortness of Breath
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s;">
+                            <input type="checkbox" id="ankle_swelling" style="width: 18px; height: 18px; accent-color: #f43f5e;"> Ankle/Foot
+                            Swelling
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-diagnostic" id="submitBtn">
+                    <ion-icon name="analytics-outline"></ion-icon>
+                    <span>Analyze Heart Health</span>
+                </button>
+            </form>
+
+            <div id="resultArea" class="result-container">
+                <div class="risk-meter" id="riskMeter">
+                    <span class="risk-value" id="riskValue">0%</span>
+                </div>
+                <span class="risk-label" id="riskLabel">Calculating...</span>
+                <p class="risk-msg" id="riskMsg"></p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <label>AI Confidence</label>
+                        <div class="value" id="modelAcc">98.5%</div>
+                    </div>
+                    <div class="stat-card">
+                        <label>Status</label>
+                        <div class="value" id="riskStatusDesc">Normal</div>
+                    </div>
+                </div>
+
+                <div class="ai-assist-grid" style="margin-bottom: 25px;">
+                    <button class="assist-btn" onclick="triggerAiAssist('Explain this heart health report')">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Explain Results</span>
+                    </button>
+                    <button class="assist-btn" onclick="triggerAiAssist('Cardiovascular health lifestyle tips')">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                        <span>Health Tips</span>
+                    </button>
+                    <button class="assist-btn" onclick="triggerAiAssist('What should I do after this heart screen?')">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                        <span>Next Steps</span>
+                    </button>
+                    <button class="assist-btn"
+                        onclick="triggerAiAssist('Recommend a cardiologist based on these results')">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span>Consultations</span>
+                    </button>
+                </div>
+
+                <div class="importance-list" id="importanceList">
+                    <h4><ion-icon name="list-outline"></ion-icon> Key Risk Indicators</h4>
+                    <!-- Dynamic Items -->
+                </div>
+
+                <div style="display:flex; flex-direction: column; gap: 10px; margin-top: 30px;">
+                    <div style="display:flex; gap: 15px;">
+                        <button class="submit-diagnostic" style="flex:1; margin-top: 0;" onclick="resetDiagnostic()">
+                            <ion-icon name="refresh-outline"></ion-icon>
+                            New Test
+                        </button>
+                        <button class="submit-diagnostic" style="flex:1; margin-top: 0; background:#334155;"
+                            onclick="window.print()">
+                            <ion-icon name="download-outline"></ion-icon>
+                            Save Report
+                        </button>
+                    </div>
+
+                    <button class="submit-diagnostic" id="askAiBtn"
+                        style="width:100%; margin-top: 5px; background: linear-gradient(135deg, #0ea5e9, #2563eb); border: none;">
+                        <ion-icon name="medkit-outline"></ion-icon>
+                        <span>Analyze Symptoms with AI Assistant</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reports Modal -->
+    <div id="reportsModal" class="modal-overlay reports-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeReportsModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="modal-header">
+                <h2><ion-icon name="document-text-outline" style="color:#f43f5e"></ion-icon>Diagnostic Reports</h2>
+            </div>
+            <div id="reportsList" class="reports-list">
+                <!-- Data injected via script.js -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script>
+        const modal = document.getElementById('diagnosticModal');
+        const closeModal = document.getElementById('closeModal');
+        const heartForm = document.getElementById('heartForm');
+        const resultArea = document.getElementById('resultArea');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Close modal
+        closeModal.onclick = () => {
+            modal.classList.remove('active');
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        function resetDiagnostic() {
+            heartForm.style.display = 'grid';
+            resultArea.style.display = 'none';
+            heartForm.reset();
+        }
+
+        // Specific handlers for this page
+        document.querySelectorAll('.heart-choice-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const title = this.querySelector('h3').innerText;
+
+                if (title === 'Overall Heart Health') {
+                    modal.classList.add('active');
+                } else if (title === 'Coronary Artery Disease (CAD)') {
+                    location.href = 'cad-analysis.html';
+                } else if (title === 'Arrhythmia (Irregular Heartbeat)') {
+                    location.href = 'arrhythmia-analysis.html';
+                } else if (title === 'Heart Failure') {
+                    document.getElementById('heartFailureModal').classList.add('active');
+                } else if (title === 'Valvular Heart Disease') {
+                    location.href = 'valvular-analysis.html';
+                } else if (title === 'Congenital Heart Disease') {
+                    location.href = 'congenital-analysis.html';
+                } else if (title === 'Cardiomyopathy') {
+                    location.href = 'cardiomyopathy-analysis.html';
+                } else if (title === 'Inflammatory Heart Diseases') {
+                    location.href = 'inflammatory-analysis.html';
+                } else {
+                    // Show a sleek loading state for others
+                    const originalContent = this.innerHTML;
+                    this.innerHTML = `
+                        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:20px;">
+                            <ion-icon name="sync-outline" class="spin" style="font-size:40px; color:#f43f5e"></ion-icon>
+                            <p style="color:white; font-weight:600">Mounting AI Module...</p>
+                        </div>
+                    `;
+
+                    setTimeout(() => {
+                        alert(`Accessing ${title} Diagnostic Interface...\n\nPreparing Neural Engine for AI analysis.`);
+                        this.innerHTML = originalContent;
+                    }, 1500);
+                }
+            });
+        });
+
+
+
+        // Form Submission
+        heartForm.onsubmit = async (e) => {
+            e.preventDefault();
+
+            // Collect data
+            const formData = {
+                userId: localStorage.getItem('userId'),
+                age: document.getElementById('age').value,
+                sex: document.getElementById('sex').value == '1' ? 'Male' : 'Female',
+                cp: document.getElementById('cp').options[document.getElementById('cp').selectedIndex].text,
+                trestbps: document.getElementById('trestbps').value,
+                chol: document.getElementById('chol').value,
+                fbs: document.getElementById('fbs').value == '1' ? 'Yes' : 'No',
+                restecg: document.getElementById('restecg').options[document.getElementById('restecg').selectedIndex].text,
+                thalach: document.getElementById('thalach').value,
+                exang: document.getElementById('exang').value == '1' ? 'Yes' : 'No',
+                oldpeak: document.getElementById('oldpeak').value,
+                slope: document.getElementById('slope').options[document.getElementById('slope').selectedIndex].text,
+                ca: document.getElementById('ca').value,
+                thal: document.getElementById('thal').options[document.getElementById('thal').selectedIndex].text,
+                smoking: document.getElementById('smoking').checked ? 'Yes' : 'No',
+                drinking: document.getElementById('drinking').checked ? 'Yes' : 'No',
+                leg_pain: document.getElementById('leg_pain').checked ? 'Yes' : 'No',
+                sob: document.getElementById('sob').checked ? 'Yes' : 'No',
+                ankle_swelling: document.getElementById('ankle_swelling').checked ? 'Yes' : 'No'
+            };
+
+            // Store for AI Chat
+            const symptomSummary = `Patient Heart Profile:
+- Age: ${formData.age}
+- Sex: ${formData.sex}
+- Chest Pain: ${formData.cp}
+- Blood Pressure: ${formData.trestbps} mmHg
+- Cholesterol: ${formData.chol} mg/dl
+- Fasting Blood Sugar > 120: ${formData.fbs}
+- Resting ECG: ${formData.restecg}
+- Max Heart Rate: ${formData.thalach}
+- Exercise Induced Angina: ${formData.exang}
+- ST Depression: ${formData.oldpeak}
+- Major Vessels: ${formData.ca}
+- Symptoms: ${[
+                    formData.smoking == 'Yes' ? 'Smoking' : null,
+                    formData.drinking == 'Yes' ? 'Alcohol' : null,
+                    formData.leg_pain == 'Yes' ? 'Leg Pain' : null,
+                    formData.sob == 'Yes' ? 'Shortness of Breath' : null,
+                    formData.ankle_swelling == 'Yes' ? 'Ankle Swelling' : null
+                ].filter(s => s).join(', ') || 'None'}`;
+
+            document.getElementById('askAiBtn').onclick = () => {
+                sessionStorage.setItem('pendingAiAnalysis', symptomSummary);
+                window.location.href = 'medical.html?action=chat';
+            };
+
+            // Collect raw data for API
+            const apiData = {
+                userId: localStorage.getItem('userId'),
+                age: document.getElementById('age').value,
+                sex: document.getElementById('sex').value,
+                cp: document.getElementById('cp').value,
+                trestbps: document.getElementById('trestbps').value,
+                chol: document.getElementById('chol').value,
+                fbs: document.getElementById('fbs').value,
+                restecg: document.getElementById('restecg').value,
+                thalach: document.getElementById('thalach').value,
+                exang: document.getElementById('exang').value,
+                oldpeak: document.getElementById('oldpeak').value,
+                slope: document.getElementById('slope').value,
+                ca: document.getElementById('ca').value,
+                thal: document.getElementById('thal').value,
+                smoking: document.getElementById('smoking').checked ? 1 : 0,
+                drinking: document.getElementById('drinking').checked ? 1 : 0,
+                leg_pain: document.getElementById('leg_pain').checked ? 1 : 0,
+                sob: document.getElementById('sob').checked ? 1 : 0,
+                ankle_swelling: document.getElementById('ankle_swelling').checked ? 1 : 0
+            };
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Running ML Model...';
+
+            try {
+                const response = await fetch('/api/predict-heart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(apiData)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    displayResult(result);
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Connection failed. Make sure the server is running.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<ion-icon name="analytics-outline"></ion-icon> <span>Analyze Heart Health</span>';
+            }
+        };
+
+        function displayResult(data) {
+            heartForm.style.display = 'none';
+            resultArea.style.display = 'block';
+
+            const riskVal = document.getElementById('riskValue');
+            const riskLabel = document.getElementById('riskLabel');
+            const riskMsg = document.getElementById('riskMsg');
+            const riskMeter = document.getElementById('riskMeter');
+            const modelAcc = document.getElementById('modelAcc');
+            const riskStatusDesc = document.getElementById('riskStatusDesc');
+            const importanceList = document.getElementById('importanceList');
+
+            riskVal.innerText = data.risk + '%';
+            modelAcc.innerText = data.accuracy + '%';
+            riskStatusDesc.innerText = data.risk_status.charAt(0).toUpperCase() + data.risk_status.slice(1);
+
+            let color = '#10b981';
+            let labelText = 'Low Risk 🟢';
+
+            if (data.risk_status === 'critical') {
+                color = '#7f1d1d';
+                labelText = 'CRITICAL RISK 🚨';
+            } else if (data.risk_status === 'high') {
+                color = '#f43f5e';
+                labelText = 'High Risk ⚠️';
+            } else if (data.risk_status === 'moderate') {
+                color = '#fbbf24';
+                labelText = 'Moderate Risk 🔶';
+            }
+
+            riskLabel.innerText = labelText;
+            riskLabel.style.color = color;
+            riskMeter.style.border = `5px solid ${color}`;
+            riskMeter.style.boxShadow = `0 0 20px ${color}33`;
+
+            riskMsg.innerText = data.message;
+
+            // Display Importance
+            const listContainer = importanceList;
+            // Clear existing except header
+            const header = listContainer.querySelector('h4');
+            listContainer.innerHTML = '';
+            listContainer.appendChild(header);
+
+            if (data.importance) {
+                // Map of technical names to friendly names
+                const friendlyNames = {
+                    'age': 'Age Factor',
+                    'sex': 'Gender Factor',
+                    'cp': 'Chest Pain Severity',
+                    'trestbps': 'Resting Blood Pressure',
+                    'chol': 'Cholesterol Levels',
+                    'fbs': 'Blood Sugar Impact',
+                    'restecg': 'ECG Results',
+                    'thalach': 'Peak Heart Rate',
+                    'exang': 'Exercise Induced Angina',
+                    'oldpeak': 'ST Depression',
+                    'slope': 'ST Segment Slope',
+                    'ca': 'Major Vessels Involved',
+                    'thal': 'Thalassemia Condition',
+                    'smoking': 'Smoking History',
+                    'drinking': 'Alcohol Intake',
+                    'leg_pain': 'Leg/Ankle Pain',
+                    'sob': 'Shortness of Breath',
+                    'ankle_swelling': 'Fluid Retention'
+                };
+
+                data.importance.forEach(item => {
+                    const name = item[0];
+                    const weight = (item[1] * 100 * 5).toFixed(1); // Scale for better visual
+                    const div = document.createElement('div');
+                    div.className = 'importance-item';
+                    div.innerHTML = `
+                        <div class="importance-info">
+                            <span>${friendlyNames[name] || name}</span>
+                            <span>Significance Score: ${weight}%</span>
+                        </div>
+                        <div class="importance-bar-bg">
+                            <div class="importance-bar-fill" style="width: 0%; background: ${color}"></div>
+                        </div>
+                    `;
+                    listContainer.appendChild(div);
+
+                    // Animate bar
+                    setTimeout(() => {
+                        div.querySelector('.importance-bar-fill').style.width = weight + '%';
+                    }, 100);
+                });
+            }
+
+            // Update AI Assist Summary
+            const heartSummary = `Overall Heart Health Result:
+- Risk Score: ${data.risk}%
+- Model Accuracy: ${data.accuracy}%
+- Status: ${data.risk_status}
+- Message: ${data.message}`;
+
+            window.currentDiagnosticSummary = heartSummary;
+        }
+
+
+
+        // Heart Failure Logic
+        const hfModal = document.getElementById('heartFailureModal');
+        const hfForm = document.getElementById('hfForm');
+        const hfResultArea = document.getElementById('hfResultArea');
+        const hfSubmitBtn = document.getElementById('hfSubmitBtn');
+
+        function closeHFModal() {
+            hfModal.style.display = 'none';
+        }
+
+        function resetHFDiagnostic() {
+            hfForm.style.display = 'grid';
+            hfResultArea.style.display = 'none';
+            hfForm.reset();
+        }
+
+        hfForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = {
+                userId: localStorage.getItem('userId'),
+                age: document.getElementById('hf_age').value,
+                sex: document.getElementById('hf_sex').value,
+                chestPainType: document.getElementById('hf_cp').value,
+                restingBP: document.getElementById('hf_trestbps').value,
+                cholesterol: document.getElementById('hf_chol').value,
+                fastingBS: document.getElementById('hf_fbs').value,
+                restingECG: document.getElementById('hf_restecg').value,
+                maxHR: document.getElementById('hf_thalach').value,
+                exerciseAngina: document.getElementById('hf_exang').value,
+                oldpeak: document.getElementById('hf_oldpeak').value,
+                stSlope: document.getElementById('hf_slope').value,
+                swellingLegs: document.getElementById('hf_swelling_legs').checked ? 1 : 0,
+                rapidHeartbeat: document.getElementById('hf_rapid_heart').checked ? 1 : 0,
+                wheezing: document.getElementById('hf_wheezing').checked ? 1 : 0,
+                swellingBelly: document.getElementById('hf_swelling_belly').checked ? 1 : 0,
+                rapidWeightGain: document.getElementById('hf_weight_gain').checked ? 1 : 0,
+                difficultyConcentrating: document.getElementById('hf_conc').checked ? 1 : 0
+            };
+
+            hfSubmitBtn.disabled = true;
+            hfSubmitBtn.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Analyzing...';
+
+            try {
+                const response = await fetch('/api/predict-heart-failure', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    displayHFResult(result);
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Connection failed.');
+            } finally {
+                hfSubmitBtn.disabled = false;
+                hfSubmitBtn.innerHTML = '<ion-icon name="analytics-outline"></ion-icon> <span>Analyze Risk</span>';
+            }
+        };
+
+        function displayHFResult(data) {
+            hfForm.style.display = 'none';
+            hfResultArea.style.display = 'block';
+
+            document.getElementById('hfRiskValue').innerText = data.risk + '%';
+            document.getElementById('hfPredictionValue').innerText = data.prediction;
+            document.getElementById('hfAccuracyValue').innerText = data.accuracy + '%';
+
+            const hfRiskLabel = document.getElementById('hfRiskLabel');
+            const hfRiskMeter = document.getElementById('hfRiskMeter');
+            const hfRiskMsg = document.getElementById('hfRiskMsg');
+
+            let color = '#10b981';
+            let labelText = 'Low Risk 🟢';
+
+            if (data.risk_status === 'high') {
+                color = '#f43f5e';
+                labelText = 'High Risk ⚠️';
+            } else if (data.risk_status === 'moderate') {
+                color = '#fbbf24';
+                labelText = 'Moderate Risk 🔶';
+            }
+
+            hfRiskLabel.innerText = labelText;
+            hfRiskLabel.style.color = color;
+            hfRiskMeter.style.border = `5px solid ${color}`;
+            hfRiskMsg.innerText = data.message;
+
+            // Update AI Assist Summary
+            const hfSummary = `Heart Failure Diagnostic Result:
+- Risk Score: ${data.risk}%
+- Prediction: ${data.prediction}
+- Model Accuracy: ${data.accuracy}%
+- Status: ${data.risk_status}
+- Message: ${data.message}`;
+
+            window.currentDiagnosticSummary = hfSummary;
+        }
+
+        // Global Helper for AI Assistance
+        window.triggerAiAssist = (query) => {
+            const summary = window.currentDiagnosticSummary || "No diagnostic results available.";
+            sessionStorage.setItem('pendingAiAnalysis', `${summary}\n\nUser Question: ${query}`);
+            window.location.href = 'medical.html?action=chat';
+        };
+
+    </script>
+</body>
+
+</html>

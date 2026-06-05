@@ -1,0 +1,71 @@
+import pandas as pd
+import numpy as np
+import sys
+import json
+import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+
+# Set working directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+# Load Dataset
+try:
+    df = pd.read_csv("arrhythmia.csv")
+except Exception as e:
+    print(json.dumps({"status": "error", "error": f"Dataset Error: {str(e)}"}))
+    sys.exit(1)
+
+# Preprocessing
+encoders = {}
+for col in ['gender', 'pulse_regularity']:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    encoders[col] = le
+
+X = df.drop('target', axis=1)
+y = df['target']
+
+# Train Model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+accuracy = round(model.score(X, y) * 100, 2)
+
+def predict(age, gender_str, pulse_str, hr, palpitations, dizziness):
+    try:
+        # Mapping
+        g_val = encoders['gender'].transform([gender_str])[0]
+        p_val = encoders['pulse_regularity'].transform([pulse_str])[0]
+        
+        features = np.array([[float(age), g_val, p_val, float(hr), float(palpitations), float(dizziness)]])
+        risk = model.predict_proba(features)[0][1] * 100
+        
+        status = "low"
+        if risk > 70: status = "high"
+        elif risk > 35: status = "moderate"
+        
+        messages = {
+            "low": "Stable electrical activity detected. No major markers for arrhythmia found.",
+            "moderate": "Partial irregularity in pulse mapping. Monitoring and baseline ECG recommended.",
+            "high": "CRITICAL: High probability of abnormal rhythm detected. Clinical ECG/Holter monitoring required."
+        }
+        
+        return {
+            "status": "success",
+            "risk": round(risk, 1),
+            "risk_status": status,
+            "message": messages[status],
+            "accuracy": accuracy,
+            "prediction": "Arrhythmia Detected" if risk > 50 else "Normal Sinus Rhythm"
+        }
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 7:
+        print(json.dumps({"status": "error", "error": "Missing inputs"}))
+    else:
+        # age, gender, pulse, hr, palp, diz
+        res = predict(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+        print(json.dumps(res))

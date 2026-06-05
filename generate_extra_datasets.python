@@ -1,0 +1,151 @@
+import pandas as pd
+import numpy as np
+import os
+
+def generate_skin_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(1, 100, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    skin_type = np.random.randint(1, 7, n)
+    asymmetry = np.random.randint(0, 2, n)
+    border = np.random.randint(0, 2, n)
+    diameter = np.random.randint(0, 2, n)
+    evolution = np.random.randint(0, 2, n)
+    symptoms = np.random.randint(0, 2, n)
+    
+    # Risk logic
+    risk = asymmetry * 25 + border * 20 + diameter * 15 + evolution * 30 + symptoms * 10
+    target = (risk > np.percentile(risk, 75) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'skin_type': skin_type,
+        'asymmetry': asymmetry, 'border': border, 'diameter': diameter,
+        'evolution': evolution, 'symptoms': symptoms, 'target': target
+    })
+    df.to_csv('skin_general.csv', index=False)
+    print("Created skin_general.csv")
+
+def generate_kidney_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(10, 90, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    hydration = np.random.choice(['Low', 'Normal', 'High'], n)
+    pain = np.random.randint(0, 2, n)
+    blood = np.random.randint(0, 2, n)
+    nausea = np.random.randint(0, 2, n)
+    history = np.random.randint(0, 2, n)
+    calcium = np.random.randint(0, 2, n)
+    
+    risk = (hydration == 'Low') * 30 + pain * 25 + blood * 25 + history * 20 + calcium * 10
+    target = (risk > np.percentile(risk, 80) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'hydration': hydration,
+        'pain': pain, 'blood': blood, 'nausea': nausea,
+        'history': history, 'calcium': calcium, 'target': target
+    })
+    df.to_csv('kidney_stone.csv', index=False)
+    print("Created kidney_stone.csv")
+
+def generate_cognitive_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(40, 100, n)
+    education = np.random.randint(0, 25, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    memory = np.random.randint(0, 3, n)
+    confusion = np.random.randint(0, 2, n)
+    speech = np.random.randint(0, 2, n)
+    mood = np.random.randint(0, 2, n)
+    stroke = np.random.randint(0, 2, n)
+    
+    risk = (age > 75) * 20 + (education < 12) * 10 + memory * 30 + confusion * 20 + stroke * 20
+    target = (risk > np.percentile(risk, 82) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'education': education, 'gender': gender,
+        'memory': memory, 'confusion': confusion, 'speech': speech,
+        'mood': mood, 'stroke': stroke, 'target': target
+    })
+    df.to_csv('cognitive.csv', index=False)
+    print("Created cognitive.csv")
+
+def generate_stomach_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(18, 90, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    bmi = np.random.choice(['Underweight', 'Normal', 'Overweight', 'Obese'], n)
+    pain = np.random.randint(0, 2, n)
+    bloating = np.random.randint(0, 2, n)
+    weight_loss = np.random.randint(0, 2, n)
+    eating_pain = np.random.randint(0, 2, n)
+    alcohol = np.random.randint(0, 3, n)
+    
+    risk = pain * 35 + weight_loss * 25 + eating_pain * 20 + alcohol * 15 + bloating * 5
+    target = (risk > np.percentile(risk, 78) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'bmi': bmi,
+        'pain': pain, 'bloating': bloating, 'weight_loss': weight_loss,
+        'eating_pain': eating_pain, 'alcohol': alcohol, 'target': target
+    })
+    df.to_csv('stomach_ulcer.csv', index=False)
+    print("Created stomach_ulcer.csv")
+
+def generate_brain_tumor_general_dataset():
+    np.random.seed(42)
+    n = 1500
+    location = np.random.choice(['Frontal', 'Parietal', 'Temporal', 'Occipital', 'Cerebellum'], n)
+    size = np.random.randint(1, 150, n)
+    contrast = np.random.randint(0, 3, n)
+    headache = np.random.randint(0, 2, n)
+    seizures = np.random.randint(0, 2, n)
+    vision = np.random.randint(0, 2, n)
+    nausea = np.random.randint(0, 2, n)
+    weakness = np.random.randint(0, 2, n)
+    
+    risk = (size > 30) * 20 + contrast * 20 + headache * 15 + seizures * 25 + weakness * 20
+    target = (risk > np.percentile(risk, 75) + np.random.normal(0, 5, n)).astype(int)
+    
+    df = pd.DataFrame({
+        'location': location, 'size': size, 'contrast': contrast,
+        'headache': headache, 'seizures': seizures, 'vision': vision,
+        'nausea': nausea, 'weakness': weakness, 'target': target
+    })
+    df.to_csv('brain_tumor_general.csv', index=False)
+    print("Created brain_tumor_general.csv")
+
+def generate_anemia_dataset():
+    np.random.seed(42)
+    n = 1500
+    age = np.random.randint(1, 100, n)
+    gender = np.random.choice(['Male', 'Female'], n)
+    diet = np.random.choice(['Veg', 'NonVeg', 'Vegan'], n)
+    hb = np.random.uniform(5, 18, n)
+    mcv = np.random.uniform(50, 120, n)
+    ferritin = np.random.uniform(1, 500, n)
+    fatigue = np.random.choice(['Normal', 'Mild', 'Severe'], n)
+    sob = np.random.randint(0, 2, n)
+    
+    # Anemia detection logic
+    risk = (hb < 12) * 40 + (ferritin < 20) * 30 + (fatigue == 'Severe') * 15 + sob * 15
+    target = (risk > 50).astype(int)
+    
+    df = pd.DataFrame({
+        'age': age, 'gender': gender, 'diet': diet,
+        'hb': hb, 'mcv': mcv, 'ferritin': ferritin,
+        'fatigue': fatigue, 'sob': sob, 'target': target
+    })
+    df.to_csv('anemia_dataset.csv', index=False)
+    print("Created anemia_dataset.csv")
+
+if __name__ == "__main__":
+    generate_skin_dataset()
+    generate_kidney_dataset()
+    generate_cognitive_dataset()
+    generate_stomach_dataset()
+    generate_brain_tumor_general_dataset()
+    generate_anemia_dataset()

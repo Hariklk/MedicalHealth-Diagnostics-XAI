@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hematological Evaluator | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+    <style>
+        :root { --accent-color: #ef4444; }
+        .diagnostic-card-premium { border-top: 4px solid var(--accent-color); }
+        .highlight { color: var(--accent-color); }
+        .risk-circle { border: 4px solid var(--accent-color); }
+    </style>
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='medical.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Hub</span></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <div class="header-left">
+                    <h1 class="terminal-title">Hematological <span class="highlight">Evaluator</span></h1>
+                    <p class="terminal-subtitle">Automated blood report evaluation and iron-deficiency monitoring.</p>
+                </div>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium">
+                    <div class="stepper-header">
+                        <div class="step-item active" id="step-1-head"><div class="step-num">01</div><div class="step-label">Vitals</div></div>
+                        <div class="step-divider"></div>
+                        <div class="step-item" id="step-2-head"><div class="step-num">02</div><div class="step-label">Blood Markers</div></div>
+                    </div>
+
+                    <form id="anemiaForm" class="diagnostic-form-full">
+                        <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                            <div class="scanner-content">
+                                <div class="pulse-ring"></div>
+                                <div class="scanner-icon"><ion-icon name="scan-outline"></ion-icon></div>
+                                <div class="scanner-text">
+                                    <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                                    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div>
+                                    <p id="scannerLog">Awaiting Biometric Stream...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-step-container active" id="step-1">
+                            <div class="form-section">
+                                <div class="form-section-header"><ion-icon name="person-outline"></ion-icon><h3>Patient Biometrics</h3></div>
+                                <div class="form-grid-three">
+                                    <div class="form-group-p"><label>Age</label><input type="number" id="age" required min="1" max="120" placeholder="e.g. 29"></div>
+                                    <div class="form-group-p"><label>Gender</label><select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div>
+                                    <div class="form-group-p"><label>Dietary Habit</label><select id="diet"><option value="Veg">Vegetarian</option><option value="NonVeg">Non-Vegetarian</option><option value="Vegan">Vegan</option></select></div>
+                                </div>
+                            </div>
+                            <div class="step-controls"><div></div><button type="button" class="next-step-btn" onclick="goToStep(2)">Next Phase <ion-icon name="arrow-forward-outline"></ion-icon></button></div>
+                        </div>
+
+                        <div class="form-step-container" id="step-2">
+                            <div class="form-section">
+                                <div class="form-section-header"><ion-icon name="water-outline"></ion-icon><h3>Hematological Markers</h3></div>
+                                <div class="form-grid-three">
+                                    <div class="form-group-p"><label>Hemoglobin (g/dL)</label><input type="number" id="hb" required step="0.1" min="1" max="25" placeholder="e.g. 10.5"></div>
+                                    <div class="form-group-p"><label>MCV (fL)</label><input type="number" id="mcv" required step="0.1" min="50" max="150" placeholder="e.g. 85.0"></div>
+                                    <div class="form-group-p"><label>Serum Ferritin (ng/mL)</label><input type="number" id="ferritin" required step="1" min="1" max="1000" placeholder="e.g. 15"></div>
+                                    <div class="form-group-p"><label>Fatigue Level</label><select id="fatigue"><option value="Normal">Normal</option><option value="Mild">Mild</option><option value="Severe">Severe</option></select></div>
+                                    <div class="form-group-p"><label>Shortness of Breath</label><select id="sob"><option value="0">No</option><option value="1">Yes (On Exertion)</option></select></div>
+                                </div>
+                            </div>
+                            <div class="step-controls"><button type="button" class="prev-step-btn" onclick="goToStep(1)"><ion-icon name="arrow-back-outline"></ion-icon> Previous</button><button type="submit" class="submit-cad-btn"><ion-icon name="analytics-outline"></ion-icon> Run Blood Scan</button></div>
+                        </div>
+                    </form>
+
+                    <div id="resultArea" class="result-area-premium" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats-column">
+                                <div class="result-main-card">
+                                    <div class="risk-circle-container"><div class="risk-circle" id="riskMeter"><span class="risk-percent" id="riskValue">0%</span><span class="risk-title">Risk Score</span></div></div>
+                                    <div class="risk-details"><h2 id="riskLabel">Calculating...</h2><p id="riskMsg"></p></div>
+                                </div>
+                                <div class="mini-stats-grid">
+                                    <div class="mini-stat"><label>AI Accuracy</label><div class="val" id="accuracyValue">--</div></div>
+                                    <div class="mini-stat"><label>Status</label><div class="val" id="statusValue">--</div></div>
+                                </div>
+                                <button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Analysis</span></button>
+                            </div>
+                            <div class="chatbot-analysis-column">
+                                <div class="chatbot-card">
+                                    <div class="chat-card-header">
+                                        <div class="ai-avatar"><ion-icon name="pulse"></ion-icon></div>
+                                        <div><h4>Hematological Assistant</h4><span class="status-online">Ready</span></div>
+                                    </div>
+                                    <div class="chat-content" id="chatMessages">
+                                        <div class="msg ai">Blood report evaluation complete. How can I help you understand these hematological findings?</div>
+                                    </div>
+                                    <div class="chat-input-box">
+                                        <input type="text" id="chatInput" placeholder="Ask about your blood report...">
+                                        <button onclick="sendChat()"><ion-icon name="send"></ion-icon></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function goToStep(s) {
+            document.querySelectorAll('.form-step-container').forEach(e => e.classList.remove('active'));
+            document.getElementById(`step-${s}`).classList.add('active');
+            document.querySelectorAll('.step-item').forEach(e => e.classList.remove('active'));
+            document.getElementById(`step-${s}-head`).classList.add('active');
+        }
+
+        document.getElementById('anemiaForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const scanner = document.getElementById('neuralScanner');
+            scanner.style.display = 'flex';
+            const stages = ['Initializing Biometric Link...', 'Analyzing Hemoglobin Levels...', 'Mapping Ferritin Storage...', 'Finalizing Blood Scan...'];
+            for(let i=0; i<stages.length; i++) {
+                document.getElementById('scannerStatus').innerText = stages[i];
+                document.getElementById('scannerProgress').style.width = ((i+1)*25)+'%';
+                await new Promise(r => setTimeout(r, 600));
+            }
+
+            const formData = {
+                type: 'anemia_analysis',
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                diet: document.getElementById('diet').value,
+                hb: document.getElementById('hb').value,
+                mcv: document.getElementById('mcv').value,
+                ferritin: document.getElementById('ferritin').value,
+                fatigue: document.getElementById('fatigue').value,
+                sob: document.getElementById('sob').value
+            };
+
+            try {
+                const res = await fetch('/api/predict-anemia', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(formData) });
+                const result = await res.json();
+                
+                scanner.style.display = 'none';
+                document.getElementById('anemiaForm').style.display = 'none';
+                document.querySelector('.stepper-header').style.display = 'none';
+                document.getElementById('resultArea').style.display = 'block';
+
+                document.getElementById('riskValue').innerText = result.risk + '%';
+                document.getElementById('riskLabel').innerText = result.prediction.toUpperCase();
+                document.getElementById('riskMsg').innerText = result.message;
+                document.getElementById('accuracyValue').innerText = result.accuracy + '%';
+                document.getElementById('statusValue').innerText = result.risk_status;
+                
+                window.currentRisk = result.risk;
+                window.currentStatus = result.risk_status;
+            } catch(err) {
+                alert('Analysis failed');
+                scanner.style.display = 'none';
+            }
+        };
+
+        async function sendChat() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user';
+            userDiv.innerText = text;
+            messages.appendChild(userDiv);
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            const loading = document.createElement('div');
+            loading.className = 'msg ai';
+            loading.innerHTML = '<ion-icon name="sync-outline" class="spin"></ion-icon> Analyzing...';
+            messages.appendChild(loading);
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: `Context: Anemia Diagnostic - Risk ${window.currentRisk}%, Status: ${window.currentStatus}. User: ${text}`,
+                        history: []
+                    })
+                });
+                const data = await res.json();
+                messages.removeChild(loading);
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'msg ai';
+                aiDiv.innerText = data.message;
+                messages.appendChild(aiDiv);
+            } catch (e) {
+                messages.removeChild(loading);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

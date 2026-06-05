@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Diagnostic | HealthAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagnostic-forms.css">
+    <style>
+        :root { --accent-color: #38bdf8; }
+        .diagnostic-card-premium { border-top: 4px solid var(--accent-color); }
+        .highlight { color: var(--accent-color); }
+    </style>
+</head>
+<body class="medical-dashboard-page">
+    <div class="medical-background dashboard-bg"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="aura-overlay"></div></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header"><div class="logo-box"><ion-icon name="pulse"></ion-icon></div><span>Health Diagnostic AI</span></div>
+            <div class="sidebar-footer">
+                <button class="terminal-nav-btn" onclick="location.href='cancer-analysis.html'">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <div class="nav-text"><span class="cmd">NAV_TERMINAL</span><span class="label">Back to Cancer Lab</span></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-terminal">
+            <header class="terminal-header">
+                <div class="header-left">
+                    <h1 class="terminal-title">Lung <span class="highlight">Pathology Mapper</span></h1>
+                    <p class="terminal-subtitle">Advanced respiratory oncology screening and neural risk assessment.</p>
+                </div>
+            </header>
+
+            <div class="diagnostic-container-page">
+                <div class="diagnostic-card-premium" id="tiltCard">
+                    <div id="neuralScanner" class="neural-scanner-overlay" style="display: none;">
+                        <div class="scanner-content">
+                            <div class="pulse-ring"></div>
+                            <div class="scanner-icon"><ion-icon name="scan-outline"></ion-icon></div>
+                            <div class="scanner-text">
+                                <h4 id="scannerStatus">Initializing Neural Link...</h4>
+                                <div class="progress-bar-wrap"><div class="progress-bar-fill" id="scannerProgress"></div></div>
+                                <p id="scannerLog">Awaiting Biometric Stream...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="cancerForm" class="diagnostic-form-full">
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <h3>Patient Biometrics</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="calendar-outline"></ion-icon> Age</label>
+                                    <input type="number" id="age" required min="1" max="120" placeholder="e.g. 55">
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="leaf-outline"></ion-icon> Smoking History</label>
+                                    <select id="smoking" required>
+                                        <option value="0">Never Smoked</option>
+                                        <option value="1">Active Smoker / Former</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="flask-outline"></ion-icon> Chronic Disease</label>
+                                    <select id="chronic" required>
+                                        <option value="0">None</option>
+                                        <option value="1">Present</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <ion-icon name="alert-circle-outline"></ion-icon>
+                                <h3>Symptom Mapping</h3>
+                            </div>
+                            <div class="form-grid-three">
+                                <div class="form-group-p">
+                                    <label><ion-icon name="fitness-outline"></ion-icon> Persistent Cough</label>
+                                    <select id="coughing" required>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="water-outline"></ion-icon> Chest Pain</label>
+                                    <select id="chest_pain" required>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-p">
+                                    <label><ion-icon name="cloud-outline"></ion-icon> Shortness of Breath</label>
+                                    <select id="sob" required>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <p class="form-hint">AI Engine: Random Forest v3.0 • Oncology Specific</p>
+                            <button type="submit" class="submit-cad-btn" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9);">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                Run Neural Analysis
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Result Area (Hidden initially) -->
+                    <div id="resultArea" class="result-area-premium" style="display: none;">
+                        <div class="result-layout-grid">
+                            <div class="result-stats-column">
+                                <div class="result-main-card">
+                                    <div class="risk-circle-container">
+                                        <div class="risk-circle" id="riskMeter" style="border-color: var(--accent-color);">
+                                            <span class="risk-percent" id="riskValue">0%</span>
+                                            <span class="risk-title">Risk Score</span>
+                                        </div>
+                                    </div>
+                                    <div class="risk-details">
+                                        <h2 id="riskLabel">Calculating...</h2>
+                                        <p id="riskMsg"></p>
+                                    </div>
+                                </div>
+                                <div class="mini-stats-grid">
+                                    <div class="mini-stat"><label>AI Accuracy</label><div class="val" id="accuracyValue">--</div></div>
+                                    <div class="mini-stat"><label>Pathology Status</label><div class="val" id="statusValue">--</div></div>
+                                </div>
+                                <div class="terminal-action-center">
+                                    <button class="terminal-btn primary" onclick="location.reload()"><ion-icon name="refresh-outline"></ion-icon><span>New Analysis</span></button>
+                                    <button class="terminal-btn" onclick="window.print()"><ion-icon name="document-text-outline"></ion-icon><span>Export Report</span></button>
+                                </div>
+                            </div>
+                            <div class="chatbot-analysis-column">
+                                <div class="chatbot-card">
+                                    <div class="chat-card-header">
+                                        <div class="ai-avatar"><ion-icon name="shield-checkmark" style="color:var(--accent-color)"></ion-icon></div>
+                                        <div><h4>Oncology Insight Assistant</h4><span class="status-online">System Ready</span></div>
+                                    </div>
+                                    <div class="chat-content" id="chatMessages">
+                                        <div class="msg ai"><p>I have processed your respiratory markers. Would you like a detailed breakdown of your lung pathology risk?</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const cancerForm = document.getElementById('cancerForm');
+        const resultArea = document.getElementById('resultArea');
+        const scanner = document.getElementById('neuralScanner');
+
+        cancerForm.onsubmit = async (e) => {
+            e.preventDefault();
+            scanner.style.display = 'flex';
+            
+            const stages = [
+                { status: 'Mapping Respiratory Grid...', progress: 25 },
+                { status: 'Analyzing Cellular Biomarkers...', progress: 55 },
+                { status: 'Neural Risk Calculation...', progress: 85 },
+                { status: 'Analysis Complete', progress: 100 }
+            ];
+
+            for (const stage of stages) {
+                document.getElementById('scannerStatus').innerText = stage.status;
+                document.getElementById('scannerProgress').style.width = stage.progress + '%';
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            const formData = {
+                type: 'lung',
+                age: document.getElementById('age').value,
+                smoking: document.getElementById('smoking').value,
+                yellow_fingers: 0, anxiety: 0, peer_pressure: 0,
+                chronic: document.getElementById('chronic').value,
+                fatigue: 0, allergy: 0, wheezing: 0, alcohol: 0,
+                coughing: document.getElementById('coughing').value,
+                sob: document.getElementById('sob').value,
+                swallowing: 0,
+                chest_pain: document.getElementById('chest_pain').value
+            };
+
+            try {
+                const res = await fetch('/api/predict-cancer', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                });
+                const result = await res.json();
+                
+                scanner.style.display = 'none';
+                cancerForm.style.display = 'none';
+                resultArea.style.display = 'block';
+
+                document.getElementById('riskValue').innerText = result.risk + '%';
+                document.getElementById('riskLabel').innerText = result.risk_status.toUpperCase() + ' PATHOLOGY RISK';
+                document.getElementById('riskMsg').innerText = result.message;
+                document.getElementById('accuracyValue').innerText = result.accuracy + '%';
+                document.getElementById('statusValue').innerText = result.risk_status === 'high' ? 'Pathological' : 'Stable';
+                
+                let color = '#10b981';
+                if(result.risk_status === 'high') color = '#f43f5e';
+                else if(result.risk_status === 'moderate') color = '#fbbf24';
+                
+                document.getElementById('riskValue').style.color = color;
+                document.getElementById('riskMeter').style.borderColor = color;
+                document.getElementById('riskLabel').style.color = color;
+
+            } catch (err) {
+                alert('Analysis failed. Please check server status.');
+                scanner.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

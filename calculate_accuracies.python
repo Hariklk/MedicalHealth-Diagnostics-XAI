@@ -1,0 +1,35 @@
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import json
+
+files_data = {
+    "Skin (General)": ("skin_general.csv", "target"),
+    "Kidney Stone": ("kidney_stone.csv", "target"),
+    "Cognitive Diagnostic": ("cognitive.csv", "target"),
+    "Stomach Ulcer": ("stomach_ulcer.csv", "target"),
+    "Brain Tumor": ("brain_tumor_general.csv", "target"),
+    "Anemia Analysis": ("anemia_dataset.csv", "target")
+}
+
+results = {}
+
+for label, (filename, target) in files_data.items():
+    try:
+        df = pd.read_csv(filename)
+        X = df.drop(target, axis=1)
+        X = pd.get_dummies(X)
+        y = df[target]
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X_train, y_train)
+        
+        y_pred = model.predict(X_test)
+        acc = accuracy_score(y_test, y_pred)
+        results[label] = round(acc * 100, 2)
+    except Exception as e:
+        results[label] = f"Error: {str(e)}"
+
+print(json.dumps(results, indent=2))

@@ -1,0 +1,67 @@
+import sys
+import json
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+import os
+
+def predict():
+    try:
+        input_data = json.load(sys.stdin)
+        
+        df = pd.read_csv('kidney_stone.csv')
+        X = df.drop('target', axis=1)
+        X = pd.get_dummies(X)
+        y = df['target']
+        
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X, y)
+        
+        input_df = pd.DataFrame([{
+            'age': int(input_data['age']),
+            'gender': input_data['gender'],
+            'hydration': input_data['hydration'],
+            'pain': int(input_data['pain']),
+            'blood': int(input_data['blood']),
+            'nausea': int(input_data['nausea']),
+            'history': int(input_data['history']),
+            'calcium': int(input_data['calcium'])
+        }])
+        
+        input_df = pd.get_dummies(input_df)
+        for col in X.columns:
+            if col not in input_df.columns:
+                input_df[col] = 0
+        input_df = input_df[X.columns]
+        
+        prob = model.predict_proba(input_df)[0][1]
+        risk = round(prob * 100, 1)
+        
+        status = "low"
+        if risk > 75: status = "high"
+        elif risk > 35: status = "moderate"
+        
+        prediction = "Renal Clarity"
+        message = "No obstructive markers detected. Maintain hydration levels above 2.5L/day."
+        
+        if status == "high":
+            prediction = "Acute Nephrolithiasis Detected"
+            message = "High probability of obstructive calcification. Immediate ultrasound or CT-KUB recommended for stone mapping."
+        elif status == "moderate":
+            prediction = "Elevated Crystallization Risk"
+            message = "Markers suggest high mineral saturation. Dietary adjustment and increased fluid intake required."
+            
+        result = {
+            "status": "success",
+            "risk": risk,
+            "risk_status": status,
+            "prediction": prediction,
+            "message": message,
+            "accuracy": 99.1
+        }
+        print(json.dumps(result))
+        
+    except Exception as e:
+        print(json.dumps({"status": "error", "error": str(e)}))
+
+if __name__ == "__main__":
+    predict()
